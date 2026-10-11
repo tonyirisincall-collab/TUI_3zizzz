@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f4f7fb">
-<title>TUI UK Call Playbook</title>
+<title>TUI Pre-Travel Playbook</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232f6fed'/%3E%3Cpath d='M25.5 6.5 6.5 14l7.4 3 3 7.6z' fill='white'/%3E%3Cpath d='M13.9 17 25.5 6.5' stroke='%232f6fed' stroke-width='1.4' fill='none'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
@@ -250,8 +250,23 @@ mark{background:#fff0b8;color:inherit;border-radius:4px;padding:0 2px}
 .pin.on{color:#e0a21b}
 .pin.on .ic{fill:currentColor}
 .pin .ic{width:18px;height:18px}
-.flash{animation:flash 2.4s ease}
-@keyframes flash{0%,65%{box-shadow:0 0 0 3px var(--acc),0 18px 34px -12px rgba(28,42,68,.25)}100%{box-shadow:var(--shadow)}}
+/* highlight for the result you opened from search */
+.spot{position:relative;outline:3px solid var(--acc);outline-offset:3px;background:var(--soft)!important;animation:spotpulse 1.1s ease 3}
+.spot::before{content:"You are here";position:absolute;top:-12px;left:16px;background:var(--acc);color:#fff;font:700 11px Inter,system-ui,sans-serif;letter-spacing:.04em;padding:3px 10px;border-radius:999px;z-index:2}
+@keyframes spotpulse{0%,100%{box-shadow:0 0 0 0 transparent}50%{box-shadow:0 0 0 12px rgba(47,111,237,.22)}}
+/* pinned button and tabs */
+.pbtn{margin-left:0}
+.pbtn .ic{color:#e0a21b;fill:#e0a21b}
+.pbtn b{background:var(--brand);color:#fff;border-radius:999px;font-size:11px;min-width:20px;height:20px;display:grid;place-items:center;padding:0 6px}
+.qtabs{display:flex;gap:6px;padding:10px 16px 0}
+.qtabs button{border:0;background:#f1f4f9;color:var(--muted);font:600 13px Inter,system-ui,sans-serif;padding:8px 14px;border-radius:10px;cursor:pointer;display:inline-flex;gap:7px;align-items:center}
+.qtabs button.on{background:var(--brand-soft);color:var(--brand)}
+.qtabs b{background:#fff;border-radius:999px;font-size:11px;padding:1px 7px}
+.prow{display:flex;align-items:center;gap:4px}
+.prow .qrow{flex:1}
+.unpin{border:0;background:#f1f4f9;border-radius:10px;width:32px;height:32px;display:grid;place-items:center;color:var(--muted);cursor:pointer;flex:none}
+.unpin:hover{background:var(--bad-soft);color:var(--bad)}
+.unpin .ic{width:15px;height:15px}
 @media (max-width:600px){.qbtn .lbl,.qbtn kbd{display:none}.qf{padding-top:3vh}.qf-foot{display:none}.tiles{grid-template-columns:1fr 1fr}}
 </style>
 </head>
@@ -301,15 +316,16 @@ mark{background:#fff0b8;color:inherit;border-radius:4px;padding:0 2px}
 
 <div class="app">
   <aside class="side" id="side">
-    <div class="brand"><div class="logo"><svg class="ic"><use href="#i-plane"/></svg></div><div><b>Call Playbook</b><span>TUI UK &middot; practice deck</span></div></div>
+    <div class="brand"><div class="logo"><svg class="ic"><use href="#i-plane"/></svg></div><div><b>Pre-Travel Playbook</b><span>TUI Pre-Travel &middot; practice deck</span></div></div>
     <nav class="nav-list" id="navlist"></nav>
   </aside>
   <div class="scrim" id="scrim"></div>
   <main>
     <div class="top">
       <button class="menu-btn" id="menuBtn" aria-label="Open menu"><svg class="ic"><use href="#i-menu"/></svg></button>
-      <h1>TUI UK Call Playbook <span>&middot; scripts, objections &amp; practice</span></h1>
+      <h1>TUI Pre-Travel Playbook <span>&middot; scripts, objections &amp; practice</span></h1>
       <button class="qbtn" id="qbtn" type="button" aria-label="Quick find"><svg class="ic"><use href="#i-search"/></svg><span class="lbl">Quick find</span><kbd>/</kbd></button>
+      <button class="qbtn pbtn" id="pbtn" type="button" aria-label="Pinned scripts"><svg class="ic"><use href="#i-star"/></svg><span class="lbl">Pinned</span><b id="pbadge">0</b></button>
       <div class="mode" role="group" aria-label="Mode">
         <div class="pill"></div>
         <button id="mStudy" class="on" type="button"><svg class="ic"><use href="#i-book"/></svg>Study</button>
@@ -329,9 +345,10 @@ mark{background:#fff0b8;color:inherit;border-radius:4px;padding:0 2px}
 <div class="qf" id="qf" aria-hidden="true">
   <div class="qf-back" id="qfBack"></div>
   <div class="qf-panel" role="dialog" aria-label="Quick find">
-    <div class="qf-bar"><svg class="ic"><use href="#i-search"/></svg><input id="qfIn" type="text" placeholder="Type anything: angry, cheaper, system down, delay... (Arabic works too)" autocomplete="off" spellcheck="false"><button class="qx" id="qfX" type="button" aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+    <div class="qf-bar"><svg class="ic"><use href="#i-search"/></svg><input id="qfIn" type="text" placeholder="Type anything: angry, cheaper, hotel, delay... (Arabic works too)" autocomplete="off" spellcheck="false"><button class="qx" id="qfX" type="button" aria-label="Close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+    <div class="qtabs"><button type="button" id="tFind" class="on">Find</button><button type="button" id="tPin">&#9733; Pinned <b id="pinCount">0</b></button></div>
     <div class="qf-body" id="qfBody"></div>
-    <div class="qf-foot"><span><kbd>&uarr;</kbd><kbd>&darr;</kbd> move</span><span><kbd>Enter</kbd> open</span><span><kbd>Esc</kbd> clear / close</span><span><kbd>/</kbd> open from anywhere</span></div>
+    <div class="qf-foot"><span><kbd>&uarr;</kbd><kbd>&darr;</kbd> move</span><span><kbd>Enter</kbd> open</span><span><kbd>Esc</kbd> clear / close</span><span><kbd>/</kbd> find</span><span><kbd>P</kbd> pinned</span></div>
   </div>
 </div>
 
@@ -344,12 +361,12 @@ const fmt=s=>esc(s).replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>').repl
 /* ---------- content ---------- */
 const SECTIONS=[
 {id:'start',name:'Start here',icon:'home',acc:'#2f6fed',soft:'#e7efff',slides:[
- {t:'hero',title:'TUI UK Call Handling Playbook',sub:'Openings, objections, upselling, angry customers, system issues and flight disruptions. Ready-to-use English scripts you can practise out loud.',chips:['Quick find (press /)','Study mode','Practice mode','Roleplay generator','Objection roulette']},
+ {t:'hero',title:'TUI Pre-Travel Playbook',sub:'Everything before the trip: hotel and room questions, flight extras, special requests, rapport, objections and difficult calls. Ready-to-use English scripts you can practise out loud.',chips:['Quick find (press /)','Pinned (press P)','Study mode','Practice mode','Roleplay generator','Objection roulette']},
  {t:'cards',title:'How to use this deck',sub:'Two ways to work. Learn first, then switch to Practice and test yourself.',cards:[
   {i:'book',h:'Study mode',p:'Every response is visible. Read the script, notice the structure, copy the phrases you like.'},
   {i:'mic',h:'Practice mode',p:'Responses are hidden. Say your own answer out loud first, then reveal the model response and compare.'},
   {i:'shuffle',h:'Practice lab',p:'The last section has a random roleplay generator with timer and scorecard, plus an objection roulette.'},
-  {i:'search',h:'Quick find (press /)',p:'Search anything, or tap a situation tile like "angry" or "system down". Arabic keywords work too. Pin your favourite scripts with the star.'},
+  {i:'search',h:'Quick find (press /)',p:'Search anything, or tap a situation tile like "angry" or "hotel". Arabic keywords work too. Pin your favourite scripts with the star and open them from the Pinned button (or press P).'},
   {i:'file',h:'Make it yours',p:'Replace [Name], [X] and other highlighted placeholders. Always follow your account\'s approved wording, policies and compliance rules. These are templates, not official policy.'}]},
  {t:'cards',title:'What customers expect when they call',sub:'Keep these six expectations in your head before every call and very little will surprise you.',cards:[
   {i:'search',h:'Clarity',p:'"Tell me exactly what is happening and what happens next."'},
@@ -609,6 +626,132 @@ const SECTIONS=[
   {i:'right',h:'Next step',p:'What should the next person do if the customer calls back?'}]}
 ]},
 
+{id:'pre',name:'Pre-Travel: Hotels',icon:'home',acc:'#0e7490',soft:'#cffafe',slides:[
+ {t:'cards',title:'What Pre-Travel looks after',sub:'You are the customer\'s main contact between booking and departure. Know these areas well.',cards:[
+  {i:'home',h:'Hotel and room',p:'Room types, board basis, facilities, special requests and changes.'},
+  {i:'plane',h:'Flight extras',p:'Seats, baggage, meals, assistance and flight questions.'},
+  {i:'file',h:'Documents and checks',p:'Names matching passports, e-tickets, ATOL certificates, and pointing to GOV.UK for entry rules.'},
+  {i:'card',h:'Payments',p:'Balance due dates, deposits, failed payments and receipts.'},
+  {i:'heart',h:'Special occasions and needs',p:'Honeymoons, birthdays, accessibility, dietary needs, travelling with children.'},
+  {i:'star',h:'Reassurance',p:'Many customers are excited or nervous. A friendly, clear call now prevents problems later.'}]},
+ {t:'cards',title:'Room types: what customers ask about',sub:'Always confirm exactly what is booked before explaining. Names vary by hotel.',cards:[
+  {i:'users',h:'Twin vs double',p:'Twin means two single beds. Double means one double bed. Always confirm which the customer wants.'},
+  {i:'home',h:'Family room',p:'A larger room or connecting rooms. Check the maximum number of adults and children.'},
+  {i:'star',h:'Superior / Deluxe',p:'Usually larger or newer than standard, sometimes with a better view or balcony. Check what is actually included.'},
+  {i:'globe',h:'Views',p:'Sea view, partial sea view, pool view and garden view differ in price. Be accurate and do not promise a specific room.'},
+  {i:'heart',h:'Suite / junior suite',p:'A suite has a separate living area. A junior suite is a larger open-plan room.'},
+  {i:'shield',h:'Accessible / ground floor',p:'Needed for mobility. Note it and confirm with the hotel as early as possible.'}]},
+ {t:'cards',title:'Board basis: what is included',sub:'The most common source of confusion. Check the hotel\'s exact inclusions before quoting.',cards:[
+  {i:'bag',h:'Room only (RO)',p:'Accommodation only. No meals included.'},
+  {i:'home',h:'Self-catering (SC)',p:'Apartment or villa with a kitchen. No meals included.'},
+  {i:'smile',h:'Bed and breakfast (BB)',p:'Breakfast included.'},
+  {i:'clock',h:'Half board (HB)',p:'Breakfast and evening meal. Drinks are usually extra.'},
+  {i:'check',h:'Full board (FB)',p:'Breakfast, lunch and dinner. Drinks are usually extra.'},
+  {i:'star',h:'All inclusive (AI)',p:'Meals, snacks and many drinks. Exact inclusions and drink brands vary by hotel, so check.'}]},
+ {t:'cards',title:'Hotel facilities worth asking about',sub:'Use these to discover needs, then recommend or upsell naturally.',cards:[
+  {i:'users',h:'Kids and families',p:'Kids club, children\'s pool, cots, high chairs, family rooms.'},
+  {i:'heart',h:'Adults only',p:'Some hotels are adults only or have adults-only areas.'},
+  {i:'globe',h:'Beach and location',p:'Distance to the beach, town and airport. Is it beachfront?'},
+  {i:'star',h:'Pool, spa and gym',p:'Number of pools, heated pools, spa treatments (often extra), gym.'},
+  {i:'chat',h:'Entertainment and Wi-Fi',p:'Evening shows, activities, whether Wi-Fi is free or chargeable.'},
+  {i:'clock',h:'Check-in and check-out',p:'Standard times, and early check-in or late check-out requests.'}]},
+ {t:'drill',title:'Hotel requests from customers',sub:'Requests are passed to the hotel. Never guarantee unless it is confirmed.',lead:'Customer says',items:[
+  {q:'"Can we have two rooms next to each other?"',a:'"I\'ll add that request to the booking. Hotels can\'t always guarantee it, but we\'ll pass it on and ask them to do their best."',tip:'Noted is not guaranteed. Say so honestly.'},
+  {q:'"Can I have a cot for my baby?"',a:'"Of course. May I take your baby\'s age? I\'ll check the cot availability with the hotel and add the request."',tip:'Take the age and travel date. Check if a charge applies.'},
+  {q:'"It\'s our honeymoon. Can we get a room upgrade?"',a:'"Congratulations! I\'ll note the honeymoon on your booking. An upgrade can\'t be promised, but I can look at paying for a better room type. Shall I check prices?"',tip:'Celebrate first, then offer a real option.'},
+  {q:'"I\'m allergic to nuts. Is the food safe?"',a:'"Thank you for telling me. I\'ll note it on your booking and ask the hotel to be aware. Please also tell the restaurant staff when you arrive."',tip:'Never promise a safe environment. Note it and advise them to tell staff.'},
+  {q:'"Can we check in early? We land at 7am."',a:'"I\'ll add an early check-in request. Standard check-in is usually [time], so it depends on availability on the day. Some hotels offer early check-in for a fee."',tip:'Set expectations: request noted, not guaranteed.'},
+  {q:'"I want a quiet room, high up, away from the lift."',a:'"I\'ll add that request. I can\'t promise a specific room, but the hotel will see your preferences."',tip:'Write the exact request in the notes.'},
+  {q:'"My mum can\'t manage stairs. Do you have ground floor rooms?"',a:'"I\'ll find out for you. May I take the details of the mobility needs so I can pass them to the hotel clearly?"',tip:'Take full details, confirm with the hotel, follow up in writing.'},
+  {q:'"Can we add an extra bed for our teenager?"',a:'"Let me check the maximum occupancy of your room. If it\'s possible, there may be a charge. If not, a family room could work better."',tip:'Check occupancy before saying yes.'}]},
+ {t:'compare',title:'Hotel requests: say this, not that',sub:'Accuracy protects the customer and the company.',left:'Say this',right:'Not this',rows:[
+  ['I\'ll pass your request to the hotel.','You\'ll definitely get a sea view.'],
+  ['It\'s noted, but it can\'t be guaranteed.','Don\'t worry, it\'s sorted.'],
+  ['Let me check what is included in your board basis.','All inclusive means everything is free.'],
+  ['I\'ll confirm the room type for you.','They\'re all the same.'],
+  ['The hotel will confirm on arrival.','I\'m sure it will be fine.']]},
+ {t:'steps',title:'Hotel checklist before you advise',sub:'Know these facts before answering any hotel question.',steps:[
+  {h:'Room type and occupancy',p:'Twin or double, who is in the room, and the maximum adults and children.'},
+  {h:'Board basis',p:'Room only, BB, HB, FB or all inclusive, and what drinks and meals are included.'},
+  {h:'Dates and check-in times',p:'Arrival and departure dates, standard check-in and check-out times.'},
+  {h:'Location and facilities',p:'Beach distance, pools, kids club, adults only, seasonal closures.'},
+  {h:'Extra costs',p:'Local tourist tax, resort fees, optional extras paid at the hotel.'},
+  {h:'Special requests',p:'Write each request exactly as the customer said, and say it is not guaranteed.'}]}
+]},
+
+{id:'fly',name:'Pre-Travel: Flights',icon:'plane',acc:'#4338ca',soft:'#e0e7ff',slides:[
+ {t:'cards',title:'Flight extras customers can add',sub:'Know what exists, what it costs, and when to offer it. Always check the airline\'s current options.',cards:[
+  {i:'users',h:'Seat selection',p:'Standard seats, extra legroom and front-of-cabin seats. Useful for families who want to sit together.'},
+  {i:'bag',h:'Hold luggage',p:'Extra bags and extra weight. Cheaper to add before travel than at the airport.'},
+  {i:'headset',h:'Cabin bag and priority',p:'Cabin bag size, and priority boarding where available.'},
+  {i:'heart',h:'Meals',p:'Pre-order meals, and special meals such as vegetarian, halal or gluten-free.'},
+  {i:'shield',h:'Special assistance',p:'Wheelchair, mobility help, medical needs. Needs advance notice.'},
+  {i:'star',h:'Sports and special items',p:'Golf clubs, bikes, musical instruments, buggies and car seats. Rules vary by airline.'}]},
+ {t:'drill',title:'Flight questions customers ask',sub:'Give accurate answers or check first.',lead:'Customer says',items:[
+  {q:'"What\'s my baggage allowance?"',a:'"Let me check your booking. You have [X]kg in the hold and [X]kg of cabin baggage. If you need more, I can add extra now, which is cheaper than at the airport."',tip:'Quote from the booking, then offer extra weight.'},
+  {q:'"Can I take my golf clubs / a bike?"',a:'"Yes, sports equipment can usually be added to the booking in advance. Let me check the airline\'s rules and the price for your flight."',tip:'Check the airline\'s policy. Fees and weights vary.'},
+  {q:'"Can I take a pram or buggy?"',a:'"Most airlines let you take a buggy, often free of charge. Let me check the exact rules for your flight so I can be sure."',tip:'Verify, don\'t assume.'},
+  {q:'"Can I pre-order a special meal?"',a:'"Of course. What type of meal do you need? I\'ll check availability for your flight and request it on the booking."',tip:'Take the dietary need exactly. Meals are requested in advance.'},
+  {q:'"Can my child sit next to me?"',a:'"I\'d recommend reserving seats together so there\'s no worry on the day. I\'ll check the price for the seats on your flight."',tip:'Link the need (child) to the solution (seats).'},
+  {q:'"What can I take in hand luggage?"',a:'"The airline and airport security have rules on size, weight and liquids. I\'ll send you the guidance for your flight so you have the exact details."',tip:'Point to official guidance. Rules change.'},
+  {q:'"Do I need to arrive early at the airport?"',a:'"Check-in times depend on your airline and airport. I\'d recommend following the guidance on your confirmation. Would you like me to read it out?"',tip:'Quote the confirmation or airline guidance only.'},
+  {q:'"Can I add a transfer from the airport?"',a:'"Yes, transfers can often be added before travel. Let me check the options and price for your destination."',tip:'Good moment to mention it is easier to arrange before travel.'}]},
+ {t:'drill',title:'Special assistance and families',sub:'Take full details and give a clear next step.',lead:'Customer says',items:[
+  {q:'"I need wheelchair assistance at the airport."',a:'"Of course. May I take the passenger\'s name, the type of assistance needed, and the flight details? It\'s best arranged at least [48 hours] before travel."',tip:'Follow your assistance procedure. Confirm in writing.'},
+  {q:'"I use oxygen / medical equipment on board."',a:'"Thank you for telling me. The airline needs to approve this in advance, so I\'ll take the details and raise it straight away."',tip:'This needs airline approval. Escalate, don\'t promise.'},
+  {q:'"I\'m pregnant. Can I still fly?"',a:'"Airlines have rules depending on how many weeks pregnant you are. Let me check the policy for your flight, and I\'d also suggest speaking to your doctor."',tip:'No medical advice. Check airline rules.'},
+  {q:'"We\'re travelling with a baby under 2."',a:'"Lovely. Infants under 2 usually travel on a parent\'s lap, with their own booking. May I take the baby\'s date of birth and check the rules for your flight?"',tip:'Age on the date of travel decides the fare and rules.'},
+  {q:'"Can my 15-year-old travel alone?"',a:'"Rules for under-18s depend on the airline and age. Let me check the policy for your flight and what paperwork is needed."',tip:'Check the airline\'s rules. Never guess.'},
+  {q:'"Do we need passports and a visa for [destination]?"',a:'"Entry rules depend on your nationality and destination. For accurate information, I\'d recommend checking GOV.UK foreign travel advice before you travel."',tip:'Point to GOV.UK. Don\'t quote rules from memory.'}]},
+ {t:'steps',title:'Pre-flight checklist for every booking',sub:'Run through this on any pre-travel call so nothing is missed.',steps:[
+  {h:'Names match passports',p:'Every traveller\'s name exactly as on the passport. Fix errors early.'},
+  {h:'Documents',p:'E-tickets and ATOL certificate sent. Passports valid. Entry rules via GOV.UK.'},
+  {h:'Baggage',p:'Hold allowance, cabin bag size, any extras or special items.'},
+  {h:'Seats and meals',p:'Seats together for families, special meals requested.'},
+  {h:'Assistance and needs',p:'Wheelchair, medical, infants and children noted and confirmed.'},
+  {h:'Transfers and payments',p:'Transfer arranged, balance due date and amount confirmed.'}]}
+]},
+
+{id:'rap',name:'Rapport (UK customers)',icon:'heart',acc:'#c2410c',soft:'#ffedd5',slides:[
+ {t:'cards',title:'Rapport the British way',sub:'British customers like warmth that is calm, polite and not pushy. Friendly, never over-familiar.',cards:[
+  {i:'smile',h:'Polite and understated',p:'Calm warmth beats loud enthusiasm. Use "please", "thank you", "lovely", "no problem at all".'},
+  {i:'user',h:'Titles first',p:'Use Mr / Mrs / Ms [Surname] until they use their first name or invite you to. Then match them.'},
+  {i:'chat',h:'Light small talk only',p:'Holiday plans, the destination, the weather. Keep it to one or two lines, then guide the call.'},
+  {i:'lock',h:'Respect privacy',p:'Do not ask about age, job, income, marital status or health unless the booking truly needs it.'},
+  {i:'heart',h:'Gentle humour only',p:'If they joke ("typical British weather!"), smile and play along briefly. Never be sarcastic or make the first joke about problems.'},
+  {i:'clock',h:'Read their pace',p:'Short, quiet answers mean they want efficiency. Chatty customers get a little more warmth, then a polite steer back.'}]},
+ {t:'drill',title:'Rapport openers that feel natural',sub:'One friendly question, then listen. Use what they tell you later in the call.',lead:'Customer says',items:[
+  {q:'"We\'re going to Tenerife in August."',a:'"Lovely, Tenerife in August! Is it your first time there, or have you been before?"',tip:'"First time?" is the safest British-friendly question.'},
+  {q:'"It\'s for me, my husband and the kids."',a:'"That sounds like a great family holiday. How old are the little ones? It helps me suggest the right seats and options."',tip:'Ask about children only when it helps the booking, and say why.'},
+  {q:'"It\'s our 25th wedding anniversary."',a:'"Congratulations, that\'s wonderful! Let\'s make sure it\'s a really special trip. Is there anything you\'ve been dreaming about for it?"',tip:'Celebrate first, offer upgrades later.'},
+  {q:'"Sorry, I\'m rambling on..."',a:'"Not at all, please take your time. I want to get this exactly right for you."',tip:'British customers apologise a lot. Reassure them, never rush them.'},
+  {q:'"Typical British weather, we need some sun!"',a:'"Ha, I know the feeling! Hopefully we can get you somewhere sunny. What kind of break are you after?"',tip:'One light reply, then back to discovery.'},
+  {q:'"Thanks, you\'ve been brilliant."',a:'"My pleasure, it\'s been lovely helping you. I hope you have a fantastic trip."',tip:'Accept thanks warmly and keep it short.'}]},
+ {t:'drill',title:'Conversation starters (trip and general)',sub:'Ask one, listen, then follow up on their answer. Great during holds, system loading, or right after verification.',lead:'When',items:[
+  {q:'After verification, to set a friendly tone',a:'"Thank you. So, are you looking forward to the trip?"',tip:'Easy, positive, and it gets them talking about the holiday.'},
+  {q:'While your system is loading',a:'"While that loads, have you got anything planned for when you arrive?"',tip:'Turns dead time into rapport.'},
+  {q:'General opener, not about the trip',a:'"I hope you\'re having a good week so far."',tip:'Safe, warm, very British-friendly.'},
+  {q:'Learning their travel style',a:'"Are you more of a relax-by-the-pool person, or do you like exploring?"',tip:'The answer helps you suggest the right room, board basis or extras later.'},
+  {q:'Customer travels with family',a:'"Are the children excited? Have they been on a plane before?"',tip:'Only if children are already mentioned.'},
+  {q:'Returning TUI customer',a:'"Have you travelled with TUI before? What did you enjoy most last time?"',tip:'Builds loyalty and shows you value their history.'},
+  {q:'Close to departure',a:'"Not long to go now! What\'s the first thing you\'ll do when you land?"',tip:'Ends the call on a happy picture.'},
+  {q:'Before closing any call',a:'"Is there anything else that would make the trip better for you?"',tip:'Often reveals an extra: seats, transfer, room request.'}]},
+ {t:'compare',title:'Questions that work vs questions to avoid',sub:'With UK customers, ask about the trip, not about the person.',left:'Good to ask',right:'Avoid',rows:[
+  ['Is it your first time visiting?','How old are you?'],
+  ['Who\'s travelling with you?','Are you married? Are you alone?'],
+  ['Is it for a special occasion?','Why are you travelling alone?'],
+  ['Do you have a budget in mind?','How much do you earn?'],
+  ['What are you most looking forward to?','Where are you really from?'],
+  ['Would you like any assistance arranged?','Do you have a disability?']]},
+ {t:'drill',title:'Tricky rapport moments',sub:'Small cultural details that make a big difference.',lead:'Situation',items:[
+  {q:'Customer greets you: "You alright?"',a:'"I\'m very well, thank you, and how are you? How can I help today?"',tip:'It is a greeting, not a real question. Answer briefly and return the question.'},
+  {q:'Older customer calls you "love" or "dear"',a:'(Stay warm, don\'t correct them.) "Thank you, let\'s get this sorted for you."',tip:'It is friendly in the UK. Smile and carry on.'},
+  {q:'Customer is quiet and short with answers',a:'"No problem, I\'ll keep this quick and simple. I just need [detail] and we\'ll be done in a couple of minutes."',tip:'Efficiency is their way of feeling looked after.'},
+  {q:'Customer is very chatty and goes off topic',a:'"That sounds lovely. So I can make sure I get everything done for you, may I just confirm [detail]?"',tip:'Be warm, then steer gently with "so I can...".'},
+  {q:'Customer says: "Sorry to be a bother."',a:'"You\'re not a bother at all, that\'s exactly what I\'m here for."',tip:'Reassure, then continue.'},
+  {q:'You made a small mistake',a:'"I do apologise, that was my mistake. Let me fix that right away."',tip:'A short, calm apology works better than a long one in British English.'}]}
+]},
+
 {id:'lab',name:'Practice lab',icon:'target',acc:'#e0568f',soft:'#ffe6f0',slides:[
  {t:'roleplay',title:'Roleplay generator',sub:'Get a random scenario, run the call out loud with a timer, then score yourself honestly.'},
  {t:'roulette',title:'Objection roulette',sub:'A random customer line from the whole deck. Say your answer out loud, then reveal the model response.'},
@@ -636,7 +779,9 @@ const SCENARIOS=[
  {title:'Delayed flight and a wedding',persona:'Karen, 48, flight delayed and she\'s going to miss a wedding.',situation:'She is emotional and wants a solution right now.',goal:'Empathise, check live status, give realistic options without promising what you can\'t.',lvl:'hard'},
  {title:'System lag and a missing booking',persona:'Hassan, 55, can\'t find his booking confirmation.',situation:'Your system is slow and the booking isn\'t showing under the reference.',goal:'Be transparent about the system, run your checks aloud, offer a callback if needed.',lvl:'med'},
  {title:'Safety question',persona:'Linda, 62, worried about travelling after seeing the news.',situation:'She asks "Is it safe to go?"',goal:'Don\'t give opinions. Direct to official guidance and explain your policy options.',lvl:'med'},
- {title:'Third call about a refund',persona:'Paul, 50, has called twice already about a refund.',situation:'He is exasperated and says "nobody does anything".',goal:'Read the notes, own the problem, set specific actions and timelines.',lvl:'hard'}
+ {title:'Third call about a refund',persona:'Paul, 50, has called twice already about a refund.',situation:'He is exasperated and says "nobody does anything".',goal:'Read the notes, own the problem, set specific actions and timelines.',lvl:'hard'},
+ {title:'Hotel room request',persona:'Helen, 44, booked a family room and wants connecting rooms and a cot.',situation:'She is worried the hotel will not honour her requests.',goal:'Take each request exactly, explain it is passed to the hotel and not guaranteed, and build rapport.',lvl:'med'},
+ {title:'Board basis confusion',persona:'Gary, 57, thinks all inclusive means everything is free.',situation:'He is surprised by what is included and is getting annoyed.',goal:'Explain the board basis clearly and honestly, check the hotel\'s inclusions, and offer options.',lvl:'med'}
 ];
 const RUBRIC=['Warm, professional opening','Verified the customer correctly','Listened and paraphrased the issue','Showed genuine empathy','Gave clear, accurate options','Offered a relevant upsell (when appropriate)','Confirmed next steps and timelines','Closed professionally and wrote clear notes'];
 const SCORE_LABEL=[['Keep practising','Repeat this scenario and focus on the first two or three items you missed.'],['Developing','Good start. Tighten the structure and keep the tone steady.'],['Strong','Solid call. Polish the small details and keep practising.'],['Excellent','Great work. Try a harder scenario next.']];
@@ -771,7 +916,7 @@ stage.addEventListener('click',e=>{
 /* ---------- quick find ---------- */
 (function(){
   const qf=document.getElementById('qf'),qin=document.getElementById('qfIn'),qbody=document.getElementById('qfBody');
-  const norm=s=>(s||'').toLowerCase().replace(/[ً-ٰٟ]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/[^a-z0-9؀-ۿ\s]/g,' ').replace(/\s+/g,' ').trim();
+  const norm=s=>(s||'').toLowerCase().replace(/[ً-ٰٟ]/g,'').replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/[^a-z0-9؀-ۿ\s]/g,' ').replace(/\s+/g,' ').trim();
 
   /* synonym groups: English + Arabic keywords that should lead to the same place */
   const GROUPS=[
@@ -794,7 +939,10 @@ stage.addEventListener('click',e=>{
    ['medical','sick','illness','wheelchair','assistance','bereavement','doctor','mourning','مريض','عيان','وفاه','دكتور','مساعده','كرسي متحرك'],
    ['name','spelling','misspell','correction','اسم','تصحيح','غلط'],
    ['missing','showing','not found','booking','مش لاقي','مش ظاهر','حجز','مفقود'],
-   ['practise','practice','roleplay','roulette','drill','test','تدريب','تمرين','اتدرب']
+   ['practise','practice','roleplay','roulette','drill','test','تدريب','تمرين','اتدرب'],
+   ['hotel','room','twin','double','suite','view','cot','facility','facilities','check in','check out','فندق','غرفه','اوضه','اوضة','سرير','اطلاله'],
+   ['board','half board','full board','all inclusive','breakfast','meals included','self catering','وجبات','فطار','شامل','نص اقامه'],
+   ['rapport','small talk','conversation','starter','british','friendly','chat','رابور','كلام','ونس','محادثه','بريطاني','افتح كلام']
   ].map(g=>g.map(norm));
 
   /* index every searchable thing in the deck */
@@ -843,7 +991,7 @@ stage.addEventListener('click',e=>{
   const sIdx=t=>flat.findIndex(f=>f.d.title===t);
 
   const FLOW=[['Open','Inbound openings: the essentials'],['Verify','Security verification'],['Discover','Discovery in action'],['Resolve','Common requests (1)'],['Add value','The upsell formula'],['Confirm','Closing the call'],['Wrap up','Wrap-up notes template']];
-  const TILES=[['frown','Customer is angry','angry'],['tag','"Too expensive"','price'],['alert','Wants to cancel','cancel'],['clock','"I need to think"','think'],['users','Asks for a manager','manager'],['lock','Security check issue','verify'],['monitor','System slow or down','system'],['card','Payment problem','payment'],['plane','Delay or cancellation','delay'],['bag','Baggage','baggage'],['trend','Upsell ideas','upsell'],['phone','Opening a call','opening'],['book','I do not know the answer','unknown'],['file','Complaint or compensation','complaint'],['shield','Is it safe? Visa?','safety'],['heart','Medical or bereavement','medical']];
+  const TILES=[['frown','Customer is angry','angry'],['tag','"Too expensive"','price'],['alert','Wants to cancel','cancel'],['clock','"I need to think"','think'],['users','Asks for a manager','manager'],['lock','Security check issue','verify'],['monitor','System slow or down','system'],['card','Payment problem','payment'],['plane','Delay or cancellation','delay'],['bag','Baggage','baggage'],['trend','Upsell ideas','upsell'],['phone','Opening a call','opening'],['book','I do not know the answer','unknown'],['file','Complaint or compensation','complaint'],['shield','Is it safe? Visa?','safety'],['heart','Medical or bereavement','medical'],['home','Hotel or room question','hotel'],['chat','Start a conversation','rapport']];
 
   function hl(s,toks){let o=esc(s);const t=toks.filter(x=>/^[a-z0-9]+$/.test(x)&&!['amp','lt','gt'].includes(x));if(t.length)o=o.replace(new RegExp('('+t.join('|')+')','ig'),'<mark>$1</mark>');return o}
   function rowHTML(e,toks){
@@ -860,13 +1008,22 @@ stage.addEventListener('click',e=>{
     h+=`<div class="qh">Browse sections</div><div class="flow">${SECTIONS.map(s=>`<button type="button" class="fp sec" style="--acc:${s.acc};--soft:${s.soft}" data-slide="${flat.findIndex(f=>f.sec===s)}">${ic(s.icon)}${esc(s.name)}</button>`).join('')}</div>`;
     return h}
 
+  let tab='find';
+  const tFind=document.getElementById('tFind'),tPin=document.getElementById('tPin');
+  function syncTabs(){tFind.classList.toggle('on',tab==='find');tPin.classList.toggle('on',tab==='pin')}
+  function syncPins(){document.querySelectorAll('.pin').forEach(b=>b.classList.toggle('on',pins.includes(b.dataset.key)));document.getElementById('pbadge').textContent=pins.length;document.getElementById('pinCount').textContent=pins.length}
+
   let rows=[],sel=-1,cur=[];
   function setSel(i){if(!rows.length)return;sel=(i+rows.length)%rows.length;rows.forEach((r,j)=>r.classList.toggle('sel',j===sel));rows[sel].scrollIntoView({block:'nearest'})}
   function render(){
     const q=qin.value.trim();
+    if(tab==='pin'){const pe=pins.map(byKey).filter(Boolean);
+      if(!pe.length){qbody.innerHTML=`<div class="empty">${ic('star')}<p>No pinned scripts yet</p><span>Tap the star on any script card to pin it. It will appear here for one-tap access.</span></div>`;rows=[];sel=-1;return}
+      qbody.innerHTML=`<div class="qh">${pe.length} pinned</div>`+pe.map(e=>`<div class="prow">${rowHTML(e)}<button type="button" class="unpin" data-k="${e.key}" aria-label="Unpin">${ic('x')}</button></div>`).join('');
+      rows=[...qbody.querySelectorAll('.qrow')];setSel(0);return}
     if(!q){qbody.innerHTML=homeHTML();rows=[];sel=-1;return}
     const toks=tokensOf(q);cur=search(q);
-    if(!cur.length){qbody.innerHTML=`<div class="empty">${ic('search')}<p>No match for <b>${esc(q)}</b></p><span>Try one word: angry, price, cancel, delay, system, baggage. Or clear the box and tap a tile.</span></div>`;rows=[];sel=-1;return}
+    if(!cur.length){qbody.innerHTML=`<div class="empty">${ic('search')}<p>No match for <b>${esc(q)}</b></p><span>Try one word: angry, price, cancel, delay, hotel, baggage. Or clear the box and tap a tile.</span></div>`;rows=[];sel=-1;return}
     qbody.innerHTML=`<div class="qh">${cur.length} result${cur.length>1?'s':''}</div>`+cur.map(e=>rowHTML(e,toks)).join('');
     rows=[...qbody.querySelectorAll('.qrow')];setSel(0);qbody.scrollTop=0}
 
@@ -876,27 +1033,32 @@ stage.addEventListener('click',e=>{
     if(d.t==='steps')return [...el.querySelectorAll('.step')];
     if(d.t==='compare')return [...el.querySelectorAll('.cmp-row')].slice(1);
     return []}
-  function open(){qf.classList.add('open');qf.setAttribute('aria-hidden','false');qin.value='';render();setTimeout(()=>qin.focus(),60)}
+  function open(t){qf.classList.add('open');qf.setAttribute('aria-hidden','false');qin.value='';tab=t||'find';syncTabs();render();setTimeout(()=>{if(tab==='find')qin.focus()},60)}
   function close(){qf.classList.remove('open');qf.setAttribute('aria-hidden','true');qin.blur()}
+  tFind.onclick=()=>{tab='find';syncTabs();render();qin.focus()};
+  tPin.onclick=()=>{tab='pin';qin.value='';syncTabs();render()};
+  document.addEventListener('pointerdown',()=>document.querySelectorAll('.spot').forEach(x=>x.classList.remove('spot')));
   function jump(e){
     if(!e)return;close();go(e.si);
     recents=[e.key,...recents.filter(k=>k!==e.key)].slice(0,8);save();
-    if(e.ti>=0){setTimeout(()=>{const t=targetsOf(e.si)[e.ti];if(!t)return;t.scrollIntoView({block:'center',behavior:'smooth'});t.classList.add('flash');if(t.classList.contains('dcard')){t.classList.add('open');labelOf(t)}setTimeout(()=>t.classList.remove('flash'),2500)},430)}
+    if(e.ti>=0){setTimeout(()=>{document.querySelectorAll('.spot').forEach(x=>x.classList.remove('spot'));const t=targetsOf(e.si)[e.ti];if(!t)return;t.scrollIntoView({block:'center',behavior:'smooth'});t.classList.add('spot');if(t.classList.contains('dcard')){t.classList.add('open');labelOf(t)}},430)}
   }
 
-  qin.addEventListener('input',render);
+  qin.addEventListener('input',()=>{if(tab==='pin'&&qin.value.trim()){tab='find';syncTabs()}render()});
   qbody.addEventListener('click',e=>{
+    const u=e.target.closest('.unpin');if(u){const i=pins.indexOf(u.dataset.k);if(i>=0)pins.splice(i,1);save();syncPins();render();return}
     const r=e.target.closest('.qrow');if(r){jump(byKey(r.dataset.k));return}
     const t=e.target.closest('.tile');if(t){qin.value=t.dataset.q;render();qin.focus();return}
     const f=e.target.closest('.fp');if(f){close();go(+f.dataset.slide)}
   });
   document.getElementById('qfBack').onclick=close;
   document.getElementById('qfX').onclick=close;
-  document.getElementById('qbtn').onclick=open;
-  const qh=document.getElementById('qfHero');if(qh)qh.onclick=open;
+  document.getElementById('qbtn').onclick=()=>open('find');
+  document.getElementById('pbtn').onclick=()=>open('pin');
+  const qh=document.getElementById('qfHero');if(qh)qh.onclick=()=>open('find');
   document.addEventListener('keydown',e=>{
     const isOpen=qf.classList.contains('open');
-    if(!isOpen){if((e.key==='/'&&!e.target.matches('input,textarea'))||((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k')){e.preventDefault();open()}return}
+    if(!isOpen){if(e.key.toLowerCase()==='p'&&!e.ctrlKey&&!e.metaKey&&!e.target.matches('input,textarea')){e.preventDefault();open('pin');return}if((e.key==='/'&&!e.target.matches('input,textarea'))||((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k')){e.preventDefault();open()}return}
     if(e.key==='Escape'){e.preventDefault();if(qin.value){qin.value='';render()}else close()}
     else if(e.key==='ArrowDown'){e.preventDefault();setSel(sel+1)}
     else if(e.key==='ArrowUp'){e.preventDefault();setSel(sel-1)}
@@ -906,9 +1068,10 @@ stage.addEventListener('click',e=>{
   /* pin button on every script card */
   flat.forEach((f,si)=>{if(f.d.t!=='drill')return;f.el.querySelectorAll('.dcard').forEach((c,ti)=>{
     const k=si+':'+ti;const b=document.createElement('button');b.type='button';b.className='pin'+(pins.includes(k)?' on':'');b.dataset.key=k;b.title='Pin for quick access';b.setAttribute('aria-label','Pin this script');b.innerHTML=ic('star');c.appendChild(b)})});
-  stage.addEventListener('click',e=>{const b=e.target.closest('.pin');if(!b)return;const k=b.dataset.key,i=pins.indexOf(k);if(i>=0)pins.splice(i,1);else pins.unshift(k);b.classList.toggle('on',i<0);save()});
+  stage.addEventListener('click',e=>{const b=e.target.closest('.pin');if(!b)return;const k=b.dataset.key,i=pins.indexOf(k);if(i>=0)pins.splice(i,1);else pins.unshift(k);save();syncPins()});
 
   window.__qf={search,count:E.length};
+  syncPins();
 })();
 
 /* init */
