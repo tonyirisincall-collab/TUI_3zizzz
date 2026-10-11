@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>try{var __m=localStorage.getItem("tui-theme");document.documentElement.dataset.theme=(__m==="dark")?"dark":"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f4f7fb">
 <title>TUI Pre-Travel Playbook</title>
@@ -26,7 +27,7 @@ button{font-family:inherit}
 .nav-list{flex:1;overflow-y:auto;padding:6px 12px 20px}
 .grp{margin-bottom:2px;--acc:var(--brand);--soft:var(--brand-soft)}
 .grp-h{display:flex;align-items:center;gap:11px;width:100%;padding:9px 10px;border:0;background:transparent;border-radius:12px;color:var(--ink);font-weight:600;font-size:13.5px;cursor:pointer;text-align:left;transition:background .3s ease}
-.grp-h:hover{background:#f3f6fb}
+.grp-h:hover{background:var(--surface2)}
 .grp.active .grp-h{background:var(--soft)}
 .grp-h .dot{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:var(--soft);color:var(--acc);transition:transform .4s var(--ease)}
 .grp.active .dot{transform:scale(1.06)}
@@ -37,22 +38,22 @@ button{font-family:inherit}
 .subl ul{overflow:hidden;margin:0;padding:0 0 0 50px;list-style:none}
 .subl li{padding:0}
 .subl button{display:block;width:100%;text-align:left;border:0;background:none;padding:6px 8px;border-radius:8px;font-size:12.5px;color:var(--muted);cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .25s,background .25s}
-.subl button:hover{color:var(--ink);background:#f3f6fb}
+.subl button:hover{color:var(--ink);background:var(--surface2)}
 .subl button.cur{color:var(--acc);font-weight:600}
 
 /* main */
 main{display:flex;flex-direction:column;min-width:0;min-height:0;position:relative}
-.top{display:flex;align-items:center;gap:14px;padding:12px 24px;background:rgba(244,247,251,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:20}
-.menu-btn{display:none;border:1px solid var(--line);background:#fff;border-radius:10px;width:38px;height:38px;place-items:center;cursor:pointer;color:var(--ink)}
+.top{display:flex;align-items:center;gap:14px;padding:12px 24px;background:var(--glass2);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:20}
+.menu-btn{display:none;border:1px solid var(--line);background:var(--surface);border-radius:10px;width:38px;height:38px;place-items:center;cursor:pointer;color:var(--ink)}
 .top h1{margin:0;font-size:15px;font-weight:600;letter-spacing:-.01em}
 .top h1 span{color:var(--muted);font-weight:500}
-.mode{margin-left:0;display:inline-flex;background:#e9eef6;border-radius:12px;padding:3px;position:relative}
+.mode{margin-left:0;display:inline-flex;background:var(--surface3);border-radius:12px;padding:3px;position:relative}
 .mode button{border:0;background:transparent;padding:7px 14px;border-radius:9px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;position:relative;z-index:1;transition:color .3s;display:flex;align-items:center;gap:6px}
 .mode button .ic{width:16px;height:16px}
 .mode button.on{color:var(--brand)}
-.mode .pill{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);background:#fff;border-radius:9px;box-shadow:0 2px 8px -2px rgba(28,42,68,.18);transition:transform .45s var(--ease)}
+.mode .pill{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);background:var(--surface);border-radius:9px;box-shadow:0 2px 8px -2px rgba(28,42,68,.18);transition:transform .45s var(--ease)}
 body.practice .mode .pill{transform:translateX(100%)}
-.prog{height:3px;background:#e4eaf3}
+.prog{height:3px;background:var(--line)}
 .prog i{display:block;height:100%;width:0;background:var(--brand);border-radius:0 3px 3px 0;transition:width .7s var(--ease)}
 
 .stage{position:relative;flex:1;min-height:0}
@@ -76,7 +77,7 @@ h2{margin:14px 0 8px;font-size:clamp(25px,3.1vw,36px);letter-spacing:-.025em;lin
 .btn:active{transform:translateY(0) scale(.98)}
 .btn .ic{width:16px;height:16px}
 .btn.solid{background:var(--brand);color:#fff;box-shadow:0 8px 18px -8px rgba(47,111,237,.6)}
-.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.btn.ghost{background:var(--surface);border:1px solid var(--line);color:var(--ink)}
 .sh .btn{margin-bottom:26px}
 
 .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
@@ -85,11 +86,11 @@ h2{margin:14px 0 8px;font-size:clamp(25px,3.1vw,36px);letter-spacing:-.025em;lin
 .card .ico{width:42px;height:42px;border-radius:12px;background:var(--soft);color:var(--acc);display:grid;place-items:center;margin-bottom:12px}
 .card h3{margin:0 0 5px;font-size:16px;letter-spacing:-.01em}
 .card p{margin:0;color:var(--muted);font-size:14px}
-.ph{background:#fff4d6;color:#8a6200;border-radius:5px;padding:0 4px;font-weight:500}
+.ph{background:var(--amber-bg);color:var(--amber-ink);border-radius:5px;padding:0 4px;font-weight:500}
 
 /* steps */
 .steps{display:grid;gap:12px}
-.step{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;box-shadow:var(--shadow);transition:transform .4s var(--ease)}
+.step{display:flex;gap:16px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;box-shadow:var(--shadow);transition:transform .4s var(--ease)}
 .step:hover{transform:translateX(4px)}
 .step .n{width:36px;height:36px;border-radius:50%;background:var(--soft);color:var(--acc);display:grid;place-items:center;font-weight:700;font-size:15px;flex:none}
 .step h3{margin:1px 0 2px;font-size:15.5px}
@@ -135,7 +136,7 @@ body.study .dcard .ans .say,body.study .dcard .ans .tip,.dcard.open .ans .say,.d
 .hero h2{font-size:clamp(32px,5vw,54px);margin:0 0 14px}
 .hero .lede{margin:0 auto 24px;font-size:17px}
 .chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:28px}
-.chips span{background:#fff;border:1px solid var(--line);padding:7px 13px;border-radius:999px;font-size:13px;font-weight:600;color:var(--muted);box-shadow:var(--shadow)}
+.chips span{background:var(--surface);border:1px solid var(--line);padding:7px 13px;border-radius:999px;font-size:13px;font-weight:600;color:var(--muted);box-shadow:var(--shadow)}
 
 /* lab */
 .lab{display:grid;grid-template-columns:1.25fr 1fr;gap:18px}
@@ -151,8 +152,8 @@ body.study .dcard .ans .say,body.study .dcard .ans .tip,.dcard.open .ans .say,.d
 @keyframes pop{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
 .checks{display:grid;gap:4px;margin:6px 0 14px}
 .checks label{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:10px;font-size:14px;cursor:pointer;transition:background .25s}
-.checks label:hover{background:#f3f6fb}
-.checks input{appearance:none;width:20px;height:20px;border-radius:7px;border:1.6px solid #c4cee0;display:grid;place-items:center;transition:all .3s var(--ease);flex:none;cursor:pointer;background:#fff}
+.checks label:hover{background:var(--surface2)}
+.checks input{appearance:none;width:20px;height:20px;border-radius:7px;border:1.6px solid var(--line2);display:grid;place-items:center;transition:all .3s var(--ease);flex:none;cursor:pointer;background:var(--surface)}
 .checks input:checked{background:var(--acc);border-color:var(--acc)}
 .checks input::after{content:"";width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) scale(0);margin-top:-2px;transition:transform .3s var(--ease)}
 .checks input:checked::after{transform:rotate(-45deg) scale(1)}
@@ -160,20 +161,20 @@ body.study .dcard .ans .say,body.study .dcard .ans .tip,.dcard.open .ans .say,.d
 .ring{width:84px;height:84px;position:relative;flex:none}
 .ring svg{width:84px;height:84px;transform:rotate(-90deg)}
 .ring circle{fill:none;stroke-width:8;stroke-linecap:round}
-.ring .t{stroke:#e9eef6}
+.ring .t{stroke:var(--surface3)}
 .ring .p{stroke:var(--acc);stroke-dasharray:264;stroke-dashoffset:264;transition:stroke-dashoffset .8s var(--ease)}
 .ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:20px}
 .score p{margin:0;font-size:14px;color:var(--muted)}
 .score p strong{display:block;color:var(--ink);font-size:16px}
 .fchips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.fchips button{border:1px solid var(--line);background:#fff;padding:6px 12px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .3s var(--ease)}
+.fchips button{border:1px solid var(--line);background:var(--surface);padding:6px 12px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .3s var(--ease)}
 .fchips button.on{background:var(--acc);border-color:var(--acc);color:#fff}
 .rq{font-size:clamp(19px,2.3vw,26px);font-weight:600;letter-spacing:-.02em;margin:8px 0 18px;line-height:1.3}
 .cnt{margin-left:auto;font-size:13px;color:var(--muted)}
 
 /* bottom nav */
 .dock{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:center;padding:16px;pointer-events:none;z-index:15}
-.dock-in{pointer-events:auto;display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:16px;padding:7px;box-shadow:0 14px 34px -14px rgba(28,42,68,.3)}
+.dock-in{pointer-events:auto;display:flex;align-items:center;gap:14px;background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:16px;padding:7px;box-shadow:0 14px 34px -14px rgba(28,42,68,.3)}
 .dock button{width:42px;height:42px;border-radius:11px;border:0;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;cursor:pointer;transition:transform .3s var(--ease),opacity .3s}
 .dock button:hover:not(:disabled){transform:scale(1.07)}
 .dock button:disabled{opacity:.35;cursor:default}
@@ -200,33 +201,33 @@ body.study .dcard .ans .say,body.study .dcard .ans .tip,.dcard.open .ans .say,.d
  .rise{opacity:1}
 }
 /* quick find */
-.qbtn{margin-left:auto;display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:8px 12px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s,color .25s,border-color .25s}
-.qbtn:hover{color:var(--brand);border-color:#c9d9fb;box-shadow:var(--shadow);transform:translateY(-1px)}
+.qbtn{margin-left:auto;display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:8px 12px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s,color .25s,border-color .25s}
+.qbtn:hover{color:var(--brand);border-color:var(--line2);box-shadow:var(--shadow);transform:translateY(-1px)}
 .qbtn .ic{width:16px;height:16px}
-.qbtn kbd,.qf-foot kbd{font:600 11px Inter,system-ui,sans-serif;background:#eef2f8;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 6px;color:var(--muted)}
+.qbtn kbd,.qf-foot kbd{font:600 11px Inter,system-ui,sans-serif;background:var(--surface3);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 6px;color:var(--muted)}
 .qf{position:fixed;inset:0;z-index:60;display:grid;place-items:start center;padding:7vh 16px 16px;visibility:hidden;pointer-events:none;transition:visibility 0s .4s}
 .qf.open{visibility:visible;pointer-events:auto;transition:visibility 0s}
 .qf-back{position:absolute;inset:0;background:rgba(28,42,68,.32);backdrop-filter:blur(4px);opacity:0;transition:opacity .4s ease}
 .qf.open .qf-back{opacity:1}
-.qf-panel{position:relative;width:min(780px,100%);max-height:84vh;display:flex;flex-direction:column;background:#fff;border-radius:22px;box-shadow:0 30px 80px -20px rgba(28,42,68,.45);transform:translateY(-16px) scale(.98);opacity:0;transition:transform .55s var(--ease),opacity .4s ease}
+.qf-panel{position:relative;width:min(780px,100%);max-height:84vh;display:flex;flex-direction:column;background:var(--surface);border-radius:22px;box-shadow:0 30px 80px -20px rgba(28,42,68,.45);transform:translateY(-16px) scale(.98);opacity:0;transition:transform .55s var(--ease),opacity .4s ease}
 .qf.open .qf-panel{transform:none;opacity:1}
 .qf-bar{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line);color:var(--brand)}
 .qf-bar input{flex:1;min-width:0;border:0;outline:0;font:500 17px Inter,system-ui,sans-serif;background:transparent;color:var(--ink)}
-.qf-bar input::placeholder{color:#9aa7bd;font-weight:400}
-.qx{border:0;background:#f1f4f9;border-radius:10px;width:34px;height:34px;display:grid;place-items:center;color:var(--muted);cursor:pointer;transition:background .25s}
-.qx:hover{background:#e6ebf4}
+.qf-bar input::placeholder{color:var(--muted);font-weight:400}
+.qx{border:0;background:var(--surface3);border-radius:10px;width:34px;height:34px;display:grid;place-items:center;color:var(--muted);cursor:pointer;transition:background .25s}
+.qx:hover{background:var(--surface2)}
 .qf-body{overflow-y:auto;padding:6px 16px 12px;min-height:120px}
 .qf-foot{display:flex;gap:18px;flex-wrap:wrap;padding:10px 18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
 .qf-foot span{display:inline-flex;gap:5px;align-items:center}
 .qh{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:16px 4px 9px}
 .flow{display:flex;gap:8px;flex-wrap:wrap}
-.fp{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;padding:8px 13px 8px 9px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink);transition:transform .3s var(--ease),border-color .25s,background .25s}
+.fp{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);padding:8px 13px 8px 9px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink);transition:transform .3s var(--ease),border-color .25s,background .25s}
 .fp:hover{transform:translateY(-2px);border-color:var(--acc,var(--brand));background:var(--soft,var(--brand-soft))}
 .fp i{font-style:normal;width:21px;height:21px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-size:11px;font-weight:700}
 .fp.sec{padding:8px 13px}
 .fp.sec .ic{width:16px;height:16px;color:var(--acc)}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-.tile{display:flex;align-items:center;gap:11px;text-align:left;border:1px solid var(--line);background:#fff;border-radius:14px;padding:11px 12px;font-weight:600;font-size:13.5px;cursor:pointer;color:var(--ink);transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.tile{display:flex;align-items:center;gap:11px;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:11px 12px;font-weight:600;font-size:13.5px;cursor:pointer;color:var(--ink);transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
 .tile:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--acc)}
 .tile .dot,.qrow .dot{width:34px;height:34px;border-radius:10px;background:var(--soft);color:var(--acc);display:grid;place-items:center;flex:none}
 .tile .dot .ic,.qrow .dot .ic{width:18px;height:18px}
@@ -240,12 +241,12 @@ body.study .dcard .ans .say,body.study .dcard .ans .tip,.dcard.open .ans .say,.d
 .qrow .pn .ic{width:16px;height:16px;fill:currentColor}
 mark{background:#fff0b8;color:inherit;border-radius:4px;padding:0 2px}
 .empty{text-align:center;padding:36px 12px;color:var(--muted)}
-.empty .ic{width:30px;height:30px;color:#b6c1d4;margin-bottom:8px}
+.empty .ic{width:30px;height:30px;color:var(--muted);margin-bottom:8px}
 .empty p{margin:0 0 4px;color:var(--ink)}
 .empty span{font-size:13px}
 .dcard{position:relative}
 .dcard .q{padding-right:30px}
-.pin{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:10px;border:0;background:transparent;color:#b3bdcf;display:grid;place-items:center;cursor:pointer;transition:background .25s,color .25s,transform .3s var(--ease)}
+.pin{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:10px;border:0;background:transparent;color:var(--line2);display:grid;place-items:center;cursor:pointer;transition:background .25s,color .25s,transform .3s var(--ease)}
 .pin:hover{background:var(--soft);color:var(--acc);transform:scale(1.08)}
 .pin.on{color:#e0a21b}
 .pin.on .ic{fill:currentColor}
@@ -259,15 +260,158 @@ mark{background:#fff0b8;color:inherit;border-radius:4px;padding:0 2px}
 .pbtn .ic{color:#e0a21b;fill:#e0a21b}
 .pbtn b{background:var(--brand);color:#fff;border-radius:999px;font-size:11px;min-width:20px;height:20px;display:grid;place-items:center;padding:0 6px}
 .qtabs{display:flex;gap:6px;padding:10px 16px 0}
-.qtabs button{border:0;background:#f1f4f9;color:var(--muted);font:600 13px Inter,system-ui,sans-serif;padding:8px 14px;border-radius:10px;cursor:pointer;display:inline-flex;gap:7px;align-items:center}
+.qtabs button{border:0;background:var(--surface3);color:var(--muted);font:600 13px Inter,system-ui,sans-serif;padding:8px 14px;border-radius:10px;cursor:pointer;display:inline-flex;gap:7px;align-items:center}
 .qtabs button.on{background:var(--brand-soft);color:var(--brand)}
-.qtabs b{background:#fff;border-radius:999px;font-size:11px;padding:1px 7px}
+.qtabs b{background:var(--surface);border-radius:999px;font-size:11px;padding:1px 7px}
 .prow{display:flex;align-items:center;gap:4px}
 .prow .qrow{flex:1}
-.unpin{border:0;background:#f1f4f9;border-radius:10px;width:32px;height:32px;display:grid;place-items:center;color:var(--muted);cursor:pointer;flex:none}
+.unpin{border:0;background:var(--surface3);border-radius:10px;width:32px;height:32px;display:grid;place-items:center;color:var(--muted);cursor:pointer;flex:none}
 .unpin:hover{background:var(--bad-soft);color:var(--bad)}
 .unpin .ic{width:15px;height:15px}
 @media (max-width:600px){.qbtn .lbl,.qbtn kbd{display:none}.qf{padding-top:3vh}.qf-foot{display:none}.tiles{grid-template-columns:1fr 1fr}}
+.htiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:0 auto 22px;max-width:720px}
+.htile{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 10px;border:1px solid var(--line);background:var(--surface);border-radius:16px;font:600 14px Inter,system-ui,sans-serif;color:var(--ink);cursor:pointer;box-shadow:var(--shadow);transition:transform .3s var(--ease),border-color .25s}
+.htile:hover{transform:translateY(-3px);border-color:var(--brand)}
+.htile .ic{width:26px;height:26px;color:var(--brand)}
+.qlinks{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.qlink{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:9px 14px;font:600 13px Inter,system-ui,sans-serif;color:var(--acc);cursor:pointer}
+.qlink:hover{background:var(--soft)}
+.qlink .ic{width:16px;height:16px}
+.more-btn{display:flex;align-items:center;gap:8px;width:100%;margin-top:10px;padding:10px;border:1px dashed var(--line2);background:var(--surface);border-radius:12px;font:600 13px Inter,system-ui,sans-serif;color:var(--muted);cursor:pointer}
+.more-btn .ic{width:16px;height:16px;margin-left:auto;transition:transform .3s}
+.more-btn.on .ic{transform:rotate(90deg)}
+.more-wrap{display:none;margin-top:8px}.more-wrap.open{display:block}
+.map{background:var(--mapbg);border:1px solid var(--line);border-radius:var(--r);padding:8px;box-shadow:var(--shadow)}
+.map svg{width:100%;height:auto;display:block}
+.map .gr line{stroke:var(--maplines);stroke-width:1}
+.dpt{cursor:pointer}
+.dpt circle{fill:var(--surface);stroke:var(--acc);stroke-width:2;transition:fill .25s}
+.dpt text{font:700 9px Inter,system-ui,sans-serif;text-anchor:middle;fill:var(--acc);pointer-events:none}
+.dpt:hover circle,.dpt.on circle{fill:var(--acc)}
+.dpt:hover text,.dpt.on text{fill:#fff}
+.dchips{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dchip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 13px;font:600 13px Inter,system-ui,sans-serif;color:var(--muted);cursor:pointer}
+.dchip.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.dpanel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+.dn{margin:4px 0 14px;font-size:24px;letter-spacing:-.02em}
+.dcols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.dcols b,.dq{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--acc);display:block;margin-bottom:6px}
+.dcols ul{margin:0;padding-left:18px;font-size:14.5px}.dcols p{margin:0;font-size:14.5px;color:var(--muted)}
+.dq{margin-top:18px}
+.dqs{display:grid;gap:8px}
+.dqi{display:flex;gap:10px;align-items:flex-start;background:var(--soft);border-radius:12px;padding:11px 13px;font-size:14.5px}
+.dqi .ic{color:var(--acc);margin-top:2px;width:18px;height:18px}
+@media(max-width:700px){.dcols{grid-template-columns:1fr}}
+.mbtn{margin-left:0}
+.stallwrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
+.stallwrap.show{grid-template-rows:1fr}
+.stallin{overflow:hidden;min-height:0;visibility:hidden;transition:visibility 0s .5s}
+.stallwrap.show .stallin{visibility:visible;transition:visibility 0s}
+.stall{display:flex;align-items:center;gap:10px;background:var(--amber-bg);padding:10px 24px;font-size:14px;border-bottom:1px solid var(--amber-line)}
+.stall #stallTxt{flex:1;font-weight:500}
+.stallbar{height:3px;background:var(--amber-line)}
+.stallbar i{display:block;height:100%;width:100%;background:#d9a21b}
+.sbtn{margin-left:0}
+.sdot{width:9px;height:9px;border-radius:50%;background:var(--line2);display:inline-block}
+.sbtn.on .sdot{background:var(--good)}
+.sbtn.vis{background:var(--amber-bg);border-color:var(--amber-line);color:var(--amber-ink)}
+.stall .sl{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--amber-ink);white-space:nowrap}
+.stall button{border:1px solid var(--amber-line);background:var(--surface);border-radius:9px;padding:6px 9px;font:600 12px Inter,system-ui,sans-serif;color:var(--amber-ink);cursor:pointer;white-space:nowrap}
+.relh{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--muted);margin-right:4px}
+.rel{align-items:center;padding-top:6px}
+.dgrp{margin-top:12px}.dgrp>b{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.dgrp .dchips{margin:6px 0 0}
+.mm-crumb{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:14px;font-size:13px;color:var(--muted)}
+.mm-cr{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font:600 12.5px Inter,system-ui,sans-serif;cursor:pointer;color:var(--ink)}
+.mm-cr.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.mm-stage{position:relative;width:100%;aspect-ratio:100/62;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.mm-lines{position:absolute;inset:0;width:100%;height:100%}
+.mm-lines line{stroke:var(--line2);stroke-width:2;vector-effect:non-scaling-stroke;stroke-dasharray:4 4}
+.mm-c,.mm-n{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:2px;border:1px solid var(--line);cursor:pointer;font-family:inherit;transition:transform .3s var(--ease),box-shadow .3s}
+.mm-c{left:50%;top:50%;background:var(--acc);color:#fff;border-radius:22px;padding:14px 20px;box-shadow:0 14px 30px -12px rgba(28,42,68,.4);z-index:2}
+.mm-c b{font-size:16px}.mm-c small{font-size:11px;opacity:.85}
+.mm-n{background:var(--soft);color:var(--ink);border-radius:16px;padding:10px 14px;min-width:120px;max-width:170px;z-index:2;text-align:center}
+.mm-n b{font-size:13.5px}.mm-n small{font-size:11px;color:var(--acc);font-weight:600}
+.mm-n .ic,.mm-c .ic{width:20px;height:20px}
+.mm-n .ic{color:var(--acc)}
+.mm-n:hover{transform:translate(-50%,-50%) scale(1.07);box-shadow:var(--shadow);border-color:var(--acc)}
+.mm-n.br{background:var(--surface);border:2px solid var(--acc)}
+@media(max-width:700px){.mm-stage{aspect-ratio:auto;display:grid;gap:10px;padding:12px}.mm-lines{display:none}.mm-c,.mm-n{position:static;transform:none;max-width:none}.mm-n:hover{transform:none}.stall{padding:8px 12px;font-size:12.5px;flex-wrap:wrap}.stall .sl{display:none}}
+.cpy{margin-left:auto;flex:none;align-self:flex-start;border:0;background:var(--glass3);border-radius:8px;width:30px;height:30px;display:grid;place-items:center;color:var(--acc);cursor:pointer;transition:background .2s}
+.cpy:hover{background:var(--surface)}.cpy .ic{width:16px;height:16px}.cpy.ok{color:var(--good)}
+.stall .cpy{width:auto;height:auto;margin:0;padding:6px 9px;background:var(--surface);border:1px solid var(--amber-line);color:var(--amber-ink);font:600 13px Inter,system-ui,sans-serif}
+.dqi .cpy{margin-left:auto}
+.dfx{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:6px}
+.dfx div{background:var(--soft);border-radius:12px;padding:10px 12px}
+.dfx b{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);margin-bottom:2px}
+.dfx span{font-size:13.5px}
+.dnote{margin:6px 2px 14px;font-size:12px;color:var(--muted)}
+.nf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:14px}
+.nf{display:flex;flex-direction:column;gap:5px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;box-shadow:var(--shadow)}
+.nf span{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--acc)}
+.nf textarea{border:1px solid var(--line);border-radius:10px;padding:9px 10px;font:14px Inter,system-ui,sans-serif;resize:vertical;min-height:54px;color:var(--ink)}
+.nf textarea:focus{outline:2px solid var(--acc);outline-offset:1px}
+.nmsg{margin-top:8px;font-size:13px;color:var(--bad)}
+.btn.ok{background:var(--good-soft);color:var(--good)}
+.mainrow{display:flex;flex:1;min-height:0}
+.mainrow .stage{min-width:0}
+#stallTxt{transition:opacity .22s}
+.qc{flex:none;width:0;overflow:hidden;background:var(--surface);border-left:0 solid var(--line);transition:width .5s var(--ease),border-width .5s}
+.qc.show{width:290px;border-left-width:1px}
+.qcin{width:290px;height:100%;overflow-y:auto;padding:14px 14px 100px;visibility:hidden}
+.qc.show .qcin{visibility:visible}
+.qch{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.qch b{font-size:14px}
+.qch #qcCount{background:var(--brand-soft);color:var(--brand);border-radius:999px;padding:2px 9px;font-size:12px;font-weight:700}
+.qch button{border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:5px 9px;font:600 12px Inter,system-ui,sans-serif;color:var(--muted);cursor:pointer}
+.qch #qcNew{margin-left:auto}
+.qcbar{height:4px;background:var(--surface3);border-radius:3px;margin-bottom:10px;overflow:hidden}
+.qcbar i{display:block;height:100%;width:0;background:var(--good);transition:width .4s var(--ease)}
+.qc .checks label{align-items:flex-start;padding:7px 8px;font-size:13.5px}
+.qc .checks input{margin-top:1px}
+.qc .go{margin-left:auto;border:0;background:transparent;color:var(--brand);cursor:pointer;font-size:15px;padding:0 2px}
+.qc.done #qcCount{background:var(--good-soft);color:var(--good)}
+.cbtn{margin-left:0}
+.cbtn b{background:var(--brand);color:#fff;border-radius:999px;font-size:11px;padding:2px 8px}
+.cbtn.vis{border-color:var(--brand);color:var(--brand)}
+@media(max-width:700px){.qc.show,.qcin{width:min(70vw,260px)}.cbtn b{display:none}}
+:root{--surface2:#f3f6fb;--surface3:#e9eef6;--line2:#c4cee0;--glass:rgba(255,255,255,.9);--glass2:rgba(244,247,251,.85);--glass3:rgba(255,255,255,.7);--mapbg:#e8f1fb;--maplines:#c9d9ee;--amber-bg:#fff8e1;--amber-line:#f3dd9b;--amber-ink:#8a6200}
+[data-theme="dark"]{color-scheme:dark;--bg:#0f1624;--surface:#171f30;--surface2:#1f293d;--surface3:#26324a;--ink:#e7edf8;--muted:#93a1ba;--line:#2a364d;--line2:#3a4863;--brand:#5b8cff;--brand-soft:#1d2c55;--good:#47c08a;--good-soft:#14301f;--bad:#f06a7a;--bad-soft:#3a1d24;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.65);--glass:rgba(23,31,48,.9);--glass2:rgba(15,22,36,.85);--glass3:rgba(255,255,255,.08);--mapbg:#16233a;--maplines:#26344f;--amber-bg:#3a2f12;--amber-line:#5c4b1d;--amber-ink:#f0c866}
+[data-theme="dark"] *{--soft:color-mix(in srgb,var(--acc) 20%,var(--surface))!important}
+[data-theme="dark"] .blob{opacity:.16}
+[data-theme="dark"] mark{background:#5c4b1d}
+[data-theme="dark"] .cell.g{border-color:#1f5a3c}
+[data-theme="dark"] .cell.b{border-color:#5a2b35}
+[data-theme="dark"] .lvl.med{background:#3a2f12}
+[data-theme="dark"] .qf-back{background:rgba(0,0,0,.55)}
+html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:background-color .4s ease,color .4s ease,border-color .4s ease,fill .4s ease,stroke .4s ease!important}
+.thbtn{margin-left:0}
+/* smoother page transitions */
+.slide{scroll-behavior:auto;will-change:opacity,transform;transform:translateX(36px) scale(.985);transition:opacity .45s ease,transform .7s var(--ease),visibility 0s .7s}
+.slide.before{transform:translateX(-36px) scale(.985)}
+.slide.active{transform:none;transition:opacity .5s ease .05s,transform .7s var(--ease),visibility 0s}
+.mm-n{animation:nodein .5s var(--ease) backwards;animation-delay:calc(var(--k,0)*45ms)}
+@keyframes nodein{from{opacity:0;transform:translate(-50%,-50%) scale(.82)}}
+@keyframes nodein2{from{opacity:0;transform:translateY(8px)}}
+.mm-lines{animation:fadein .5s ease}
+@keyframes fadein{from{opacity:0}}
+/* compact quality panel */
+.qc{transition:width .55s var(--ease),border-width .55s}
+.qc.show{width:232px}
+.qcin{width:232px;padding:12px 12px 90px;opacity:0;transform:translateX(14px);transition:opacity .35s ease .08s,transform .55s var(--ease),visibility 0s .55s}
+.qc.show .qcin{opacity:1;transform:none;transition:opacity .4s ease .12s,transform .55s var(--ease),visibility 0s}
+.qc .checks{gap:2px}
+.qc .checks label{padding:6px 7px;font-size:12.5px;border-radius:9px}
+.qch b{font-size:13px}
+/* quick reminder toast */
+.toast{position:absolute;right:16px;bottom:84px;z-index:16;max-width:min(330px,calc(100% - 32px));display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--brand);border-radius:12px;padding:9px 10px 9px 12px;box-shadow:var(--shadow);font-size:13px;font-weight:400;color:var(--ink);opacity:0;transform:translateY(12px) scale(.98);pointer-events:none;transition:opacity .35s ease,transform .5s var(--ease)}
+.toast.show{opacity:1;transform:none;pointer-events:auto}
+.toast .tt{display:flex;flex-direction:column;gap:1px;min-width:0}
+.toast .tl{font-size:10px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--brand)}
+.toast button{border:0;background:var(--surface2);color:var(--ink);border-radius:8px;padding:5px 9px;font:600 12px Inter,system-ui,sans-serif;cursor:pointer;white-space:nowrap}
+.toast button.tk{background:var(--good-soft);color:var(--good)}
+.toast button.tx{padding:5px 7px;color:var(--muted)}
+@media(max-width:700px){.qc.show,.qcin{width:min(64vw,230px)}.mm-n{animation-name:nodein2}.toast{right:10px;bottom:78px}}
 </style>
 </head>
 <body class="study">
@@ -311,6 +455,8 @@ mark{background:#fff0b8;color:inherit;border-radius:4px;padding:0 2px}
 <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></symbol>
 <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></symbol>
 <symbol id="i-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
 </defs>
 </svg>
 
@@ -325,7 +471,11 @@ mark{background:#fff0b8;color:inherit;border-radius:4px;padding:0 2px}
       <button class="menu-btn" id="menuBtn" aria-label="Open menu"><svg class="ic"><use href="#i-menu"/></svg></button>
       <h1>TUI Pre-Travel Playbook <span>&middot; scripts, objections &amp; practice</span></h1>
       <button class="qbtn" id="qbtn" type="button" aria-label="Quick find"><svg class="ic"><use href="#i-search"/></svg><span class="lbl">Quick find</span><kbd>/</kbd></button>
+      <button class="qbtn mbtn" id="mmBtn" type="button" aria-label="Mind map"><svg class="ic"><use href="#i-target"/></svg><span class="lbl">Map</span></button>
+      <button class="qbtn cbtn" id="qcBtn" type="button" aria-label="Call quality checklist" title="Call quality checklist"><svg class="ic"><use href="#i-check"/></svg><span class="lbl">Quality</span><b id="qcBadge">0/10</b></button>
+      <button class="qbtn sbtn" id="stBtn" type="button" aria-label="Stall phrase reminders" title="Stall phrases: appear and disappear by themselves"><svg class="ic"><use href="#i-clock"/></svg><span class="lbl">Stall</span><i class="sdot"></i></button>
       <button class="qbtn pbtn" id="pbtn" type="button" aria-label="Pinned scripts"><svg class="ic"><use href="#i-star"/></svg><span class="lbl">Pinned</span><b id="pbadge">0</b></button>
+      <button class="qbtn thbtn" id="thBtn" type="button" aria-label="Toggle dark mode" title="Dark / light"><svg class="ic" id="thIc"><use href="#i-moon"/></svg></button>
       <div class="mode" role="group" aria-label="Mode">
         <div class="pill"></div>
         <button id="mStudy" class="on" type="button"><svg class="ic"><use href="#i-book"/></svg>Study</button>
@@ -333,7 +483,10 @@ mark{background:#fff0b8;color:inherit;border-radius:4px;padding:0 2px}
       </div>
     </div>
     <div class="prog"><i id="prog"></i></div>
-    <div class="stage" id="stage"></div>
+    <div class="stallwrap" id="stallwrap"><div class="stallin"><div class="stall" id="stall"><span class="sl">Need a moment?</span><span id="stallTxt"></span><button type="button" class="cpy" id="stallCopy" title="Copy phrase">&#9112;</button><button type="button" id="stallNext" title="Another phrase">&#8635;</button><button type="button" data-t="Buying time (while you search)">More</button><button type="button" id="stallOff" title="Stop the reminders">Stop</button></div><div class="stallbar"><i id="stallProg"></i></div></div></div>
+    <div class="mainrow"><div class="stage" id="stage"></div>
+    <aside class="qc" id="qc" aria-label="Call quality checklist"><div class="qcin"><div class="qch"><b>Call quality</b><span id="qcCount">0/10</span><button type="button" id="qcNew" title="Start a new call: clear all ticks">New call</button><button type="button" id="qcX" title="Hide for now">&times;</button></div><div class="qcbar"><i id="qcProg"></i></div><div id="qcList"></div></div></aside></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <div class="dock"><div class="dock-in">
       <button id="prev" aria-label="Previous slide"><svg class="ic"><use href="#i-left"/></svg></button>
       <div class="cn"><span id="cnt">1 / 1</span><small id="secname"></small></div>
@@ -361,7 +514,7 @@ const fmt=s=>esc(s).replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>').repl
 /* ---------- content ---------- */
 const SECTIONS=[
 {id:'start',name:'Start here',icon:'home',acc:'#2f6fed',soft:'#e7efff',slides:[
- {t:'hero',title:'TUI Pre-Travel Playbook',sub:'Everything before the trip: hotel and room questions, flight extras, special requests, rapport, objections and difficult calls. Ready-to-use English scripts you can practise out loud.',chips:['Quick find (press /)','Pinned (press P)','Study mode','Practice mode','Roleplay generator','Objection roulette']},
+ {t:'hero',title:'TUI Pre-Travel Playbook',sub:'Everything before the trip: hotel and room questions, flight extras, special requests, rapport, objections and difficult calls. Ready-to-use English scripts you can practise out loud.',chips:['Quick find (press /)','Pinned (press P)','Study mode','Practice mode','Roleplay generator','Objection roulette'],tiles:[['target','Mind Map','Mind map: tap to explore'],['home','Hotels','Room types: what customers ask about'],['plane','Flights','Flight extras customers can add'],['globe','Destinations','Where customers travel'],['heart','Rapport','Rapport the British way'],['headset','Call Mode','Call Mode: your 7 steps'],['tag','Price','Price objections (1)'],['frown','Angry customer','De-escalation: H.E.A.R.D.']]},
  {t:'cards',title:'How to use this deck',sub:'Two ways to work. Learn first, then switch to Practice and test yourself.',cards:[
   {i:'book',h:'Study mode',p:'Every response is visible. Read the script, notice the structure, copy the phrases you like.'},
   {i:'mic',h:'Practice mode',p:'Responses are hidden. Say your own answer out loud first, then reveal the model response and compare.'},
@@ -752,6 +905,89 @@ const SECTIONS=[
   {q:'You made a small mistake',a:'"I do apologise, that was my mistake. Let me fix that right away."',tip:'A short, calm apology works better than a long one in British English.'}]}
 ]},
 
+{id:'map',name:'Mind Map',icon:'target',acc:'#7c3aed',soft:'#ede9fe',slides:[
+ {t:'mind',title:'Mind map: tap to explore',sub:'Not sure where to look? Start in the middle and tap your way down. Every branch ends on the exact script you need.'}
+]},
+{id:'call',name:'Call Mode',icon:'headset',acc:'#0f766e',soft:'#ccfbf1',slides:[
+ {t:'cards',title:'Call Mode: your 7 steps',sub:'Open this during a call. One line per step, plus quick buttons to jump to what you need.',cards:[
+  {i:'phone',h:'1. Open',p:'"Thank you for calling TUI, you\'re speaking with [Name]. How can I help?"'},
+  {i:'lock',h:'2. Verify',p:'"Before I access the booking, I need to complete a quick security check."'},
+  {i:'search',h:'3. Discover',p:'"Who\'s travelling, and is it for anything special?"'},
+  {i:'check',h:'4. Resolve',p:'"Here\'s what I can do for you..."'},
+  {i:'trend',h:'5. Add value',p:'"Because you mentioned [need], would you like me to add [extra]?"'},
+  {i:'list',h:'6. Confirm',p:'"Just to summarise: [actions]. Is there anything else I can help with?"'},
+  {i:'heart',h:'7. Close',p:'"Thank you for choosing TUI. Have a wonderful holiday!"'}],links:[['home','Hotels','Room types: what customers ask about'],['plane','Flights','Flight extras customers can add'],['globe','Destinations','Where customers travel'],['heart','Rapport','Conversation starters (trip and general)'],['tag','Price objection','Price objections (1)'],['frown','Angry customer','De-escalation: H.E.A.R.D.']]},
+ {t:'drill',title:'Buying time (while you search)',sub:'Use these any time you are searching, checking or waiting for the system. Tap the Stall tab at the top and a reminder bar appears and disappears by itself while you work.',lead:'When',items:[
+  {q:'You are searching for the booking',a:'"Bear with me one moment while I pull that up for you."',tip:'Calm and polite. Say it before the silence starts.'},
+  {q:'The system is slow',a:'"Thank you for your patience, my system is taking a moment. While it loads, is it your first time visiting [destination]?"',tip:'Turn waiting time into rapport.'},
+  {q:'You need to check with the hotel or airline',a:'"I\'m just confirming that for you, it won\'t take long. Is it all right if I place you on a brief hold?"',tip:'Always ask permission before a hold.'},
+  {q:'You are not sure of the answer yet',a:'"That\'s a good question. I want to give you the right information, so let me double-check."',tip:'Never guess. Checking builds trust.'},
+  {q:'You are reading the notes or the rules',a:'"Let me just have a look at the details so I can explain it properly."',tip:'Tell them what you are doing so they feel looked after.'},
+  {q:'You are back after a hold',a:'"Thank you so much for holding, and sorry for the wait. I\'ve got that for you now."',tip:'Thank, apologise once, then deliver.'},
+  {q:'It is taking longer than expected',a:'"I\'m sorry, this is taking a little longer than I hoped. I\'m nearly there, thank you for bearing with me."',tip:'Update them every 30 to 60 seconds.'},
+  {q:'You want to fill silence with rapport',a:'"While I\'m doing that, are you looking forward to the trip?"',tip:'One light question, then listen.'}]},
+ {t:'notes',title:'Call notes: fill and copy',sub:'Fill in 30 seconds, press Copy, then paste into your system. Clear notes mean fewer repeat calls and better quality scores.'}
+]},
+{id:'dest',name:'Destinations',icon:'globe',acc:'#b45309',soft:'#fef3c7',slides:[
+ {t:'dest',title:'Where customers travel',groups:[['Europe: sun and beaches',['Spain','Portugal','Greece','Turkey','Cyprus','Malta','Croatia']],['Europe: city breaks',['France','Italy','Germany','Netherlands']],['Middle East and Africa',['United Arab Emirates','Egypt','Morocco','Tunisia','Jordan','Cape Verde','Kenya']],['Americas',['United States','Canada','Mexico','Dominican Republic','Jamaica','Barbados']],['Asia and Pacific',['Thailand','Maldives','Sri Lanka','Indonesia (Bali)','Japan','Australia']]],sub:'Tap a country on the map, or a name below. Use the landmarks and questions to build rapport. Check current details before quoting anything.',items:[
+  {n:'Spain',f:['Apr-Jun and Sep-Oct (summer is hot)','About 2.5 hrs (Canaries about 4.5)','Euro','Spanish'],ab:'ES',lat:40.4,lon:-3.7,lm:['Sagrada Familia, Barcelona','Alhambra, Granada','Beaches of Mallorca and Costa del Sol','Mount Teide, Tenerife'],talk:'Spain suits almost everyone: easy flights, great food, city breaks, beach resorts and islands. Ask whether they want mainland or islands.',qs:['Is it your first time in Spain?','Are you after a beach resort or a city break?','Do you like the idea of the islands, like Tenerife or Mallorca?']},
+  {n:'Portugal',f:['Apr-Oct','About 2.5-3 hrs','Euro','Portuguese'],ab:'PT',lat:39.4,lon:-8.2,lm:['Lisbon trams and Belem Tower','Algarve beaches and cliffs','Madeira gardens and hiking'],talk:'Portugal feels relaxed and good value, with lovely beaches and great food. The Algarve is popular for families and golf.',qs:['Have you been to Portugal before?','Do you prefer the Algarve beaches or a city like Lisbon?','Are you a fan of golf or walking holidays?']},
+  {n:'Italy',f:['Apr-Jun and Sep-Oct','About 2.5 hrs','Euro','Italian'],ab:'IT',lat:42.5,lon:12.5,lm:['Colosseum, Rome','Venice canals','Amalfi Coast','Lake Garda'],talk:'Italy is about food, history and scenery. Ask what kind of trip they want: city sights, lakes or coast.',qs:['Is Italy somewhere you have wanted to visit for a while?','Are you more into history and cities, or lakes and coast?','What is the one thing you would love to eat there?']},
+  {n:'Greece',f:['May-Jun and Sep-Oct','About 3.5-4 hrs','Euro','Greek'],ab:'GR',lat:39,lon:22,lm:['Acropolis, Athens','Santorini sunsets','Beaches of Crete, Rhodes and Corfu'],talk:'Greece has the classic island holiday: sunshine, beaches and lovely evenings by the sea. Each island has its own feel.',qs:['Have you been to the Greek islands before?','Do you want lively resorts or somewhere quieter?','Are you travelling with the family or as a couple?']},
+  {n:'Turkey',f:['May-Jun and Sep-Oct','About 4 hrs','Turkish lira','Turkish'],ab:'TR',lat:39,lon:35,lm:['Hagia Sophia, Istanbul','Cappadocia balloon flights','Ephesus ruins','Resorts at Antalya, Dalaman and Bodrum'],talk:'Turkey is popular for all inclusive resorts and good value, and has fascinating history if they want a day out.',qs:['Is it a resort holiday you are after?','Do you like the all inclusive style?','Would you want any day trips, like the ruins or Istanbul?']},
+  {n:'Cyprus',f:['Apr-Nov, warm into autumn','About 4.5-5 hrs','Euro','Greek (English widely spoken)'],ab:'CY',lat:35,lon:33,lm:['Paphos archaeological sites','Ayia Napa beaches','Petra tou Romiou (Aphrodite\'s Rock)'],talk:'Cyprus has a long season, with warm weather well into the autumn. It works for families, couples and for beach and history lovers.',qs:['Have you been to Cyprus before?','Are you after lively Ayia Napa or quiet Paphos?','When are you hoping to travel?']},
+  {n:'Egypt',f:['Oct-Apr (summer is very hot)','About 5-5.5 hrs','Egyptian pound','Arabic'],ab:'EG',lat:26.8,lon:30.8,lm:['Pyramids of Giza','Red Sea snorkelling and diving','Luxor and a Nile cruise','Sharm El Sheikh and Hurghada resorts'],talk:'Egypt combines year-round sun with famous history. Many customers pair a beach resort with a day trip.',qs:['Is this your first time in Egypt?','Are you keen on the beach and snorkelling, or the history?','Would you like to see the pyramids on a day trip?']},
+  {n:'United Arab Emirates',f:['Nov-Mar (summer is very hot)','About 7 hrs','UAE dirham','Arabic (English widely spoken)'],ab:'UAE',full:'United Arab Emirates',lat:24,lon:54,lm:['Burj Khalifa and Dubai Mall','Palm Jumeirah and beaches','Sheikh Zayed Grand Mosque, Abu Dhabi','Desert safari'],talk:'The UAE is great for winter sun, shopping, family attractions and luxury stays. Dubai is the most popular, and Abu Dhabi is calmer and more cultural.',qs:['Have you been to Dubai before?','Are you more into shopping and attractions, or beach and relaxing?','Is it a special occasion trip?']},
+  {n:'Morocco',f:['Mar-May and Sep-Nov','About 3.5-4 hrs','Moroccan dirham','Arabic and French'],ab:'MA',lat:32,lon:-7,lm:['Marrakech souks and Jemaa el-Fnaa square','Atlas Mountains and desert trips','Agadir beaches'],talk:'Morocco is colourful and different, a short flight from the UK. Combine the buzz of Marrakech with a beach stay.',qs:['Is Morocco a new destination for you?','Do you fancy the markets of Marrakech or a beach in Agadir?','Are you comfortable with a day trip into the mountains or desert?']},
+  {n:'Cape Verde',f:['Year-round sunshine','About 6 hrs','Cape Verdean escudo','Portuguese'],ab:'CV',lat:16,lon:-24,lm:['Sal and Boa Vista beaches','Year-round sunshine','All inclusive resorts'],talk:'Cape Verde is a popular winter sun choice, with warm weather most of the year and relaxed beach resorts.',qs:['Are you looking for winter sun?','Do you like all inclusive resorts?','Are you after a quiet beach break or something lively?']},
+  {n:'United States',f:['Varies by area (Orlando: spring and autumn)','About 8-10 hrs (Orlando about 9)','US dollar','English'],ab:'USA',full:'United States of America',lat:38,lon:-98,lm:['Walt Disney World, Orlando','Statue of Liberty, New York','Las Vegas Strip','Florida beaches'],talk:'The USA is a big trip, often a once-in-a-lifetime one. Orlando is a family favourite, and New York is great for city breaks. Always point customers to official entry guidance.',qs:['Is this your first trip to America?','Are you thinking theme parks, a city break or a road trip?','Are you celebrating anything special?']},
+  {n:'Mexico',f:['Nov-Apr','About 10-11 hrs (Cancun)','Mexican peso','Spanish'],ab:'MX',lat:23,lon:-102,lm:['Cancun and Riviera Maya beaches','Chichen Itza','Tulum ruins on the coast'],talk:'Mexico mixes white-sand beaches with Mayan history. Popular for honeymoons and all inclusive holidays.',qs:['Have you been to Mexico before?','Are you after beaches, history, or a bit of both?','Is it a honeymoon or anniversary trip?']},
+  {n:'Maldives',f:['Nov-Apr','About 10.5 hrs','Maldivian rufiyaa (US dollars widely used)','Dhivehi (English widely spoken)'],ab:'MV',lat:3.2,lon:73.2,lm:['Overwater villas','Snorkelling over coral reefs','Private island resorts'],talk:'The Maldives is a dream destination, usually for honeymoons and special occasions. Ask about occasion and budget gently.',qs:['Is it a honeymoon or a special celebration?','What would your perfect day there look like?','Do you love snorkelling or just relaxing?']},
+  {n:'Thailand',f:['Nov-Mar','About 11.5 hrs (Bangkok)','Thai baht','Thai'],ab:'TH',lat:15.9,lon:100.9,lm:['Grand Palace and temples, Bangkok','Phuket and Koh Samui beaches','Elephant sanctuaries near Chiang Mai'],talk:'Thailand offers beaches, culture and street food, great for longer trips and twin-centre holidays. If asked about animal tourism, suggest checking ethical options.',qs:['Is this your first trip to Thailand?','Do you want a city, beaches, or a twin-centre of both?','Are you a fan of Thai food?']},
+  {n:'France',f:['Spring and autumn for Paris','About 1.5 hrs (Paris)','Euro','French'],ab:'FR',lat:46.6,lon:2.4,lm:['Eiffel Tower and the Louvre, Paris','Disneyland Paris','French Riviera: Nice and Cannes','Mont Saint-Michel'],talk:'France is perfect for a city break in Paris, a family trip to Disneyland, or sun on the Riviera. It is close, so short breaks are easy.',qs:['Is it your first time in Paris?','Are you after a city break or sun and sea?','Are you thinking of Disneyland with the children?']},
+  {n:'Malta',f:['Apr-Jun and Sep-Oct','About 3.5 hrs','Euro','Maltese and English'],ab:'MT',lat:35.9,lon:14.4,lm:['Valletta old town','Blue Lagoon, Comino','Mdina, the silent city'],talk:'Malta is sunny, easy and English-speaking, with history and beaches in a small space. A good short-haul choice.',qs:['Have you been to Malta before?','Do you prefer history and old towns, or beach days?','How long are you thinking of going for?']},
+  {n:'Croatia',f:['May-Jun and Sep','About 2.5-3 hrs','Euro','Croatian'],ab:'HR',lat:45.1,lon:15.2,lm:['Dubrovnik city walls','Plitvice Lakes','Split and Diocletian\'s Palace','Hvar island'],talk:'Croatia has a beautiful coast and islands, great for couples and island hopping.',qs:['Is Croatia somewhere you have wanted to visit?','Are you into island hopping or one base?','Do you enjoy sailing or boat trips?']},
+  {n:'Germany',f:['Dec for Christmas markets, or summer','About 1.5-2 hrs','Euro','German'],ab:'DE',lat:51.2,lon:10.4,lm:['Brandenburg Gate, Berlin','Neuschwanstein Castle','Christmas markets in Cologne and Nuremberg','Munich'],talk:'Germany suits city breaks and festive Christmas market trips. Ask when they plan to travel.',qs:['Is it a city break or the Christmas markets?','Have you been to Germany before?','Are you into history, food or castles?']},
+  {n:'Netherlands',f:['Apr-May for tulips','About 1 hr','Euro','Dutch'],ab:'NL',lat:52.1,lon:5.3,lm:['Amsterdam canals','Van Gogh Museum','Keukenhof tulip gardens (spring)'],talk:'The Netherlands is a lovely short break, with canals, museums and spring tulips.',qs:['Is it a city break?','Are you tempted by the tulip season?','Are you travelling as a couple or with friends?']},
+  {n:'Tunisia',f:['May-Jun and Sep-Oct','About 3.5 hrs','Tunisian dinar','Arabic and French'],ab:'TN',lat:34,lon:9,lm:['Carthage ruins','Sidi Bou Said blue and white village','Djerba island beaches'],talk:'Tunisia offers warm beach holidays with history close by, often at good value.',qs:['Is it a beach holiday you are after?','Do you like all inclusive?','Would you like a day trip to see the ruins?']},
+  {n:'Jordan',f:['Mar-May and Sep-Nov','About 5 hrs','Jordanian dinar','Arabic'],ab:'JO',lat:31,lon:36.5,lm:['Petra','Wadi Rum desert','Dead Sea floating'],talk:'Jordan is for travellers who love history and adventure, and Petra is the star. Often combined with a Red Sea or Dead Sea stay.',qs:['Is Petra on your wish list?','Do you like adventure and the outdoors?','Would you add a Dead Sea stay to relax?']},
+  {n:'Kenya',f:['Jun-Oct for safari','About 8.5 hrs','Kenyan shilling','Swahili and English'],ab:'KE',lat:-0.02,lon:37.9,lm:['Masai Mara safari','Diani Beach','Amboseli, with views of Kilimanjaro'],talk:'Kenya is a classic safari and beach combination. Ask what they most want to see.',qs:['Is a safari a lifelong dream?','Which animals would you love to see?','Would you like beach time after the safari?']},
+  {n:'Canada',f:['Jun-Sep, or autumn for colours','About 7.5-9 hrs','Canadian dollar','English and French'],ab:'CA',lat:56,lon:-106,lm:['Niagara Falls','Banff and Lake Louise','CN Tower, Toronto','Vancouver and the Rockies'],talk:'Canada is about big scenery, friendly cities and the great outdoors. Great for road trips and rail journeys.',qs:['Is it nature or cities you love most?','Are you thinking summer or autumn colours?','Have you been to Canada before?']},
+  {n:'Dominican Republic',f:['Nov-Apr','About 9 hrs','Dominican peso','Spanish'],ab:'DO',lat:18.7,lon:-70.2,lm:['Punta Cana beaches','Santo Domingo colonial zone','Saona Island'],talk:'The Dominican Republic is a classic all inclusive Caribbean holiday with long white beaches.',qs:['Is it your first Caribbean holiday?','Do you like all inclusive resorts?','Is it a family trip or a couple\'s break?']},
+  {n:'Jamaica',f:['Nov-Apr','About 9.5 hrs','Jamaican dollar','English'],ab:'JM',lat:18.1,lon:-77.3,lm:['Negril Seven Mile Beach','Dunn\'s River Falls','Bob Marley Museum, Kingston'],talk:'Jamaica has beaches, music and relaxed island life. A great honeymoon and family choice.',qs:['Is it a honeymoon or celebration trip?','Are you a reggae fan?','Do you want a quiet beach or lively resort?']},
+  {n:'Barbados',f:['Dec-Apr','About 8.5 hrs','Barbados dollar','English'],ab:'BB',lat:13.2,lon:-59.5,lm:['West coast beaches','Harrison\'s Cave','Oistins fish fry','Bridgetown heritage'],talk:'Barbados is the polished Caribbean choice: lovely beaches, great food and a very welcoming feel.',qs:['Is it a special occasion?','Do you prefer calm west coast beaches or the livelier south?','Have you been to the Caribbean before?']},
+  {n:'Sri Lanka',f:['Dec-Mar for the west and south coasts','About 10.5-11 hrs','Sri Lankan rupee','Sinhala and Tamil'],ab:'LK',lat:7.9,lon:80.8,lm:['Sigiriya Rock','Temple of the Tooth, Kandy','Yala safari','Southern beaches'],talk:'Sri Lanka packs culture, wildlife, tea hills and beaches into one island. Perfect for twin-centre trips.',qs:['Is it your first time in Sri Lanka?','Culture, wildlife or beaches?','Would you like a twin-centre with a beach stay?']},
+  {n:'Indonesia (Bali)',f:['Apr-Oct (dry season)','About 16+ hrs with a stop','Indonesian rupiah','Indonesian'],ab:'ID',lat:-8.4,lon:115.2,lm:['Uluwatu temple','Ubud rice terraces','Seminyak beaches'],talk:'Bali mixes culture, wellness and beaches. A favourite for honeymoons and long-haul adventures.',qs:['Is it a honeymoon or a big adventure?','Do you prefer beach, culture or wellness?','Have you been to Asia before?']},
+  {n:'Japan',f:['Mar-May and Oct-Nov','About 14 hrs','Japanese yen','Japanese'],ab:'JP',lat:36.2,lon:138.3,lm:['Tokyo','Mount Fuji','Kyoto temples','Cherry blossom season (spring)'],talk:'Japan is a bucket-list trip, mixing hi-tech cities, temples and fantastic food. Ask what time of year they want to go.',qs:['Is Japan on your bucket list?','Do you want cherry blossom season?','Are you more into food, culture or cities?']},
+  {n:'Australia',f:['Varies by region and season','About 22 hrs with a stop','Australian dollar','English'],ab:'AU',lat:-25,lon:134,lm:['Sydney Opera House','Great Barrier Reef','Uluru','Melbourne'],talk:'Australia is a once-in-a-lifetime long-haul trip. Ask how long they have and which cities or sights matter most.',qs:['Is it a trip you have been planning for a while?','Cities, reef or outback?','How long are you thinking of going for?']}
+
+ ]}
+]},
+
+{id:'ptc',name:'Pre-Travel: Common calls',icon:'file',acc:'#be185d',soft:'#fce7f3',slides:[
+ {t:'drill',title:'Payments and documents',sub:'The most common reasons customers call before they travel.',lead:'Customer says',items:[
+  {q:'"When do I need to pay the balance?"',a:'"Let me check your booking. The balance of £[X] is due by [date]. Would you like to pay now, or shall I note it for you?"',tip:'Quote the exact date and amount. Stay helpful, never threatening.'},
+  {q:'"My payment didn\'t go through."',a:'"I\'m sorry about that. It can happen because of a bank security check or a limit. Would you like to try another card, or would you prefer to contact your bank first? The balance is still due by [date]."',tip:'No blame. Offer two simple options and repeat the due date.'},
+  {q:'"I haven\'t received my e-tickets or documents."',a:'"No problem. Let me check the email address on file. [Read back.] I\'ll resend them now and they should arrive within [X]. Please check your junk folder too."',tip:'Check your account\'s release timing before saying they are late.'},
+  {q:'"My passport expires soon. Is that okay?"',a:'"Entry rules depend on the destination, and many countries need a minimum validity on the travel date. I\'d recommend checking GOV.UK foreign travel advice for [destination] to be sure."',tip:'Point to the official source. Do not quote rules from memory.'},
+  {q:'"The name on the booking is spelled wrong."',a:'"Names must match the passport exactly, so let\'s fix that. Could you give me the correct spelling? I\'ll check the process and whether any fee applies. The sooner it\'s corrected the better."',tip:'Treat as urgent, especially close to departure.'},
+  {q:'"Can I have a receipt or invoice?"',a:'"Of course. I\'ll send a confirmation with the payment details to [email]. Is that still the best address?"',tip:'Confirm the email and the timeframe.'}]},
+ {t:'drill',title:'Changes before travel',sub:'Always give the full cost before you change anything.',lead:'Customer says',items:[
+  {q:'"Can I change my room type?"',a:'"Let me check availability and the price difference. I\'ll confirm the full cost before I make any change."',tip:'Availability first, then price, then confirm.'},
+  {q:'"Can I change my hotel?"',a:'"Let me look at the options. A change can involve a price difference or fees, so I\'ll go through the exact costs with you before anything is changed."',tip:'Never promise it is free until you have checked.'},
+  {q:'"I\'d like to add a traveller."',a:'"Of course. May I have their full name as on the passport and their date of birth? I\'ll check availability and the price before adding them."',tip:'Age on the date of travel decides the fare.'},
+  {q:'"What time is my transfer or pick-up?"',a:'"Transfer times are usually confirmed closer to travel. Let me check what I can see on your booking, and I\'ll tell you how and when you\'ll receive the details."',tip:'Never invent a time. Say how the customer will be told.'},
+  {q:'"Can I change my flight date?"',a:'"Let me check availability and the fare rules. There may be a change fee and a fare difference, and I\'ll give you the full price before I change anything."',tip:'Always disclose the full cost before committing.'},
+  {q:'"I\'d like to upgrade before we travel."',a:'"Great idea. Let me check what\'s available, such as [room type / seats / board basis], and I\'ll give you a clear price."',tip:'Say what it is, what it costs, and ask once.'}]},
+ {t:'steps',title:'Pre-departure reminder call',sub:'A friendly call shortly before travel prevents problems and creates happy customers.',steps:[
+  {h:'Check the time',p:'"Good morning, Mr/Mrs [Surname], it\'s [Name] from TUI about your trip to [destination]. Is now a good time?"'},
+  {h:'Verify',p:'Complete the security check before discussing any booking details.'},
+  {h:'Documents',p:'"Have you received your e-tickets and documents? Are all the names and passports correct?"'},
+  {h:'Travel details',p:'Check-in times, transfer, baggage allowance and any special requests you noted.'},
+  {h:'Extras',p:'"Is there anything you\'d like to add, such as seats, bags or a meal?"'},
+  {h:'Warm close',p:'"Not long to go now! Have a wonderful holiday, and call us if you need anything."'}]}
+]},
+
 {id:'lab',name:'Practice lab',icon:'target',acc:'#e0568f',soft:'#ffe6f0',slides:[
  {t:'roleplay',title:'Roleplay generator',sub:'Get a random scenario, run the call out loud with a timer, then score yourself honestly.'},
  {t:'roulette',title:'Objection roulette',sub:'A random customer line from the whole deck. Say your answer out loud, then reveal the model response.'},
@@ -790,13 +1026,23 @@ const SCORE_LABEL=[['Keep practising','Repeat this scenario and focus on the fir
 const stage=document.getElementById('stage');
 const flat=[];
 function head(d,sec,extra=''){return `<header class="sh"><div class="chip rise" style="--i:0">${ic(sec.icon)}<span>${sec.name}</span></div><div class="sh-row"><div><h2 class="rise" style="--i:1">${d.title}</h2>${d.sub?`<p class="lede rise" style="--i:2">${d.sub}</p>`:'<div style="height:14px"></div>'}</div>${extra}</div></header>`}
-function rCards(d){return `<div class="grid">${d.cards.map((c,i)=>`<div class="card rise" style="--i:${i+3}"><div class="ico">${ic(c.i)}</div><h3>${fmt(c.h)}</h3><p>${fmt(c.p)}</p></div>`).join('')}</div>`}
+function rCards(d){return `<div class="grid">${d.cards.map((c,i)=>`<div class="card rise" style="--i:${i+3}"><div class="ico">${ic(c.i)}</div><h3>${fmt(c.h)}</h3><p>${fmt(c.p)}</p></div>`).join('')}</div>${d.links?`<div class="qlinks rise" style="--i:10">${d.links.map(l=>`<button type="button" class="qlink" data-t="${esc(l[2])}">${ic(l[0])}${l[1]}</button>`).join('')}</div>`:''}`}
 function rSteps(d){return `<div class="steps">${d.steps.map((s,i)=>`<div class="step rise" style="--i:${i+3}"><div class="n">${i+1}</div><div><h3>${fmt(s.h)}</h3><p>${fmt(s.p)}</p></div></div>`).join('')}</div>${d.note?`<div class="note rise" style="--i:${d.steps.length+4}">${ic('star')}<div>${fmt(d.note)}</div></div>`:''}`}
-function rDrill(d){return `<div class="grid">${d.items.map((it,i)=>`<article class="card dcard rise" style="--i:${i+3}"><div class="lead">${d.lead||'Situation'}</div><p class="q">${fmt(it.q)}</p><button class="btn rv" type="button">${ic('eye')}<span>Show response</span></button><div class="ans"><div><div class="say">${ic('chat')}<div>${fmt(it.a)}</div></div>${it.tip?`<div class="tip">${ic('star')}<div>${fmt(it.tip)}</div></div>`:''}</div></div></article>`).join('')}</div>`}
+function rDrill(d){return `<div class="grid">${d.items.map((it,i)=>`<article class="card dcard rise" style="--i:${i+3}"><div class="lead">${d.lead||'Situation'}</div><p class="q">${fmt(it.q)}</p><button class="btn rv" type="button">${ic('eye')}<span>Show response</span></button><div class="ans"><div><div class="say">${ic('chat')}<div>${fmt(it.a)}</div><button type="button" class="cpy" title="Copy this phrase" aria-label="Copy this phrase">${ic('copy')}</button></div>${it.tip?`<div class="tip">${ic('star')}<div>${fmt(it.tip)}</div></div>`:''}</div></div></article>`).join('')}</div>`}
 function rCompare(d){return `<div class="cmp"><div class="cmp-row rise" style="--i:3"><div class="cmp-h g">${ic('check')}${d.left}</div><div class="cmp-h b">${ic('alert')}${d.right}</div></div>${d.rows.map((r,i)=>`<div class="cmp-row rise" style="--i:${i+4}"><div class="cell g">${fmt(r[0])}</div><div class="cell b">${fmt(r[1])}</div></div>`).join('')}</div>`}
 function rRoleplay(){return `<div class="lab rise" style="--i:3"><div class="card scn" id="scn"></div><div class="card"><div class="lead">Self-score</div><div class="checks" id="checks">${RUBRIC.map((r,i)=>`<label><input type="checkbox" data-i="${i}"><span>${r}</span></label>`).join('')}</div><div class="score"><div class="ring"><svg viewBox="0 0 100 100"><circle class="t" cx="50" cy="50" r="42"/><circle class="p" id="ringp" cx="50" cy="50" r="42"/></svg><b id="scoren">0/8</b></div><p><strong id="slabel">Keep practising</strong><span id="sdesc">Tick what you did well on the call.</span></p></div></div></div>`}
 function rRoulette(sec){const chips=['all',...SECTIONS.filter(s=>!['start','lab'].includes(s.id)).map(s=>s.id)];return `<div class="rise" style="--i:3"><div class="fchips" id="fchips">${chips.map(c=>`<button type="button" data-f="${c}" class="${c==='all'?'on':''}">${c==='all'?'All topics':SECTIONS.find(s=>s.id===c).name}</button>`).join('')}</div><div class="card" id="rcard"></div></div>`}
-function rHero(d,sec){return `<div class="hero"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="hero-in"><div class="big rise" style="--i:0">${ic('plane')}</div><h2 class="rise" style="--i:1">${d.title}</h2><p class="lede rise" style="--i:2">${d.sub}</p><div class="chips rise" style="--i:3">${d.chips.map(c=>`<span>${c}</span>`).join('')}</div><div class="row rise" style="--i:4;justify-content:center"><button class="btn solid" id="startBtn" type="button">Start learning ${ic('right')}</button><button class="btn ghost" id="qfHero" type="button">${ic('search')}Quick find</button></div></div></div>`}
+function rHero(d,sec){return `<div class="hero"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="hero-in"><div class="big rise" style="--i:0">${ic('plane')}</div><h2 class="rise" style="--i:1">${d.title}</h2><p class="lede rise" style="--i:2">${d.sub}</p><div class="chips rise" style="--i:3">${d.chips.map(c=>`<span>${c}</span>`).join('')}</div>${d.tiles?`<div class="htiles rise" style="--i:4">${d.tiles.map(t=>`<button type="button" class="htile" data-t="${esc(t[2])}">${ic(t[0])}<b>${t[1]}</b></button>`).join('')}</div>`:''}<div class="row rise" style="--i:5;justify-content:center"><button class="btn solid" id="startBtn" type="button">Start learning ${ic('right')}</button><button class="btn ghost" id="qfHero" type="button">${ic('search')}Quick find</button></div></div></div>`}
+
+const NOTE_F=[['Who','Caller name, relationship to the booking, verified yes or no'],['Booking ref','TUI booking reference'],['Issue','One clear sentence: what the customer wanted or what went wrong'],['Actions taken','What you did, in order, with reference numbers'],['Promises','What you promised, who owns it, and by when'],['Offers made','Upsells offered, accepted or declined'],['Next step','What the next person should do if the customer calls back']];
+function rNotes(){return `<div class="notes rise" style="--i:3"><div class="nf-grid">${NOTE_F.map(f=>`<label class="nf"><span>${f[0]}</span><textarea rows="2" placeholder="${esc(f[1])}"></textarea></label>`).join('')}</div><div class="row"><button type="button" class="btn solid" data-notes="copy" data-l="1">${ic('copy')}<span>Copy notes</span></button><button type="button" class="btn ghost" data-notes="clear">Clear</button></div><div class="nmsg"></div></div>`}
+
+function rDest(d){const it=d.items;
+ const X=lon=>((lon+130)*3.571).toFixed(0),Y=lat=>((65-lat)*4.4).toFixed(0);
+ const pts=it.map((c,i)=>`<g class="dpt" data-i="${i}" transform="translate(${X(c.lon)},${Y(c.lat)})"><title>${esc(c.n)}</title><circle r="9"/><text y="2.5">${esc(c.ab)}</text></g>`).join('');
+ const grid=[-120,-90,-60,-30,0,30,60,90,120,150].map(l=>`<line x1="${X(l)}" y1="0" x2="${X(l)}" y2="440"/>`).join('')+[60,30,0,-30].map(l=>`<line x1="0" y1="${Y(l)}" x2="1000" y2="${Y(l)}"/>`).join('');
+ const chips=(d.groups||[['All',it.map(c=>c.n)]]).map(g=>`<div class="dgrp"><b>${esc(g[0])}</b><div class="dchips">${g[1].map(nm=>{const i=it.findIndex(c=>c.n===nm);return i<0?'':`<button type="button" class="dchip" data-i="${i}">${esc(nm)}</button>`}).join('')}</div></div>`).join('');
+ return `<div class="dest"><div class="map rise" style="--i:3"><svg viewBox="0 0 1000 440" role="img" aria-label="Destination map"><g class="gr">${grid}</g>${pts}</svg></div><div class="rise" style="--i:4">${chips}</div><div class="dpanel rise" style="--i:5;margin-top:14px"></div></div>`}
 
 SECTIONS.forEach(sec=>{sec.slides.forEach(d=>{
   const el=document.createElement('section');
@@ -806,24 +1052,167 @@ SECTIONS.forEach(sec=>{sec.slides.forEach(d=>{
   else{
     const extra=d.t==='drill'?`<button class="btn ghost revall rise" style="--i:2" type="button">${ic('eye')}<span>Reveal all</span></button>`:'';
     let body='';
-    if(d.t==='cards')body=rCards(d);else if(d.t==='steps')body=rSteps(d);else if(d.t==='drill')body=rDrill(d);else if(d.t==='compare')body=rCompare(d);else if(d.t==='roleplay')body=rRoleplay();else if(d.t==='roulette')body=rRoulette(sec);
+    if(d.t==='cards')body=rCards(d);else if(d.t==='steps')body=rSteps(d);else if(d.t==='drill')body=rDrill(d);else if(d.t==='compare')body=rCompare(d);else if(d.t==='roleplay')body=rRoleplay();else if(d.t==='roulette')body=rRoulette(sec);else if(d.t==='dest')body=rDest(d);else if(d.t==='mind')body='<div class="mm"></div>';else if(d.t==='notes')body=rNotes();
     el.innerHTML=`<div class="in">${head(d,sec,extra)}${body}</div>`;
   }
   stage.appendChild(el);
   flat.push({el,d,sec});
 })});
 const total=flat.length;
+flat.forEach(f=>{if(f.d.t!=='dest')return;const el=f.el,it=f.d.items,panel=el.querySelector('.dpanel');
+  const show=i=>{const c=it[i];
+    el.querySelectorAll('.dpt,.dchip').forEach(x=>x.classList.toggle('on',+x.dataset.i===i));
+    panel.innerHTML=`<div class="pop"><div class="lead">${esc(c.ab)}${c.full?' = '+esc(c.full):''}</div><h3 class="dn">${esc(c.n)}</h3>${c.f?`<div class="dfx">${['Best time','Flight from UK (approx.)','Currency','Language'].map((l,i)=>`<div><b>${l}</b><span>${esc(c.f[i])}</span></div>`).join('')}</div><p class="dnote">General guide only. Check before quoting.</p>`:''}<div class="dcols"><div><b>Famous for</b><ul>${c.lm.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div><b>How to talk about it</b><p>${fmt(c.talk)}</p></div></div><b class="dq">Ask the customer</b><div class="dqs">${c.qs.map(q=>`<div class="dqi">${ic('chat')}<span>${esc(q)}</span><button type="button" class="cpy" title="Copy" aria-label="Copy question">${ic('copy')}</button></div>`).join('')}</div></div>`};
+  el.__sel=show;
+  el.addEventListener('click',e=>{const b=e.target.closest('.dpt,.dchip');if(b)show(+b.dataset.i)});
+  show(0)});
+stage.addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(!b)return;const n=flat.findIndex(f=>f.d.title===b.dataset.t);if(n>=0)go(n)});
+const STALL=['Bear with me one moment while I pull that up for you.','Thank you for your patience, I\'m just checking that now.','Let me have a look at that for you, it won\'t take long.','I want to give you the right information, so I\'m just double-checking.','Sorry for the wait, I\'m nearly there.','While that loads, are you looking forward to the trip?','Is it all right if I place you on a brief hold while I check?','That\'s a good question, let me find the exact answer for you.','Just bear with me while I double-check the details.','I\'m making sure everything is correct for you.','One moment please, I\'m updating your booking now.','I really appreciate your patience, nearly done.'];
+let stI=0;const stT=document.getElementById('stallTxt'),stW=document.getElementById('stallwrap'),stB=document.getElementById('stBtn'),stP=document.getElementById('stallProg');
+const SHOW_MS=20000,HIDE_MS=20000;let stOn=false,stVis=false,stTm=null,stIv=null;
+stT.textContent=STALL[0];
+const nextPhrase=()=>{stT.style.opacity=0;setTimeout(()=>{stI=(stI+1)%STALL.length;stT.textContent=STALL[stI];stT.style.opacity=1},220)};
+window.__stall=()=>{};
+const stUI=()=>{stW.classList.toggle('show',stVis);stB.classList.toggle('on',stOn);stB.classList.toggle('vis',stVis)};
+function stShow(){clearTimeout(stTm);stVis=true;stUI();stP.style.transition='none';stP.style.width='100%';void stP.offsetWidth;stP.style.transition='width '+SHOW_MS+'ms linear';stP.style.width='0%';stTm=setTimeout(stHide,SHOW_MS);clearInterval(stIv);stIv=setInterval(nextPhrase,5000)}
+function stHide(){clearTimeout(stTm);clearInterval(stIv);stVis=false;stUI();if(stOn)stTm=setTimeout(()=>{nextPhrase();stShow()},HIDE_MS)}
+function stStop(){clearTimeout(stTm);clearInterval(stIv);stOn=false;stVis=false;stUI();qcStop()}
+stB.onclick=()=>{if(!stOn){stOn=true;stShow();qcSchedule(10000);tsStart(6000)}else if(stVis){stHide()}else{nextPhrase();stShow()}};
+document.getElementById('stallOff').onclick=stStop;
+document.getElementById('stallNext').onclick=()=>{nextPhrase();stShow()};
+stW.addEventListener('mouseenter',()=>{if(stVis){clearTimeout(stTm);clearInterval(stIv);stP.style.transition='none';stP.style.width='100%'}});
+stW.addEventListener('mouseleave',()=>{if(stVis&&stOn)stShow()});
+const QC=[['Greeted with my name and a smile','Inbound openings: the essentials'],['Security verification completed','Security verification'],['Built rapport (one friendly question)','Conversation starters (trip and general)'],['Listened and paraphrased their need','Discovery in action'],['Asked permission before any hold','Buying time (while you search)'],['Gave accurate info (checked, not guessed)',null],['Special requests noted, not promised','Hotel requests from customers'],['Offered one relevant extra (if it fits)','The upsell formula'],['Recapped actions, costs and next steps','Closing the call'],['Closed warmly and notes are ready','Call notes: fill and copy']];
+let qcSt=QC.map(()=>false),qcTm=null,qcShowing=false;
+const QC_SHOW=20000,QC_GAP=20000;
+const qcEl=document.getElementById('qc'),qcList=document.getElementById('qcList');
+function qcUpd(){const n=qcSt.filter(Boolean).length;document.getElementById('qcCount').textContent=n+'/'+QC.length;document.getElementById('qcBadge').textContent=n+'/'+QC.length;document.getElementById('qcProg').style.width=(n/QC.length*100)+'%';qcEl.classList.toggle('done',n===QC.length)}
+function qcDraw(){qcList.innerHTML='<div class="checks">'+QC.map((q,i)=>`<label><input type="checkbox" data-q="${i}"${qcSt[i]?' checked':''}><span>${esc(q[0])}</span>${q[1]?`<button type="button" class="go" data-t="${esc(q[1])}" title="Open this topic">&rarr;</button>`:''}</label>`).join('')+'</div>';qcUpd()}
+function qcVisible(v){qcShowing=v;qcEl.classList.toggle('show',v);document.getElementById('qcBtn').classList.toggle('vis',v)}
+function qcOpen(){clearTimeout(qcTm);qcVisible(true);qcTm=setTimeout(qcClose,QC_SHOW)}
+function qcClose(){clearTimeout(qcTm);qcVisible(false);if(stOn&&!qcSt.every(Boolean))qcTm=setTimeout(qcOpen,QC_GAP)}
+function qcSchedule(ms){clearTimeout(qcTm);qcTm=setTimeout(qcOpen,ms)}
+function qcStop(){clearTimeout(qcTm);qcVisible(false);tsStop()}
+qcList.addEventListener('change',e=>{const c=e.target.closest('[data-q]');if(!c)return;qcSt[+c.dataset.q]=c.checked;qcUpd();if(qcShowing){clearTimeout(qcTm);qcTm=setTimeout(qcClose,QC_SHOW)}});
+qcEl.addEventListener('click',e=>{const g=e.target.closest('[data-t]');if(g){const n=flat.findIndex(f=>f.d.title===g.dataset.t);if(n>=0)go(n)}});
+qcEl.addEventListener('mouseenter',()=>{if(qcShowing)clearTimeout(qcTm)});
+qcEl.addEventListener('mouseleave',()=>{if(qcShowing){clearTimeout(qcTm);qcTm=setTimeout(qcClose,QC_SHOW)}});
+document.getElementById('qcNew').onclick=()=>{qcSt=QC.map(()=>false);qcDraw();qcOpen()};
+document.getElementById('qcX').onclick=()=>qcClose();
+document.getElementById('qcBtn').onclick=()=>{qcShowing?qcClose():qcOpen()};
+qcDraw();
+/* quick reminder toasts for unticked quality items */
+const tsEl=document.getElementById('toast');let tsTm=null,tsHideTm=null,tsIdx=0;
+function tsHide(){clearTimeout(tsHideTm);tsEl.classList.remove('show')}
+function tsNext(){
+  clearTimeout(tsTm);
+  const rem=QC.map((q,i)=>i).filter(i=>!qcSt[i]);
+  if(!stOn||!rem.length)return;
+  tsTm=setTimeout(tsNext,10000);
+  if(qcShowing)return;
+  const i=rem.find(x=>x>=tsIdx);const k=i===undefined?rem[0]:i;tsIdx=k+1;
+  tsEl.dataset.i=k;
+  tsEl.innerHTML=`<div class="tt"><span class="tl">Still to do</span><span>${esc(QC[k][0])}</span></div><button type="button" class="tk" data-ts="done" title="Mark as done">&#10003; Done</button>${QC[k][1]?`<button type="button" data-ts="open" title="Open this topic">&rarr;</button>`:''}<button type="button" class="tx" data-ts="x" title="Dismiss">&times;</button>`;
+  tsEl.classList.add('show');clearTimeout(tsHideTm);tsHideTm=setTimeout(tsHide,5000)}
+function tsStart(ms){clearTimeout(tsTm);tsIdx=0;tsTm=setTimeout(tsNext,ms)}
+function tsStop(){clearTimeout(tsTm);tsHide()}
+tsEl.addEventListener('click',e=>{const b=e.target.closest('[data-ts]');if(!b)return;const k=+tsEl.dataset.i;
+  if(b.dataset.ts==='done'){qcSt[k]=true;qcDraw();tsHide();if(qcSt.every(Boolean))clearTimeout(tsTm)}
+  else if(b.dataset.ts==='open'){const n=flat.findIndex(f=>f.d.title===QC[k][1]);if(n>=0)go(n);tsHide()}
+  else tsHide()});
+tsEl.addEventListener('mouseenter',()=>clearTimeout(tsHideTm));
+tsEl.addEventListener('mouseleave',()=>{if(tsEl.classList.contains('show')){clearTimeout(tsHideTm);tsHideTm=setTimeout(tsHide,2500)}});
+/* dark / light */
+const rootEl=document.documentElement;
+function applyTheme(m,anim){if(anim){rootEl.classList.add('theme-anim');setTimeout(()=>rootEl.classList.remove('theme-anim'),520)}
+  rootEl.dataset.theme=m;document.getElementById('thIc').innerHTML=`<use href="#i-${m==='dark'?'sun':'moon'}"/>`;
+  const mt=document.querySelector('meta[name=theme-color]');if(mt)mt.content=m==='dark'?'#0f1624':'#f4f7fb';
+  try{localStorage.setItem('tui-theme',m)}catch(e){}}
+document.getElementById('thBtn').onclick=()=>applyTheme(rootEl.dataset.theme==='dark'?'light':'dark',true);
+applyTheme(rootEl.dataset.theme==='dark'?'dark':'light',false);
+document.getElementById('stall').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b){const n=flat.findIndex(f=>f.d.title===b.dataset.t);if(n>=0)go(n)}});
+const MAPT='Mind map: tap to explore';
+document.getElementById('mmBtn').onclick=()=>{const n=flat.findIndex(f=>f.d.t==='mind');if(n>=0)go(n)};
+const dg=SECTIONS.find(s=>s.id==='dest').slides[0].groups;
+const L=(n,go)=>({n,go});
+const MM={n:'Pre-Travel',ic:'plane',kids:[
+ {n:'Hotels',ic:'home',kids:[L('Room types','Room types: what customers ask about'),L('Board basis','Board basis: what is included'),L('Facilities','Hotel facilities worth asking about'),L('Customer requests','Hotel requests from customers'),L('Say this, not that','Hotel requests: say this, not that'),L('Checklist','Hotel checklist before you advise')]},
+ {n:'Flights',ic:'plane',kids:[L('Flight extras','Flight extras customers can add'),L('Customer questions','Flight questions customers ask'),L('Assistance and families','Special assistance and families'),L('Pre-flight checklist','Pre-flight checklist for every booking')]},
+ {n:'Destinations',ic:'globe',kids:dg.map(g=>({n:g[0],ic:'globe',kids:g[1].map(nm=>({n:nm==='United Arab Emirates'?'UAE':nm==='United States'?'USA':nm,dest:nm,ic:'globe'}))}))},
+ {n:'Rapport',ic:'heart',kids:[L('British style','Rapport the British way'),L('Openers','Rapport openers that feel natural'),L('Conversation starters','Conversation starters (trip and general)'),L('Good vs avoid','Questions that work vs questions to avoid'),L('Tricky moments','Tricky rapport moments')]},
+ {n:'During the call',ic:'headset',kids:[L('Call Mode','Call Mode: your 7 steps'),L('Buying time','Buying time (while you search)'),L('Opening','Inbound openings: the essentials'),L('Verify','Security verification'),L('Discover','Discovery in action'),L('Resolve','Common requests (1)'),L('Closing','Closing the call'),L('Call notes','Call notes: fill and copy')]},
+ {n:'Pre-Travel calls',ic:'file',kids:[L('Payments and documents','Payments and documents'),L('Changes before travel','Changes before travel'),L('Reminder call','Pre-departure reminder call')]},
+ {n:'Customer says...',ic:'chat',kids:[{n:'Price',ic:'tag',kids:[L('Too expensive','Price objections (1)'),L('Discounts, seats, bags','Price objections (2)')]},{n:'I need to think',ic:'clock',kids:[L('Hesitation and delay','Hesitation & delay'),L('Doubts and questions','Doubts & questions')]},{n:'Angry',ic:'frown',kids:[L('H.E.A.R.D. method','De-escalation: H.E.A.R.D.'),L('Shouting and abuse','Shouting, abuse and threats'),L('Repeat callers','Repeat callers and broken trust'),L('Escalations','Escalations and sensitive moments')]},{n:'Trust',ic:'shield',kids:[L('Manager or script','Trust & service objections (1)'),L('Protection and ID','Trust & service objections (2)')]}]},
+ {n:'Problems',ic:'alert',kids:[{n:'System',ic:'monitor',kids:[L('System protocol','System issue protocol'),L('Slow, down, payment','System issues (1)'),L('Missing, duplicate, email','System issues (2)')]},{n:'Disruptions',ic:'plane',kids:[L('Delays and cancellations','Disruptions (1)'),L('Bags, names, documents','Disruptions (2)'),L('Medical, refunds, check-in','Disruptions (3)')]}]},
+ {n:'Sell and upsell',ic:'trend',kids:[L('Upsell formula','The upsell formula'),L('Seats, bags, meals','Upsell: seats, legroom, bags, meals'),L('Hotel and transfers','Upsell: hotel, transfers and extras'),L('Say this, not that','Upselling: say this, not that')]},
+ {n:'Practice',ic:'target',kids:[L('Roleplay','Roleplay generator'),L('Objection roulette','Objection roulette')]}
+]};
+window.__MM=MM;
+function copyText(txt,btn){
+  const done=()=>{if(!btn)return;const o=btn.innerHTML;btn.classList.add('ok');btn.innerHTML=ic('check')+(btn.dataset.l?'<span>Copied</span>':'');setTimeout(()=>{btn.classList.remove('ok');btn.innerHTML=o},1300)};
+  const fb=()=>{const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy')}catch(e){}ta.remove();done()};
+  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(txt).then(done,fb);else fb()}
+document.addEventListener('click',e=>{
+  const c=e.target.closest('.cpy');
+  if(c){const box=c.closest('.say,.dqi,.stall');if(!box)return;
+    const el=box.classList.contains('stall')?document.getElementById('stallTxt'):box.classList.contains('say')?box.querySelector(':scope > div'):box.querySelector('span');
+    if(el)copyText(el.innerText.trim().replace(/^"|"$/g,''),c);return}
+  const nb=e.target.closest('[data-notes]');
+  if(nb){const root=nb.closest('.notes'),tas=[...root.querySelectorAll('textarea')],msg=root.querySelector('.nmsg');
+    if(nb.dataset.notes==='clear'){tas.forEach(x=>x.value='');msg.textContent='';return}
+    const txt=tas.map((x,i)=>x.value.trim()?NOTE_F[i][0].toUpperCase()+': '+x.value.trim():'').filter(Boolean).join('\n');
+    if(!txt){msg.textContent='Nothing to copy yet.';return}
+    msg.textContent='';copyText(txt,nb)}
+});
+
+flat.forEach(f=>{if(f.d.t!=='mind')return;const el=f.el.querySelector('.mm');let path=[MM];
+  const draw=()=>{const cur=path[path.length-1],k=cur.kids,n=k.length;
+    const crumb=path.map((x,i)=>`<button type="button" class="mm-cr${i===path.length-1?' on':''}" data-p="${i}">${esc(x.n)}</button>`).join('<span>&rsaquo;</span>');
+    const pos=k.map((x,i)=>{const a=-Math.PI/2+i*2*Math.PI/n;return [50+37*Math.cos(a),31+22*Math.sin(a)]});
+    const lines=pos.map(q=>`<line x1="50" y1="31" x2="${q[0].toFixed(1)}" y2="${q[1].toFixed(1)}"/>`).join('');
+    const nodes=k.map((x,i)=>`<button type="button" class="mm-n${x.kids?' br':''}" data-i="${i}" style="left:${pos[i][0].toFixed(1)}%;top:${(pos[i][1]/62*100).toFixed(1)}%;--k:${i}">${ic(x.ic||cur.ic||'right')}<b>${esc(x.n)}</b><small>${x.kids?x.kids.length+' options':'Open'}</small></button>`).join('');
+    el.innerHTML=`<div class="mm-crumb">${crumb}</div><div class="mm-stage pop"><svg class="mm-lines" viewBox="0 0 100 62" preserveAspectRatio="none">${lines}</svg><button type="button" class="mm-c" data-up="1">${ic(cur.ic||'plane')}<b>${esc(cur.n)}</b><small>${path.length>1?'tap to go back':'start here'}</small></button>${nodes}</div>`};
+  el.addEventListener('click',e=>{
+    const cr=e.target.closest('.mm-cr');if(cr){path=path.slice(0,+cr.dataset.p+1);draw();return}
+    if(e.target.closest('.mm-c')){if(path.length>1){path.pop();draw()}return}
+    const nb=e.target.closest('.mm-n');if(!nb)return;
+    const x=path[path.length-1].kids[+nb.dataset.i];
+    if(x.kids){path.push(x);draw();return}
+    if(x.go){const n=flat.findIndex(s=>s.d.title===x.go);if(n>=0)go(n);return}
+    if(x.dest){const n=flat.findIndex(s=>s.d.t==='dest');if(n>=0){go(n);const i=flat[n].d.items.findIndex(c=>c.n===x.dest);if(i>=0&&flat[n].el.__sel)flat[n].el.__sel(i)}}
+  });
+  draw()});
+const parentOf=t=>{const w=n=>{for(const k of (n.kids||[])){if(k.go===t)return n;if(k.kids){const r=w(k);if(r)return r}}};return w(MM)};
+flat.forEach(f=>{if(['hero','mind'].includes(f.d.t)||f.d.links)return;const t=f.d.title;let chips=[];
+  if(f.d.t==='dest')chips=[['heart','Conversation starters','Conversation starters (trip and general)'],['home','Hotels','Room types: what customers ask about'],['plane','Flights','Flight extras customers can add']];
+  else{const par=parentOf(t);if(par)chips=par.kids.filter(k=>k.go&&k.go!==t).slice(0,5).map(k=>[par.ic||'right',k.n,k.go])}
+  chips.push(['target','Mind map',MAPT],['headset','Call Mode','Call Mode: your 7 steps']);
+  chips=chips.filter((c,i)=>c[2]!==t&&chips.findIndex(x=>x[2]===c[2])===i);
+  const div=document.createElement('div');div.className='qlinks rel rise';div.style.setProperty('--i',12);
+  div.innerHTML=`<span class="relh">Related</span>`+chips.map(c=>`<button type="button" class="qlink" data-t="${esc(c[2])}">${ic(c[0])}${esc(c[1])}</button>`).join('');
+  f.el.querySelector('.in').appendChild(div)});
+
+
 
 /* sidebar */
 const navlist=document.getElementById('navlist');
-let idx=0;
+let idx=0;const GEL={};
 SECTIONS.forEach(sec=>{
   const g=document.createElement('div');g.className='grp';g.style.setProperty('--acc',sec.acc);g.style.setProperty('--soft',sec.soft);g.dataset.sec=sec.id;
   const first=flat.findIndex(f=>f.sec===sec);
   g.innerHTML=`<button class="grp-h" type="button"><span class="dot">${ic(sec.icon)}</span><span>${sec.name}</span><small>${sec.slides.length}</small></button><div class="subl"><ul>${sec.slides.map((s,i)=>`<li><button type="button" data-go="${first+i}">${s.title}</button></li>`).join('')}</ul></div>`;
   g.querySelector('.grp-h').addEventListener('click',()=>go(first));
-  navlist.appendChild(g);
+  GEL[sec.id]=g;
 });
+{const CORE=['start','map','call','pre','ptc','fly','dest','rap','lab'];
+ CORE.forEach(id=>navlist.appendChild(GEL[id]));
+ const more=SECTIONS.filter(s=>!CORE.includes(s.id));
+ const mb=document.createElement('button');mb.type='button';mb.className='more-btn';mb.innerHTML=`More topics (${more.length}) ${ic('right')}`;
+ const mw=document.createElement('div');mw.className='more-wrap';more.forEach(s=>mw.appendChild(GEL[s.id]));
+ mb.onclick=()=>{mw.classList.toggle('open');mb.classList.toggle('on')};
+ navlist.appendChild(mb);navlist.appendChild(mw);
+ window.__ensureNav=sid=>{if(!CORE.includes(sid)){mw.classList.add('open');mb.classList.add('on')}};}
+
 navlist.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b){go(+b.dataset.go);document.body.classList.remove('menu-open')}});
 
 /* navigation */
@@ -832,7 +1221,7 @@ const prevB=document.getElementById('prev'),nextB=document.getElementById('next'
 function go(n){
   n=Math.max(0,Math.min(total-1,n));idx=n;
   flat.forEach((f,i)=>{f.el.classList.toggle('active',i===n);f.el.classList.toggle('before',i<n)});
-  const cur=flat[n];cur.el.scrollTop=0;
+  const cur=flat[n];cur.el.scrollTop=0;if(window.__ensureNav)window.__ensureNav(cur.sec.id);if(window.__stall)window.__stall();
   navlist.querySelectorAll('.grp').forEach(g=>g.classList.toggle('active',g.dataset.sec===cur.sec.id));
   navlist.querySelectorAll('[data-go]').forEach(b=>b.classList.toggle('cur',+b.dataset.go===n));
   const act=navlist.querySelector('.grp.active');if(act)setTimeout(()=>act.scrollIntoView({block:'nearest',behavior:'smooth'}),60);
@@ -902,7 +1291,7 @@ stage.addEventListener('click',e=>{
   let f='all',cur=null,done=0;
   function pick(){const list=pool.filter(p=>f==='all'||p.sid===f);let p;do{p=list[Math.floor(Math.random()*list.length)]}while(p===cur&&list.length>1);cur=p;
     card.style.setProperty('--acc',p.acc);card.style.setProperty('--soft',p.soft);
-    card.innerHTML=`<div class="pop"><div class="row"><span class="chip">${esc(p.sname)}</span><span class="cnt">${done} practised this session</span></div><div class="lead" style="margin-top:16px">${p.lead}</div><p class="rq">${fmt(p.q)}</p><div class="row"><button class="btn solid" id="rrv" type="button">${ic('eye')}<span>Reveal response</span></button><button class="btn ghost" id="rnx" type="button">${ic('shuffle')}<span>Next random</span></button></div><div class="ans" id="rans"><div><div class="say" style="margin-top:16px">${ic('chat')}<div>${fmt(p.a)}</div></div>${p.tip?`<div class="tip">${ic('star')}<div>${fmt(p.tip)}</div></div>`:''}</div></div></div>`;
+    card.innerHTML=`<div class="pop"><div class="row"><span class="chip">${esc(p.sname)}</span><span class="cnt">${done} practised this session</span></div><div class="lead" style="margin-top:16px">${p.lead}</div><p class="rq">${fmt(p.q)}</p><div class="row"><button class="btn solid" id="rrv" type="button">${ic('eye')}<span>Reveal response</span></button><button class="btn ghost" id="rnx" type="button">${ic('shuffle')}<span>Next random</span></button></div><div class="ans" id="rans"><div><div class="say" style="margin-top:16px">${ic('chat')}<div>${fmt(p.a)}</div><button type="button" class="cpy" title="Copy this phrase" aria-label="Copy this phrase">${ic('copy')}</button></div>${p.tip?`<div class="tip">${ic('star')}<div>${fmt(p.tip)}</div></div>`:''}</div></div></div>`;
     card.querySelector('.say').parentNode.parentNode.parentNode.style.setProperty('--x',0);
   }
   card.addEventListener('click',e=>{
@@ -942,6 +1331,11 @@ stage.addEventListener('click',e=>{
    ['practise','practice','roleplay','roulette','drill','test','تدريب','تمرين','اتدرب'],
    ['hotel','room','twin','double','suite','view','cot','facility','facilities','check in','check out','فندق','غرفه','اوضه','اوضة','سرير','اطلاله'],
    ['board','half board','full board','all inclusive','breakfast','meals included','self catering','وجبات','فطار','شامل','نص اقامه'],
+   ['destination','country','map','landmark','spain','greece','turkey','dubai','egypt','uae','where','بلد','دوله','خريطه','اسبانيا','اليونان','تركيا','دبي','مصر','الامارات','معالم'],
+   ['wait','waiting','hold','stall','moment','searching','looking up','buy time','time','انتظار','استني','لحظه','دقيقه','بدور','وقت'],
+   ['notes','note','summary','wrap up','log','record','ملاحظات','نوتس','تسجيل'],
+   ['balance','passport','documents','eticket','receipt','invoice','transfer','pickup','reminder','add traveller','رصيد','جواز','مستندات','ايصال','فاتوره','تذكير'],
+   ['paris','france','eiffel','louvre','disney','باريس','فرنسا'],
    ['rapport','small talk','conversation','starter','british','friendly','chat','رابور','كلام','ونس','محادثه','بريطاني','افتح كلام']
   ].map(g=>g.map(norm));
 
@@ -956,6 +1350,7 @@ stage.addEventListener('click',e=>{
     else if(d.t==='cards')d.cards.forEach((c,i)=>push(i,c.h,c.p));
     else if(d.t==='steps')d.steps.forEach((s,i)=>push(i,s.h,s.p));
     else if(d.t==='compare')d.rows.forEach((r,i)=>push(i,r[0],'Avoid: '+r[1]));
+    else if(d.t==='dest')d.items.forEach((c,i)=>push(i,c.n+' '+c.ab+(c.full?' '+c.full:''),c.lm.join('. ')+'. '+c.talk+' '+(c.f||[]).join(' '),c.qs.join(' ')));
   });
 
   function lev(a,b){if(Math.abs(a.length-b.length)>1)return 9;const m=a.length,n=b.length;let p=[];for(let j=0;j<=n;j++)p[j]=j;for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c}return p[n]}
@@ -991,7 +1386,7 @@ stage.addEventListener('click',e=>{
   const sIdx=t=>flat.findIndex(f=>f.d.title===t);
 
   const FLOW=[['Open','Inbound openings: the essentials'],['Verify','Security verification'],['Discover','Discovery in action'],['Resolve','Common requests (1)'],['Add value','The upsell formula'],['Confirm','Closing the call'],['Wrap up','Wrap-up notes template']];
-  const TILES=[['frown','Customer is angry','angry'],['tag','"Too expensive"','price'],['alert','Wants to cancel','cancel'],['clock','"I need to think"','think'],['users','Asks for a manager','manager'],['lock','Security check issue','verify'],['monitor','System slow or down','system'],['card','Payment problem','payment'],['plane','Delay or cancellation','delay'],['bag','Baggage','baggage'],['trend','Upsell ideas','upsell'],['phone','Opening a call','opening'],['book','I do not know the answer','unknown'],['file','Complaint or compensation','complaint'],['shield','Is it safe? Visa?','safety'],['heart','Medical or bereavement','medical'],['home','Hotel or room question','hotel'],['chat','Start a conversation','rapport']];
+  const TILES=[['frown','Customer is angry','angry'],['tag','"Too expensive"','price'],['alert','Wants to cancel','cancel'],['clock','"I need to think"','think'],['users','Asks for a manager','manager'],['lock','Security check issue','verify'],['monitor','System slow or down','system'],['card','Payment problem','payment'],['plane','Delay or cancellation','delay'],['bag','Baggage','baggage'],['trend','Upsell ideas','upsell'],['phone','Opening a call','opening'],['book','I do not know the answer','unknown'],['file','Complaint or compensation','complaint'],['shield','Is it safe? Visa?','safety'],['heart','Medical or bereavement','medical'],['home','Hotel or room question','hotel'],['chat','Start a conversation','rapport'],['globe','Destination chat','destination'],['clock','Need a moment (stall)','moment']];
 
   function hl(s,toks){let o=esc(s);const t=toks.filter(x=>/^[a-z0-9]+$/.test(x)&&!['amp','lt','gt'].includes(x));if(t.length)o=o.replace(new RegExp('('+t.join('|')+')','ig'),'<mark>$1</mark>');return o}
   function rowHTML(e,toks){
@@ -1041,6 +1436,7 @@ stage.addEventListener('click',e=>{
   function jump(e){
     if(!e)return;close();go(e.si);
     recents=[e.key,...recents.filter(k=>k!==e.key)].slice(0,8);save();
+    if(e.ti>=0&&flat[e.si].d.t==='dest'&&flat[e.si].el.__sel){flat[e.si].el.__sel(e.ti)}
     if(e.ti>=0){setTimeout(()=>{document.querySelectorAll('.spot').forEach(x=>x.classList.remove('spot'));const t=targetsOf(e.si)[e.ti];if(!t)return;t.scrollIntoView({block:'center',behavior:'smooth'});t.classList.add('spot');if(t.classList.contains('dcard')){t.classList.add('open');labelOf(t)}},430)}
   }
 
