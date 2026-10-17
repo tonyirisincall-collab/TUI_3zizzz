@@ -442,6 +442,7 @@ html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:
 .okt{color:var(--good)!important}.badt{color:var(--bad)!important}
 @media(max-width:700px){.ntp{right:10px;width:calc(100% - 20px)}}
 .ntbtn{margin-left:0}
+.nf textarea.sh1{min-height:38px}
 </style>
 </head>
 <body class="study">
@@ -539,7 +540,7 @@ html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:
 
 <script>
 /* ---------- helpers ---------- */
-const NOTES_URL='https://script.google.com/macros/s/AKfycbz_ciSobz-04ISNyg8qxs6RhN1Y468ZyoZ4mmExXSNpx_v4ZQgRN4vgYt0DJ67EK3M4/exec'; /* paste the web app link between the quotes */
+const NOTES_URL='https://script.google.com/macros/s/AKfycbzAfp9KLeO17JXu6YO3NCVxHmy5Phn3MIseRE1_3wsIVzLOCsqUyV6iobk1HPmAbXeQ/exec'; /* paste the web app link between the quotes */
 const ic=(n,c='')=>`<svg class="ic ${c}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const fmt=s=>esc(s).replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>').replace(/\n/g,'<br>');
@@ -803,13 +804,7 @@ const SECTIONS=[
   {q:'Positive close after a sale',a:'"Thank you for choosing TUI. It\'s been a pleasure helping you, and I hope you have a wonderful holiday!"',tip:'Warm, specific, unhurried.'},
   {q:'Closing after a difficult call',a:'"Thank you for your patience today, and I\'m sorry again for the trouble. I\'ve noted everything on your account, and if you need anything else, please call us and quote [reference]."',tip:'End steady and respectful. Leave on a solution, not an argument.'},
   {q:'Mentioning a survey (if your process allows)',a:'"You may receive a short survey after this call. If you feel I\'ve helped, I\'d really appreciate your feedback."',tip:'Never coach or pressure for scores. Mention it neutrally.'}]},
- {t:'cards',title:'Wrap-up notes template',sub:'Good notes save your colleagues (and the customer) from repeating everything.',cards:[
-  {i:'user',h:'Who',p:'Caller name, relationship to the booking, whether verified.'},
-  {i:'search',h:'Issue',p:'One clear sentence: what the customer wanted or what went wrong.'},
-  {i:'check',h:'Actions taken',p:'Exactly what you did, in order, with reference numbers.'},
-  {i:'clock',h:'Promises',p:'What you said would happen, who owns it, and by when.'},
-  {i:'trend',h:'Offers made',p:'Upsells offered and accepted or declined.'},
-  {i:'right',h:'Next step',p:'What should the next person do if the customer calls back?'}]}
+ {t:'cards',title:'Wrap-up notes template',sub:'The notes to leave after every call. Use the Call notes page to fill, copy and save them.',cards:[{i:'user',h:'Who called? GDPR passed?',p:'Caller name, relationship to the booking, and whether the GDPR check was passed.'},{i:'search',h:'Reason for call',p:'One clear sentence.'},{i:'check',h:'Action taken',p:'Everything you did, including any c4c case references.'},{i:'trend',h:'App? Sales? Errata? Insurance?',p:'Note whether the TUI app was mentioned, any sales made or offered, any errata, and whether insurance was discussed.'},{i:'list',h:'Full read back given?',p:'Y or N. Read the changes and costs back to the customer.'},{i:'card',h:'Code, amount, reason',p:'Add the memo code, the amount and the reason when relevant.'}]}
 ]},
 
 {id:'pre',name:'Pre-Travel: Hotels',icon:'home',acc:'#0e7490',soft:'#cffafe',slides:[
@@ -1042,6 +1037,45 @@ const SECTIONS=[
   {q:'"Can I move the dates instead?"',a:'"Let me check. A change can also have a fee and a price difference, so I\'ll compare it with the cancellation charge and give you both figures."',tip:'Compare the two costs before the customer decides.'},
   {q:'"Will my insurance cover it?"',a:'"I can\'t advise on your policy, but it\'s worth checking whether it covers cancellation, for example for unforeseen illness. Your policy documents will tell you what\'s covered."',tip:'Never confirm cover. Point to their policy.'}]}
 ]},
+{id:'ref',name:'TUI reference',icon:'book',acc:'#7e22ce',soft:'#f3e8ff',slides:[
+ {t:'drill',title:'TUI app: what to tell customers',sub:'Promote the app before every trip. Say it naturally and tie it to what the customer needs.',lead:'Say',items:[
+  {q:'Opening',a:'"Before you travel, I\'d highly recommend downloading the TUI app if you haven\'t already. It\'s completely free and will make your entire holiday experience so much easier!"',tip:'Warm and confident. Then go straight into the benefits.'},
+  {q:'Pre-travel features',a:'"The app gives you everything you need before you go: a handy travel checklist to help you prepare, flight check-in and your boarding pass right on your phone, live flight times and transfer information, all your booking details in one place, and weather forecasts for your destination."',tip:'Pick the two or three that fit this customer, rather than reading the whole list.'},
+  {q:'Closing',a:'"I\'d suggest downloading it now and having a look around. Make sure to download any important documents before you travel, as some features work best with an internet connection. Is there anything else I can help you with regarding your booking?"',tip:'Then note it under "App?" in your call notes.'},
+  {q:'Short version',a:'"The TUI app is free, and it has your checklist, check-in, boarding pass, live flight times and your booking details all in one place."',tip:'For a quick call or a customer in a hurry.'}]},
+ {t:'cards',title:'TUI app: key benefits',sub:'Pre-travel features to highlight. The app is free to download.',cards:[
+  {i:'list',h:'Travel checklist',p:'A handy checklist to help the customer prepare.'},
+  {i:'plane',h:'Check-in and boarding pass',p:'Flight check-in and the boarding pass right on their phone.'},
+  {i:'clock',h:'Live flight times and transfers',p:'Live flight times and transfer information.'},
+  {i:'file',h:'Booking details in one place',p:'All their booking details together.'},
+  {i:'sun',h:'Weather forecast',p:'Weather forecasts for their destination.'},
+  {i:'alert',h:'Before they travel',p:'Remind them to download important documents first, as some features work best with an internet connection.'}]},
+ {t:'cards',title:'Quality 1: Customer focus',sub:'Warm, personal and attentive from the first word to the last.',cards:[
+  {i:'smile',h:'Create a warm welcome',p:'• Use the correct tone of voice and greet the customer warmly\n• Example: "Good morning/afternoon, thank you for calling TUI, my name is [Name], how can I help you today?"'},
+  {i:'chat',h:'Active listening',p:'• Let the customer explain without interruption\n• Show empathy and understanding throughout\n• Adjust your tone (softer for frustrated customers)'},
+  {i:'heart',h:'Personalised service',p:'• Discuss the holiday with genuine excitement\n• Develop a genuine connection\n• Tailor your responses to their situation'},
+  {i:'check',h:'Proper closing',p:'• Tailor the closing to the conversation type\n• Example: "Is there anything else I can help you with today?"'}]},
+ {t:'cards',title:'Quality 2: Sales excellence',sub:'Find the opportunity, offer something relevant, and ask for the sale.',cards:[
+  {i:'trend',h:'Identify sales opportunities',p:'• Proactively close the sale after introducing ancillaries\n• "Would you like me to add this for you today?" or "Shall we get this saved and add the cost onto your final balance?"'},
+  {i:'tag',h:'Offer relevant products',p:'• Introduce and promote personalised benefits of ancillaries, upgrades and excursions\n• Focus on products that enhance the holiday'},
+  {i:'shield',h:'Save the sale',p:'• Try to avoid cancellations by offering alternatives or amendments\n• Tell customers about cancellation fees and explain the rebooking incentive clearly'},
+  {i:'star',h:'Promote TUI products',p:'• Introduce relevant TUI app features with personalised benefits\n• Know the current sales campaigns, discounts and offers'}]},
+ {t:'cards',title:'Quality 3: Expertise',sub:'Protect the customer, the booking and the business.',cards:[
+  {i:'lock',h:'Follow GDPR guidelines',p:'• Follow the correct GDPR guidelines for the booking type (outbound statement, customer, third party, retail, etc.)\n• Do not share booking-specific details with unauthorised passengers'},
+  {i:'card',h:'Prevent revenue loss',p:'• Follow the correct processes to avoid any financial loss to the business\n• Leave full booking notes after the call\n• Pause the call recording when collecting payment details'}]},
+ {t:'cards',title:'Quality 4: Efficiency',sub:'Solve it on the first call, with a clear flow and a connected customer.',cards:[
+  {i:'search',h:'Ask effective questions',p:'• Use open and closed questions to understand and resolve queries\n• Example: "Have you had time to look through the options provided in the email? Would you like me to go through these today?"'},
+  {i:'target',h:'First contact resolution',p:'• Work in a solution-oriented way\n• Give informative answers that fully address the customer\'s needs'},
+  {i:'clock',h:'System proficiency',p:'• Use systems confidently and show high knowledge of products and procedures\n• Manage expectations, for example: "Just to make you aware, you will receive an updated email confirmation within the next 24 hours"'},
+  {i:'trend',h:'Balance focus and efficiency',p:'• Structure the call clearly with good conversation flow\n• Stay connected with the customer while working efficiently'}]},
+ {t:'cards',title:'Memo codes and ABTA numbers',sub:'Quick reference.',cards:[
+  {i:'file',h:'BO / BEM',p:'Standard booking memos.'},
+  {i:'clock',h:'BE / BEN',p:'Balance extensions.'},
+  {i:'shield',h:'NLA / NLDA',p:'Non-lead authorisations.'},
+  {i:'card',h:'01075',p:'ABTA number: direct customer (FC).'},
+  {i:'card',h:'H1079',p:'ABTA number: FO.'},
+  {i:'card',h:'H6265',p:'ABTA number: package holiday.'}]}
+]},
 {id:'lab',name:'Practice lab',icon:'target',acc:'#e0568f',soft:'#ffe6f0',slides:[
  {t:'roleplay',title:'Roleplay generator',sub:'Get a random scenario, run the call out loud with a timer, then score yourself honestly.'},
  {t:'roulette',title:'Objection roulette',sub:'A random customer line from the whole deck. Say your answer out loud, then reveal the model response.'},
@@ -1098,8 +1132,8 @@ function rCalc(){return `<div class="calcs rise" style="--i:3">
 <label>Booking type<select data-c="typ"><option value="pkg">Package holiday with a TUI flight</option><option value="oth">Flight only, hotel only, coach tour or scheduled airline</option></select></label>
 <div class="cres" data-r="cancel">Fill in the price and dates.</div>
 <p class="dnote">General guide from TUI UK's published terms (checked October 2026). Always check the booking conditions and the customer's invoice.</p></div></div>`}
-const NOTE_F=[['Who','Caller name, relationship to the booking, verified yes or no'],['Booking ref','TUI booking reference'],['Issue','One clear sentence: what the customer wanted or what went wrong'],['Actions taken','What you did, in order, with reference numbers'],['Promises','What you promised, who owns it, and by when'],['Offers made','Upsells offered, accepted or declined'],['Next step','What the next person should do if the customer calls back']];
-function rNotes(){return `<div class="notes rise" style="--i:3"><div class="nf-grid">${NOTE_F.map(f=>`<label class="nf"><span>${f[0]}</span><textarea rows="2" placeholder="${esc(f[1])}"></textarea></label>`).join('')}</div><div class="row"><button type="button" class="btn solid" data-notes="copy" data-l="1">${ic('copy')}<span>Copy notes</span></button><button type="button" class="btn" data-notes="save">Save</button><button type="button" class="btn ghost" data-notes="clear">Clear</button></div><div class="nmsg"></div></div>`}
+const NOTE_F=[['Who called?','Caller name and relationship to the booking'],['GDPR passed?','Yes or No',1],['Reason for call?','One clear sentence'],['Action taken (including any c4c case references)','What you did, with any c4c case references'],['App?','Was the TUI app mentioned?',1],['Sales?','Anything sold or offered',1],['Errata?','Any errata to note',1],['Insurance?','Insurance discussed or not',1],['Full read back given (Y or N)?','Y or N',1],['Code','Memo code if used',1],['Amount','Amount if relevant',1],['Reason','Reason for the code or amount',1]];
+function rNotes(){return `<div class="notes rise" style="--i:3"><div class="nf-grid">${NOTE_F.map(f=>`<label class="nf"><span>${f[0]}</span><textarea rows="${f[2]?1:2}"${f[2]?' class="sh1"':''} placeholder="${esc(f[1])}"></textarea></label>`).join('')}</div><div class="row"><button type="button" class="btn solid" data-notes="copy" data-l="1">${ic('copy')}<span>Copy notes</span></button><button type="button" class="btn" data-notes="save">Save</button><button type="button" class="btn ghost" data-notes="clear">Clear</button></div><div class="nmsg"></div></div>`}
 
 function rDest(d){const it=d.items;
  const X=lon=>((lon+130)*3.571).toFixed(0),Y=lat=>((65-lat)*4.4).toFixed(0);
@@ -1146,7 +1180,7 @@ document.getElementById('stallOff').onclick=stStop;
 document.getElementById('stallNext').onclick=()=>{nextPhrase();stShow()};
 stW.addEventListener('mouseenter',()=>{if(stVis){clearTimeout(stTm);clearInterval(stIv);stP.style.transition='none';stP.style.width='100%'}});
 stW.addEventListener('mouseleave',()=>{if(stVis&&stOn)stShow()});
-const QC=[['Greeted with my name and a smile','Inbound openings: the essentials'],['Security verification completed','Security verification'],['Built rapport (one friendly question)','Conversation starters (trip and general)'],['Listened and paraphrased their need','Discovery in action'],['Asked permission before any hold','Buying time (while you search)'],['Gave accurate info (checked, not guessed)',null],['Special requests noted, not promised','Hotel requests from customers'],['Offered one relevant extra (if it fits)','The upsell formula'],['Recapped actions, costs and next steps','Closing the call'],['Closed warmly and notes are ready','Call notes: fill and copy']];
+const QC=[['Warm welcome with the correct tone','Inbound openings: the essentials'],['Listened without interrupting and showed empathy','Quality 1: Customer focus'],['Showed genuine excitement and made a connection','Conversation starters (trip and general)'],['Closing tailored to the call','Closing the call'],['Offered a relevant extra and closed the sale','The upsell formula'],['Mentioned the TUI app with a personal benefit','TUI app: what to tell customers'],['Tried to save the sale and explained any fees','Explaining cancellation charges'],['GDPR followed: only the right person','Security verification'],['Paused the recording for payment details',null],['Full booking notes left after the call','Call notes: fill and copy'],['Used open and closed questions, solved it first time','Quality 4: Efficiency'],['Managed expectations (e.g. email within 24 hours)',null]];
 let qcSt=QC.map(()=>false),qcTm=null,qcShowing=false;
 const QC_SHOW=20000,QC_GAP=20000;
 const qcEl=document.getElementById('qc'),qcList=document.getElementById('qcList');
@@ -1272,7 +1306,7 @@ const MM={n:'Pre-Travel',ic:'plane',kids:[
  {n:'Customer says...',ic:'chat',kids:[{n:'Price',ic:'tag',kids:[L('Too expensive','Price objections (1)'),L('Discounts, seats, bags','Price objections (2)')]},{n:'I need to think',ic:'clock',kids:[L('Hesitation and delay','Hesitation & delay'),L('Doubts and questions','Doubts & questions')]},{n:'Angry',ic:'frown',kids:[L('H.E.A.R.D. method','De-escalation: H.E.A.R.D.'),L('Shouting and abuse','Shouting, abuse and threats'),L('Repeat callers','Repeat callers and broken trust'),L('Escalations','Escalations and sensitive moments')]},{n:'Trust',ic:'shield',kids:[L('Manager or script','Trust & service objections (1)'),L('Protection and ID','Trust & service objections (2)')]}]},
  {n:'Problems',ic:'alert',kids:[{n:'System',ic:'monitor',kids:[L('System protocol','System issue protocol'),L('Slow, down, payment','System issues (1)'),L('Missing, duplicate, email','System issues (2)')]},{n:'Disruptions',ic:'plane',kids:[L('Delays and cancellations','Disruptions (1)'),L('Bags, names, documents','Disruptions (2)'),L('Medical, refunds, check-in','Disruptions (3)')]}]},
  {n:'Sell and upsell',ic:'trend',kids:[L('Upsell formula','The upsell formula'),L('Seats, bags, meals','Upsell: seats, legroom, bags, meals'),L('Hotel and transfers','Upsell: hotel, transfers and extras'),L('Say this, not that','Upselling: say this, not that')]},
- {n:'Tools',ic:'list',kids:[L('Cancellation terms','TUI UK cancellation terms'),L('Calculators','Calculators: dates and cancellation'),L('Explaining charges','Explaining cancellation charges'),L('Call notes','Call notes: fill and copy')]},
+ {n:'Tools and reference',ic:'list',kids:[L('Calculators','Calculators: dates and cancellation'),L('Cancellation terms','TUI UK cancellation terms'),L('Explaining charges','Explaining cancellation charges'),L('Call notes','Call notes: fill and copy'),L('Memo codes and ABTA','Memo codes and ABTA numbers'),{n:'TUI app',ic:'phone',kids:[L('What to tell customers','TUI app: what to tell customers'),L('Key benefits','TUI app: key benefits')]},{n:'Quality framework',ic:'star',kids:[L('1 Customer focus','Quality 1: Customer focus'),L('2 Sales excellence','Quality 2: Sales excellence'),L('3 Expertise','Quality 3: Expertise'),L('4 Efficiency','Quality 4: Efficiency')]}]},
  {n:'Practice',ic:'target',kids:[L('Roleplay','Roleplay generator'),L('Objection roulette','Objection roulette')]}
 ]};
 window.__MM=MM;
@@ -1288,10 +1322,10 @@ document.addEventListener('click',e=>{
   const nb=e.target.closest('[data-notes]');
   if(nb){const root=nb.closest('.notes'),tas=[...root.querySelectorAll('textarea')],msg=root.querySelector('.nmsg');
     if(nb.dataset.notes==='clear'){tas.forEach(x=>x.value='');msg.textContent='';return}
-    const txt=tas.map((x,i)=>x.value.trim()?NOTE_F[i][0].toUpperCase()+': '+x.value.trim():'').filter(Boolean).join('\n');
+    const txt=tas.map((x,i)=>{const v=x.value.trim();if(!v)return'';const l=NOTE_F[i][0];return (/\?$/.test(l)?l:l+':')+' '+v}).filter(Boolean).join('\n');
     if(!txt){msg.textContent='Nothing here yet.';return}
     msg.textContent='';
-    if(nb.dataset.notes==='save'){noteSave(txt,(tas[1]&&tas[1].value.trim())||'',msg);return}
+    if(nb.dataset.notes==='save'){noteSave(txt,'',msg);return}
     copyText(txt,nb)}
 });
 
@@ -1334,7 +1368,7 @@ SECTIONS.forEach(sec=>{
   g.querySelector('.grp-h').addEventListener('click',()=>go(first));
   GEL[sec.id]=g;
 });
-{const CORE=['start','map','call','tools','pre','ptc','fly','dest','rap','lab'];
+{const CORE=['start','map','call','tools','ref','pre','ptc','fly','dest','rap','lab'];
  CORE.forEach(id=>navlist.appendChild(GEL[id]));
  const more=SECTIONS.filter(s=>!CORE.includes(s.id));
  const mb=document.createElement('button');mb.type='button';mb.className='more-btn';mb.innerHTML=`More topics (${more.length}) ${ic('right')}`;
@@ -1468,6 +1502,8 @@ stage.addEventListener('click',e=>{
    ['notes','note','summary','wrap up','log','record','ملاحظات','نوتس','تسجيل'],
    ['balance','passport','documents','eticket','receipt','invoice','transfer','pickup','reminder','add traveller','رصيد','جواز','مستندات','ايصال','فاتوره','تذكير'],
    ['calculator','calculate','days','nights','date','cancellation','terms','حاسبه','حساب','ايام','ليالي','شروط','الغاء'],
+   ['app','download','checklist','boarding','tui app','تطبيق','ابليكيشن','تحميل'],
+   ['quality','gdpr','memo','abta','codes','bem','ben','nla','كواليتي','ابتا','كود','جي دي بي ار'],
    ['paris','france','eiffel','louvre','disney','باريس','فرنسا'],
    ['rapport','small talk','conversation','starter','british','friendly','chat','رابور','كلام','ونس','محادثه','بريطاني','افتح كلام']
   ].map(g=>g.map(norm));
