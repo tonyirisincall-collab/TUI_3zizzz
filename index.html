@@ -443,6 +443,11 @@ html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:
 @media(max-width:700px){.ntp{right:10px;width:calc(100% - 20px)}}
 .ntbtn{margin-left:0}
 .nf textarea.sh1{min-height:38px}
+.nav-h{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:16px 10px 4px}
+.card a{color:var(--brand);word-break:break-all}
+.mm-back{border:1px solid var(--brand);background:var(--brand);color:#fff;border-radius:999px;padding:6px 14px;font:700 12.5px Inter,system-ui,sans-serif;cursor:pointer;margin-right:4px;transition:opacity .25s,transform .25s var(--ease)}
+.mm-back:hover:not(:disabled){transform:translateX(-2px)}
+.mm-back:disabled{opacity:.35;cursor:default}
 </style>
 </head>
 <body class="study">
@@ -519,7 +524,7 @@ html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:
     <div class="mainrow"><div class="stage" id="stage"></div>
     <aside class="qc" id="qc" aria-label="Call quality checklist"><div class="qcin"><div class="qch"><b>Call quality</b><span id="qcCount">0/10</span><button type="button" id="qcNew" title="Start a new call: clear all ticks">New call</button><button type="button" id="qcX" title="Hide for now">&times;</button></div><div class="qcbar"><i id="qcProg"></i></div><div id="qcList"></div></div></aside></div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <div class="ntp" id="nt"><div class="nth"><b>Quick note</b><button type="button" id="ntX" aria-label="Close">&times;</button></div><div class="ntf"><input id="ntName" placeholder="Your name" autocomplete="off"><input id="ntRef" placeholder="Booking ref" autocomplete="off"></div><textarea id="ntText" placeholder="Type a note..."></textarea><div class="ntb"><button type="button" class="btn solid" id="ntSave">Save</button><button type="button" class="btn ghost" id="ntClear">Clear</button><span id="ntMsg"></span></div></div>
+    <div class="ntp" id="nt"><div class="nth"><b>Quick note</b><button type="button" id="ntX" aria-label="Close">&times;</button></div><textarea id="ntText" placeholder="Type a note..."></textarea><div class="ntb"><button type="button" class="btn solid" id="ntSave">Save</button><button type="button" class="btn ghost" id="ntClear">Clear</button><span id="ntMsg"></span></div></div>
     <div class="dock"><div class="dock-in">
       <button id="prev" aria-label="Previous slide"><svg class="ic"><use href="#i-left"/></svg></button>
       <div class="cn"><span id="cnt">1 / 1</span><small id="secname"></small></div>
@@ -540,13 +545,13 @@ html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:
 
 <script>
 /* ---------- helpers ---------- */
-const NOTES_URL='https://script.google.com/macros/s/AKfycbzAfp9KLeO17JXu6YO3NCVxHmy5Phn3MIseRE1_3wsIVzLOCsqUyV6iobk1HPmAbXeQ/exec'; /* paste the web app link between the quotes */
+const NOTES_URL='https://script.google.com/macros/s/AKfycbw1jJv5z2EKej7U6tUGSX66hY8SfXqm05I0WYt259FCyknDn1use11fsp5JmPoSnO4R/exec'; /* paste the web app link between the quotes */
 const ic=(n,c='')=>`<svg class="ic ${c}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-const fmt=s=>esc(s).replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>').replace(/\n/g,'<br>');
+const fmt=s=>esc(s).replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>').replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>').replace(/\n/g,'<br>');
 
 /* ---------- content ---------- */
-const SECTIONS=[
+const RAW=[
 {id:'start',name:'Start here',icon:'home',acc:'#2f6fed',soft:'#e7efff',slides:[
  {t:'hero',title:'TUI Pre-Travel Playbook',sub:'Everything before the trip: hotel and room questions, flight extras, special requests, rapport, objections and difficult calls. Ready-to-use English scripts you can practise out loud.',chips:['Quick find (press /)','Pinned (press P)','Study mode','Practice mode','Roleplay generator','Objection roulette'],tiles:[['target','Mind Map','Mind map: tap to explore'],['home','Hotels','Room types: what customers ask about'],['plane','Flights','Flight extras customers can add'],['globe','Destinations','Where customers travel'],['heart','Rapport','Rapport the British way'],['headset','Call Mode','Call Mode: your 7 steps'],['tag','Price','Price objections (1)'],['frown','Angry customer','De-escalation: H.E.A.R.D.']]},
  {t:'cards',title:'How to use this deck',sub:'Two ways to work. Learn first, then switch to Practice and test yourself.',cards:[
@@ -581,7 +586,7 @@ const SECTIONS=[
   {i:'clock',h:'Silence is fine',p:'A one-second pause while you type is better than filler words.'},
   {i:'heart',h:'Sound human',p:'Use the script as a skeleton. Your tone is what makes it sound like you.'}]},
  {t:'drill',title:'Inbound openings: the essentials',sub:'Four openings for the most common starts. Practise each until it sounds natural.',lead:'Situation',items:[
-  {q:'Standard opening, neutral customer',a:'"Thank you for calling TUI, you\'re speaking with [Name]. How can I help you today?"',tip:'Clear, calm, and it ends with an open question.'},
+  {q:'Standard opening (TUI)',a:'"Good morning/afternoon, thank you for calling TUI. You\'re through to [your name]. Who am I speaking to today?"',tip:'Use the same opening on every call, then verify before you access the booking.'},
   {q:'Customer sounds relaxed and chatty',a:'"Hi there, thanks for calling TUI, this is [Name]. What can I do for you today?"',tip:'A slightly lighter version. Match their energy, then lead it.'},
   {q:'Peak time and the customer waited a long while',a:'"Thank you for calling TUI, and thank you for your patience. I know the wait was longer than we\'d like. I\'m [Name], and I\'ll take good care of you. What can I help with?"',tip:'Acknowledge the wait once, briefly. Don\'t over-apologise.'},
   {q:'Customer opens with: "Finally! I\'ve been on hold for ages!"',a:'"I\'m sorry about the wait, that\'s not the experience we want you to have. I\'m [Name], and I\'m going to help you from here. Can I take your name and what\'s happened?"',tip:'Apologise, take ownership, move straight to the problem.'}]},
@@ -634,9 +639,7 @@ const SECTIONS=[
   {h:'Price it simply',p:'"It\'s £[X] per seat each way, so £[total] for the family."'},
   {h:'Soft close',p:'"Would you like me to add that for you?" or "Shall I go ahead and reserve those?"'},
   {h:'Graceful exit',p:'If no: "Of course, no problem. You can always add it later via [Manage My Booking / by calling us]."'}],note:'Rule of thumb: one clear offer, one reason, one price, one question.'},
- {t:'drill',title:'Upsell: seats, legroom, bags, meals',sub:'The most common add-ons on flight bookings.',lead:'Situation',items:[
-  {q:'Family with children booked flight-only, no seats chosen',a:'"Since you\'re travelling with two children, would you like me to reserve seats together? That way you can sit side by side with no worry at the airport. It\'s £[X] per seat each way, and it\'s something most families tell us they\'re glad they sorted."',tip:'The need (kids) is theirs. The solution is yours.'},
-  {q:'Tall customer, or a long-haul flight',a:'"For a flight that long, would extra legroom be worth considering? It\'s £[X] per person each way and makes a real difference on the journey."',tip:'Only offer where the product exists on that route.'},
+ {t:'drill',title:'Upsell: bags and meals',sub:'Add-ons to offer after seats. The seat options have their own script under Flights.',lead:'Situation',items:[
   {q:'Two-week trip, only the standard allowance included',a:'"You\'re away for two weeks, and your allowance is [X]kg each. If you\'re likely to bring home souvenirs, adding weight now is far cheaper than paying at the airport. Shall I add [10]kg?"',tip:'Compare to the cost they will face if they wait.'},
   {q:'Customer has not pre-booked meals',a:'"Would you like to pre-order a meal? It\'s usually better value than buying onboard and it guarantees your choice. There\'s a range from £[X]."',tip:'Keep it light. Mention value and certainty.'}]},
  {t:'drill',title:'Upsell: upgrade the booking',sub:'Move customers from "good" to "better" when it genuinely serves them.',lead:'Situation',items:[
@@ -778,7 +781,6 @@ const SECTIONS=[
   {q:'"Do I need a visa or does my passport work?"',a:'"Entry rules vary by country and passport. For the most accurate information, I recommend checking GOV.UK foreign travel advice for your destination. I can note it on your booking if you\'d like."',tip:'Don\'t quote entry rules from memory. Point to the official source.'}]},
  {t:'drill',title:'Disruptions (3)',sub:'Medical issues, assistance, refunds and check-in.',lead:'Customer says',items:[
   {q:'"I\'m ill and can\'t travel."',a:'"I\'m sorry to hear that. Let\'s see what we can do. You may need a doctor\'s note, and your travel insurance may cover this. Let me check what the booking terms say."',tip:'Gentle and practical. Explain documents needed.'},
-  {q:'"My mum needs wheelchair assistance."',a:'"Of course. We can arrange assistance, and it\'s best to book it as early as possible, usually at least [48 hours] before travel. May I take the details?"',tip:'Take full details: type of assistance, passenger name, flight.'},
   {q:'"Where is my refund?"',a:'"I understand it\'s taking a while. Let me check the status. Refunds are returned to the original payment method and can take [X working days] to appear. [Share status.] Is there anything else I can check?"',tip:'Give a date range from your policy, not a guess.'},
   {q:'"I can\'t check in online."',a:'"Let me help. Online check-in opens [X hours] before departure. Can you check that the booking reference and surname match? If it still doesn\'t work, we\'ll look at other options."',tip:'Check the timing and the details first. These solve most cases.'}]}
 ]},
@@ -798,12 +800,13 @@ const SECTIONS=[
   {q:'Putting a customer on hold',a:'"Do you mind if I place you on a short hold while I check this? It should take about two minutes."',tip:'Always ask. Always return when you said you would.'},
   {q:'Warm transfer to another team',a:'"I\'m going to introduce you to my colleague in [team], who can help with this. I\'ll give them the details so you don\'t have to repeat yourself. Is that okay?"',tip:'Brief the next agent before connecting the customer.'},
   {q:'Escalating to a supervisor',a:'"I\'ll bring in a team leader to help. I\'ll explain what\'s happened so you don\'t have to repeat it. Please hold for a moment."',tip:'Offer a callback if the supervisor isn\'t immediately available.'},
-  {q:'You need to call the customer back',a:'"I\'ll call you back on [number] by [time]. If you don\'t hear from me, please call and quote [reference]."',tip:'Put the callback in the notes with the exact time.'}]},
+  {q:'You need to call the customer back',a:'"I\'ll call you back on [number] by [time]. If you don\'t hear from me, please call and quote [reference]."',tip:'Put the callback in the notes with the exact time.'},
+  {q:'"I want to make a formal complaint."',a:'"I\'m sorry things have gone wrong. I\'ll log a formal complaint now. May I take the full details? You\'ll receive an acknowledgement and a response within [timeframe] as per our process."',tip:'Never discourage complaints. Log accurately and explain the process.'}]},
  {t:'drill',title:'Closing the call',sub:'The last 20 seconds shape how the customer remembers the whole call.',lead:'Situation',items:[
-  {q:'Standard close with a recap',a:'"Just to summarise: we\'ve [actions]. You\'ll receive [email] within [time], and the next step is [next step]. Is there anything else I can help you with today?"',tip:'Summaries prevent follow-up calls.'},
+  {q:'Standard close',a:'"Is there anything else I can help you with today?"\n"Just to make you aware, you will receive an updated email confirmation within the next 24 hours."',tip:'Add a short recap of what you did. Summaries prevent follow-up calls.'},
   {q:'Positive close after a sale',a:'"Thank you for choosing TUI. It\'s been a pleasure helping you, and I hope you have a wonderful holiday!"',tip:'Warm, specific, unhurried.'},
   {q:'Closing after a difficult call',a:'"Thank you for your patience today, and I\'m sorry again for the trouble. I\'ve noted everything on your account, and if you need anything else, please call us and quote [reference]."',tip:'End steady and respectful. Leave on a solution, not an argument.'},
-  {q:'Mentioning a survey (if your process allows)',a:'"You may receive a short survey after this call. If you feel I\'ve helped, I\'d really appreciate your feedback."',tip:'Never coach or pressure for scores. Mention it neutrally.'}]},
+  {q:'Mentioning a survey (if your process allows)',a:'"You\'ll receive a survey after this call - we\'d really value your feedback."',tip:'Never coach or pressure for scores. Mention it neutrally.'}]},
  {t:'cards',title:'Wrap-up notes template',sub:'The notes to leave after every call. Use the Call notes page to fill, copy and save them.',cards:[{i:'user',h:'Who called? GDPR passed?',p:'Caller name, relationship to the booking, and whether the GDPR check was passed.'},{i:'search',h:'Reason for call',p:'One clear sentence.'},{i:'check',h:'Action taken',p:'Everything you did, including any c4c case references.'},{i:'trend',h:'App? Sales? Errata? Insurance?',p:'Note whether the TUI app was mentioned, any sales made or offered, any errata, and whether insurance was discussed.'},{i:'list',h:'Full read back given?',p:'Y or N. Read the changes and costs back to the customer.'},{i:'card',h:'Code, amount, reason',p:'Add the memo code, the amount and the reason when relevant.'}]}
 ]},
 
@@ -878,7 +881,7 @@ const SECTIONS=[
   {q:'"Do I need to arrive early at the airport?"',a:'"Check-in times depend on your airline and airport. I\'d recommend following the guidance on your confirmation. Would you like me to read it out?"',tip:'Quote the confirmation or airline guidance only.'},
   {q:'"Can I add a transfer from the airport?"',a:'"Yes, transfers can often be added before travel. Let me check the options and price for your destination."',tip:'Good moment to mention it is easier to arrange before travel.'}]},
  {t:'drill',title:'Special assistance and families',sub:'Take full details and give a clear next step.',lead:'Customer says',items:[
-  {q:'"I need wheelchair assistance at the airport."',a:'"Of course. May I take the passenger\'s name, the type of assistance needed, and the flight details? It\'s best arranged at least [48 hours] before travel."',tip:'Follow your assistance procedure. Confirm in writing.'},
+  {q:'"I need wheelchair assistance at the airport."',a:'"Of course. May I take the passenger\'s name, the type of assistance needed, and the flight details? It\'s best arranged at least [48 hours] before travel."',tip:'Contact the Assisted Travel Team: 0800 145 6920 (TUI Airways) or 0203 451 2688 (non-TUI flights). Confirm in writing.'},
   {q:'"I use oxygen / medical equipment on board."',a:'"Thank you for telling me. The airline needs to approve this in advance, so I\'ll take the details and raise it straight away."',tip:'This needs airline approval. Escalate, don\'t promise.'},
   {q:'"I\'m pregnant. Can I still fly?"',a:'"Airlines have rules depending on how many weeks pregnant you are. Let me check the policy for your flight, and I\'d also suggest speaking to your doctor."',tip:'No medical advice. Check airline rules.'},
   {q:'"We\'re travelling with a baby under 2."',a:'"Lovely. Infants under 2 usually travel on a parent\'s lap, with their own booking. May I take the baby\'s date of birth and check the rules for your flight?"',tip:'Age on the date of travel decides the fare and rules.'},
@@ -938,8 +941,8 @@ const SECTIONS=[
 ]},
 {id:'call',name:'Call Mode',icon:'headset',acc:'#0f766e',soft:'#ccfbf1',slides:[
  {t:'cards',title:'Call Mode: your 7 steps',sub:'Open this during a call. One line per step, plus quick buttons to jump to what you need.',cards:[
-  {i:'phone',h:'1. Open',p:'"Thank you for calling TUI, you\'re speaking with [Name]. How can I help?"'},
-  {i:'lock',h:'2. Verify',p:'"Before I access the booking, I need to complete a quick security check."'},
+  {i:'phone',h:'1. Open',p:'"Good morning/afternoon, thank you for calling TUI. You\'re through to [your name]. Who am I speaking to today?"'},
+  {i:'lock',h:'2. Verify',p:'"Before I can access your booking details, I\'ll need to confirm a few details with you."'},
   {i:'search',h:'3. Discover',p:'"Who\'s travelling, and is it for anything special?"'},
   {i:'check',h:'4. Resolve',p:'"Here\'s what I can do for you..."'},
   {i:'trend',h:'5. Add value',p:'"Because you mentioned [need], would you like me to add [extra]?"'},
@@ -1076,6 +1079,164 @@ const SECTIONS=[
   {i:'card',h:'H1079',p:'ABTA number: FO.'},
   {i:'card',h:'H6265',p:'ABTA number: package holiday.'}]}
 ]},
+{id:'newc',name:'New content',icon:'file',acc:'#2f6fed',soft:'#e7efff',slides:[
+ {t:'drill',title:`GDPR verification: green, red and retail`,sub:`Verify before you discuss any booking details. Use the version that matches the call.`,lead:`Situation`,items:[
+  {q:`Opening (every call)`,a:`"Good morning/afternoon, thank you for calling TUI. You're through to [your name]. Who am I speaking to today?"`,tip:`Same opening for every call. Then follow the right verification below.`},
+  {q:`Green scenario: standard inbound call`,a:`"Can you confirm your full name please?"\n"Thank you [customer name]. How can I help you today?"`,tip:`Use when the verification is green.`},
+  {q:`Red scenario: manual GDPR verification`,a:`"Before I can access your booking details, I'll need to confirm a few details with you. Can you confirm your booking reference please?"\n"Can you confirm your departure date in full, including the day, month, and year?"\n"And can you confirm your full name as it appears on the booking?"\nAfter GDPR passed: "Thank you for confirming those details. How can I help you today?"`,tip:`All three checks. Do not discuss the booking until they pass.`},
+  {q:`Retail or third party call`,a:`"Can you confirm your booking reference please?"\n"Can you confirm your departure date in full, including the day, month, and year?"\n"What is the ABTA number for your store?"\nAfter GDPR passed: "Thank you for confirming those details. How can I assist you today?"`,tip:`The store ABTA number is the third check.`}]},
+ {t:'drill',title:`Open and closed questions`,sub:`Open questions understand and explore. Closed questions confirm and close.`,lead:`Use`,items:[
+  {q:`Open: understanding customer needs`,a:`"What are you most looking forward to on your holiday?"\n"Have you had time to look through the options provided in the email?"\n"Can you tell me more about what happened?"\n"What specifically isn't working with your current booking?"\n"How can I help make your holiday perfect today?"`,tip:`Ask one, then listen.`},
+  {q:`Open: exploring solutions`,a:`"Would you like me to go through these options with you today?"\n"What would work better for you?"\n"Is there anything specific you're concerned about?"`,tip:`Let the customer choose the direction.`},
+  {q:`Closed: confirming actions`,a:`"Would you like me to add this for you today?"\n"Shall we get this saved and add the cost onto your final balance?"\n"Would you like me to book that for you now?"`,tip:`Use after you introduce an add-on.`},
+  {q:`Closed: verifying information`,a:`"Is that correct?"\n"Does that sound good to you?"\n"Are you happy for me to proceed with that?"`,tip:`Confirm before you change anything.`},
+  {q:`Closed: closing the sale`,a:`"Can I secure that for you today?"\n"Would you like to confirm this booking?"`,tip:`Ask clearly, then wait.`}]},
+ {t:'drill',title:`Seat options script`,sub:`Present the options in this order, then close.`,lead:`Say`,items:[
+  {q:`Opening approach`,a:`"I'd love to help you make your flight experience even more comfortable! We have several seating options available that you can choose from to suit your preferences."`,tip:`Warm start, then go through the options.`},
+  {q:`1. Select Your Seat (standard seating)`,a:`"You can choose your exact seat on the aircraft - whether you prefer a window view, easy aisle access, or want to sit together with your travel companions. This gives you complete control over where you'll be sitting."`,tip:`Code: SYS.`},
+  {q:`2. Extra Legroom seats`,a:`"If you'd like more space to stretch out and relax during your flight, our Extra Legroom seats offer additional leg space, making your journey more comfortable - perfect for longer flights or if you're tall."`,tip:`Code: XLEG.`},
+  {q:`3. Extra Space seats`,a:`"These seats provide you with extra room and comfort throughout your flight, giving you more personal space to enjoy your journey."`,tip:`Code: XSPC.`},
+  {q:`4. Premium seats (long-haul flights only)`,a:`"For our long-haul flights, we offer Premium seating which includes enhanced comfort and additional benefits to make your flight experience truly special."`,tip:`Only offer on long-haul flights.`},
+  {q:`Key benefits: book early, flexibility, peace of mind`,a:`Book early: "The best part is, you can select your seats right after booking your holiday, so you don't have to worry about it later."\nFlexibility: "If you're travelling as a group, different members can choose different seating types based on their preferences - some might prefer standard seats whilst others opt for extra legroom."\nPeace of mind: "Your seat selection and seat numbers will be confirmed on your booking confirmation, so you'll know exactly where you're sitting before you travel."`,tip:`Pick the benefit that fits this customer.`},
+  {q:`Closing`,a:`"Would you like me to add any of these seating options to your booking today? I can help you select the perfect seats for your journey."`,tip:`A closed question. Then wait for the answer.`}]},
+ {t:'steps',title:`Infant seat booked as a child`,sub:`When an infant needs their own flight seat at age 2, book them as a 2-year-old child.`,steps:[
+  {h:`Quote the child fare`,p:`Create a child flight quote using the flight-only ABTA number H1079 to find the cost.`},
+  {h:`Amend transport pair`,p:`In the original booking, select the flight service line and click "Amend transport pair".`},
+  {h:`Change the infant to a child`,p:`Change the infant to a child in the search field. When prompted for age, enter 2 years old.`},
+  {h:`Select the same flights`,p:`Choose the same flights as the rest of the booking.`},
+  {h:`Passenger name page`,p:`Select "New" and change the passenger type to "child". Enter the same details as the infant, with a date of birth that makes them 2 years old.`},
+  {h:`Adjust the price`,p:`Use PRID or PRII codes to match the child cost quoted earlier.`}],note:`Flight-only bookings: enter the infant as a CHILD aged 2 and add a note that this is an infant with a flight seat booking. The infant is charged the child rate. If the infant uses a car seat onboard, add SSR code "INCS" on SkySpeed, and seat them in a window seat.`},
+ {t:'steps',title:`Full read back: what to cover`,sub:`Read the whole booking back to the customer before you finish.`,steps:[
+  {h:`Flights`,p:`Route, dates and times. For example: "You're flying from Manchester to Palma on 15th July at 10:30am, returning on 22nd July at 6:45pm..."`},
+  {h:`Passengers`,p:`Names exactly as they appear on the passports, and dates of birth.`},
+  {h:`Accommodation`,p:`The hotel and the rooms, for example "the Sunset Beach Resort with two standard rooms".`},
+  {h:`Extras`,p:`Luggage added and seat numbers (for example 12A, 12B and 12C).`},
+  {h:`Price and payments`,p:`Total holiday price, the deposit paid today, and the balance with its due date.`},
+  {h:`Information given`,p:`Resort transfer times, the Travel Aware guidelines, and the Package Travel Regulations information.`},
+  {h:`Add the memo`,p:`After the customer confirms, add the mandatory memo to the booking.`}],note:`Then answer "Full read back given" in your call notes.`},
+ {t:'drill',title:`Explaining fees and payments`,sub:`Clear, calm and factual.`,lead:`Situation`,items:[
+  {q:`Customer is frustrated by amendment fees`,a:`"I understand amendment fees can be frustrating. These fees cover the costs we incur when making changes with airlines, hotels, and other suppliers. The terms were outlined at booking, but let me see what options might be available to help..."`,tip:`Acknowledge the frustration, explain what the fee covers, say the terms were agreed at booking, offer alternatives (e.g. an insurance claim if applicable) and mention flexibility options for future bookings.`},
+  {q:`Direct Debit instalments`,a:`"Now let me explain your payment schedule. You've chosen to pay by Direct Debit with monthly instalments. Today, you'll pay the first deposit of £[X], which is your initial payment. Then you'll have [4] further monthly payments of £[X] each, taken automatically on the [20th] of each month - that's [20th April, 20th May, 20th June], and your final balance on [20th July]."`,tip:`Say each date and amount clearly.`},
+  {q:`Admin fee: nothing to collect now`,a:`"I can help with that amendment. Let me check your payment status... Great news! You've already paid enough to cover the admin fee, so there's nothing additional to pay right now. The £[X] admin fee will be deducted from what you've already paid."`,tip:`When the customer has paid more than deposit + admin fees.`},
+  {q:`Admin fee: must be paid today`,a:`"For this amendment, there's a £[X] admin fee that needs to be paid today. Just so you're aware, this fee is non-refundable, even if you cancel later. Would you like to proceed?"`,tip:`When the customer has paid less than deposit + admin fees.`},
+  {q:`After the amendment`,a:`"Your Direct Debit payments will automatically adjust to match the new booking cost."`,tip:`Atcom adjusts Direct Debits automatically.`}]},
+ {t:'cards',title:`Admin fees: when to collect`,sub:`Compare what the customer has already paid with (deposit + admin fees).`,cards:[
+  {i:`check`,h:`Paid MORE than deposit + admin fees`,p:`Do not collect the fees now. The fee comes out of what they have already paid.`},
+  {i:`alert`,h:`Paid LESS than deposit + admin fees`,p:`You MUST collect the fees immediately.`},
+  {i:`card`,h:`Deposits`,p:`The deposit must be taken at the time of booking. Check TUI Know-How for the deposit amounts.`},
+  {i:`clock`,h:`Outstanding low deposit`,p:`You can amend before the customer pays the full deposit balance. You do not need to collect the outstanding deposit first. Only collect the new admin fee.`},
+  {i:`refresh`,h:`After amendments`,p:`Atcom adjusts Direct Debit payments automatically. Wait at least 5 days after the customer's most recent Direct Debit before processing refunds.`},
+  {i:`file`,h:`Example`,p:`Deposit required £400, customer paid £1,000, admin fees £100. Total needed £500. £1,000 is more than £500, so do not collect the £100 now.`}]},
+ {t:'cards',title:`Atcom: amendments`,sub:`Steps 1 to 3 are the same for every change. The final steps depend on the type.`,cards:[
+  {i:`list`,h:`Steps 1 to 3 (all changes)`,p:`1. Tick the checkbox in front of the accommodation service line\n2. Click "Menu"\n3. Select the option for what you are changing`},
+  {i:`home`,h:`Board basis upgrade`,p:`After Menu: "Modify External Accommodation Details"\nChange the Internal Board Code to match the upgrade\nClick "Update", then "Close"`},
+  {i:`star`,h:`Room type upgrade`,p:`After Menu: "Modify External Accommodation Details"\nChange the External Room Description to match the upgrade\nClick "Refresh", then "Update"`},
+  {i:`clock`,h:`Dates, destination or duration`,p:`After Menu: "Amend Inclusive"\nFollow the booking flow (dates, flights, accommodation)\nInsurance drops to a cancelled service line if applicable`},
+  {i:`card`,h:`Adding costs (PRII)`,p:`Tick the accommodation, then Service > Override Cost\nEnter code PRII, quantity 1, the cost and the currency\nTick all passengers and click "Update"`},
+  {i:`alert`,h:`Multicentre bookings`,p:`Always apply PRII or PRID codes to the first accommodation line only.`}]},
+ {t:'steps',title:`Atcom: cancelling a booking`,sub:`Follow the steps in order.`,steps:[
+  {h:`Tick the accommodation line`,p:`Tick the checkbox in front of the accommodation service line.`},
+  {h:`Menu`,p:`Click "Menu".`},
+  {h:`Cancel`,p:`Select "Cancel".`},
+  {h:`Show the fees`,p:`Display the cancellation fees to the customer.`},
+  {h:`Reason`,p:`Select a reason for cancellation.`},
+  {h:`Other`,p:`Select "Other" and give a detailed reason.`},
+  {h:`Continue`,p:`Click "Continue".`}]},
+ {t:'cards',title:`Atcom: cancellation fee and consent`,sub:`What to do after you cancel.`,cards:[
+  {i:`card`,h:`Add the cancellation fee`,p:`Tick the cancellation fee service line\nService > Manual Prices\nUse code "CANS" and apply the fee amount\nSelect "Update and Close to Continue"`},
+  {i:`check`,h:`After cancelling`,p:`• Old amendment fees remain on the original booking\n• Check the unpaid balance and transfer funds if necessary\n• Add booking memos using the CAR template`},
+  {i:`users`,h:`Consent: not the policyholder`,p:`Passengers who are not the policyholder can amend with the policyholder's consent. Confirm the policyholder has given permission before you proceed.`}]},
+ {t:'cards',title:`Stop sale overrides`,sub:`Some can be overridden directly. Others need Commercial approval first.`,cards:[
+  {i:`check`,h:`No approval: board change`,p:`Customer upgrades Half Board to Full Board.\nDo: override the stop sale directly.\nSay: "I've upgraded your board basis to Full Board. Your booking is confirmed and you'll receive an updated confirmation shortly."`},
+  {i:`users`,h:`No approval: removing passengers`,p:`Family of 4 reduces to 2 adults, same room type.\nDo: remove the passengers and override the stop sale.\nSay: "I've removed the 2 passengers from your booking. Your room type remains the same and everything is confirmed."`},
+  {i:`user`,h:`No approval: adding a passenger (within occupancy)`,p:`Couple adds 1 child to a room with a maximum occupancy of 3.\nDo: add the child and override the stop sale.\nSay: "I've added your child to the booking. The room accommodates up to 3 people, so this is all confirmed."`},
+  {i:`alert`,h:`Approval needed: adding a room`,p:`Do: contact Commercial FIRST, then override after approval.\nSay: "I need to check availability with our Commercial team for the additional room. I'll contact them now and get back to you within [timeframe]."`},
+  {i:`clock`,h:`Approval needed: changing travel dates`,p:`Do: contact Commercial FIRST for approval.\nSay: "I need to confirm availability for your new dates with our Commercial team. Let me check this for you and I'll update you shortly."`},
+  {i:`star`,h:`Key points`,p:`• Split overrides evenly across passengers where possible\n• Use the correct codes (BPD, OLDR, PRII, HCMH)\n• Document everything clearly\n• Contact Commercial BEFORE overriding when required`}]},
+ {t:'cards',title:`Price and voucher overrides`,sub:`What to do and what to say. Always add a CAR memo.`,cards:[
+  {i:`tag`,h:`BPD: price difference after an amendment`,p:`Original £1,500, new price £1,265 (difference £235, 3 passengers).\nDo: apply £78.33 to 2 passengers and £78.34 to the lead passenger, with code BPD.\nSay: "I've applied a price adjustment of £235 to match your original booking cost. This has been split across all passengers and your total remains £1,500."`},
+  {i:`card`,h:`OLDR: reapply a digital voucher`,p:`£100 voucher from a previous complaint, to reapply after an amendment.\nDo: code OLDR, enter the original booking reference in the reason text, apply the £100 discount.\nSay: "I've reapplied your £100 voucher to the booking. Your new total is [amount] and this is now confirmed."`},
+  {i:`clock`,h:`HCMH: booking is cheaper after an amendment`,p:`Customer paid £2,000, the amended booking is £1,800.\nDo: apply HCMH and hold the £200 for 10 days while the customer decides on further changes.\nSay: "Your amended booking is £200 less than the original. I've held this amount for 10 days in case you want to make any other changes. After that, it will be automatically refunded to your original payment method."`},
+  {i:`shield`,h:`Remove cancellation fees (TUI-led change)`,p:`Customer cancelling because of a TUI flight time change, with £500 cancellation fees.\nDo: Service > Manual Prices, split the £500 across all passengers and remove the fees with the appropriate code.\nSay: "As this cancellation is due to our flight change, I've removed all cancellation fees. You'll receive a full refund of £[amount] within 7-10 working days."`},
+  {i:`trend`,h:`PRII: restore the original price`,p:`Original £1,200, the system shows £1,000 after an amendment.\nDo: code PRII, add £200 to the accommodation line and split across passengers.\nSay: "I've adjusted the price back to your original booking cost of £1,200. This ensures your holiday remains at the same price you originally paid."`}]},
+ {t:'steps',title:`Promotional codes: apply and validate`,sub:`Applying a code in the booking system.`,steps:[
+  {h:`Open Promotional Offer`,p:`Click the 3 dots at the bottom of the screen and select "Promotional Offer".`},
+  {h:`Add a new offer`,p:`Click "New".`},
+  {h:`Enter the code`,p:`Enter the promo code, click "Calculate", enter the discount amount, click "Update", then "Close".`},
+  {h:`Find current codes`,p:`Use the system's promo code reference page.`},
+  {h:`Validate the code`,p:`Check the discount still applies on the promo code terms and conditions page. The system calculates the discount when you enter the code.`},
+  {h:`Expired code?`,p:`If it is an expired code (not found on the web), ask a Team Manager to check in Atcom.`}]},
+ {t:'steps',title:`Promo code invalid after an amendment`,sub:`Holiday Change amendments within the same season.`,steps:[
+  {h:`Try the original code first`,p:`Retrieve the booking, note the original promo code and try adding it back.`},
+  {h:`If it will not reapply, use TRD`,p:`Use the TRD (Booking Adjustment) code. Calculate the original discount amount, divide it by the number of passengers, and apply TRD with the original discount value.`},
+  {h:`Apply HCMH`,p:`Apply HCMH so the customer is not automatically refunded.`},
+  {h:`Clean up`,p:`If the original code stays on but shows an incorrect value, remove it before adding TRD.`},
+  {h:`Leave clear notes`,p:`Document the original promo code details and why you reapplied it.`},
+  {h:`Tell the customer`,p:`"Due to the amendment to your booking, the original promotional code needs to be reapplied. I've ensured you still receive the same discount value of [amount] that was on your original booking. This has been applied using our booking adjustment process to maintain your original holiday cost."`}],note:`Building work changes: if the customer chooses their own alternative accommodation, they can use any new promo codes available when they rebook. The original code does not carry over. Different codes apply to different Holiday Change types: HCPA, HCPC, HCDC, HCDX.`},
+ {t:'steps',title:`Adding a memo and the CAR template`,sub:`Add a booking memo after every customer interaction, ideally before the customer hangs up.`,steps:[
+  {h:`Open the memos`,p:`On the booking overview page, click the "Memos" button at the top of the booking screen.`},
+  {h:`New memo`,p:`Click "+New" (top right of the popup).`},
+  {h:`Enter the code`,p:`First box: the first part (e.g. BO, BE, NLA, WTN). Second box: the second part (e.g. BEM, BEN, NLDA, WEN).`},
+  {h:`Open the editor`,p:`Click the ">" arrow next to the first column, then the "Editor" button under your memo codes.`},
+  {h:`Write the note`,p:`Type your note in the text box.`},
+  {h:`Save and close`,p:`Press "Save", then "Close". Your note appears at the top of the memo list.`}],note:`CAR template (critical): whenever you use a code to adjust costings, adding OR removing, include C = Code used, A = Amount applied, R = Reason for use.`},
+ {t:'cards',title:`Memo codes`,sub:`Which memo to use. The steps are on the previous page.`,cards:[
+  {i:`file`,h:`BO / BEM`,p:`Standard booking memo. General customer interactions and conversations.`},
+  {i:`clock`,h:`BE / BEN`,p:`Balance extension memo. Use when extending payment deadlines.`},
+  {i:`shield`,h:`NLA / NLDA`,p:`Non-lead authorisation. Use for authorisations involving non-lead passengers.`},
+  {i:`refresh`,h:`HC / HCN`,p:`Holiday Change memos.`},
+  {i:`file`,h:`WTN / WEN`,p:`Alternative memo codes shown in training materials.`},
+  {i:`star`,h:`QSM`,p:`Quick Service Memo. Notes on a specific service line (flight, accommodation) for special requests like birthdays or celebrations.`},
+  {i:`list`,h:`Complex booking memo`,p:`For more detailed or complex booking situations.`},
+  {i:`users`,h:`RETN`,p:`Retail Notes.`},
+  {i:`book`,h:`REPT`,p:`Package Travel Regulations Notes.`},
+  {i:`users`,h:`REBN`,p:`Retail Booking Notes.`},
+  {i:`shield`,h:`REIN`,p:`Insurance Notes.`}]},
+ {t:'cards',title:`Price and cost codes`,sub:`One-line meanings. The how-to is under Bookings and money.`,cards:[
+  {i:`card`,h:`PRII / PRID`,p:`Adjust pricing or add costs. On multicentre bookings, use them on the first accommodation line only.`},
+  {i:`tag`,h:`BPD`,p:`Promotional code for a price difference after an amendment.`},
+  {i:`star`,h:`OLDR`,p:`Digital voucher. Reapply a compensation voucher after an amendment.`},
+  {i:`clock`,h:`HCMH`,p:`Manual price override. Holds the difference for 10 days so the customer is not auto-refunded.`},
+  {i:`refresh`,h:`TRD`,p:`Booking Adjustment. Reapply a promo discount that is no longer valid.`},
+  {i:`alert`,h:`CANS`,p:`Cancellation fee code (Manual Prices).`},
+  {i:`list`,h:`HCPA / HCPC / HCDC / HCDX`,p:`Promo codes for the different Holiday Change types.`}]},
+ {t:'cards',title:`Abbreviations`,sub:`Pre-travel abbreviations.`,cards:[
+  {i:`file`,h:`API`,p:`Advanced Passenger Information`},
+  {i:`users`,h:`SSR`,p:`Special Seat Request`},
+  {i:`star`,h:`SYS`,p:`Select Your Seat`},
+  {i:`star`,h:`XLEG`,p:`Extra Legroom`},
+  {i:`star`,h:`XSPC`,p:`Extra Space`},
+  {i:`plane`,h:`3PF`,p:`Third Party Flights`},
+  {i:`users`,h:`PAX`,p:`Passengers`},
+  {i:`right`,h:`OB`,p:`Outbound Flight`},
+  {i:`left`,h:`IB`,p:`Inbound Flight`},
+  {i:`clock`,h:`COB`,p:`Close of Business`},
+  {i:`refresh`,h:`PC`,p:`Programme Changes`}]},
+ {t:'cards',title:`Welfare and assisted travel codes`,sub:`Used in QSMs.`,cards:[
+  {i:`plane`,h:`WELF`,p:`Welfare Remarks - Flight`},
+  {i:`home`,h:`WELA`,p:`Welfare Remarks - Accommodation`},
+  {i:`card`,h:`WELT`,p:`Welfare Remarks - Flight (Taxi)`},
+  {i:`file`,h:`WEN`,p:`Welfare Notes`},
+  {i:`users`,h:`MAAS`,p:`Meet and Assist`},
+  {i:`shield`,h:`WCHC / WCHR / WCHS`,p:`Wheelchair assistance codes`}]},
+ {t:'cards',title:`ABTA numbers`,sub:`Quick reference.`,cards:[
+  {i:`card`,h:`H6265`,p:`Package holiday ABTA number.`},
+  {i:`plane`,h:`H1079`,p:`Flight-only (FO) ABTA number. Use it to quote a child flight fare.`},
+  {i:`user`,h:`01075`,p:`Direct customer ABTA number (FC).`}]},
+ {t:'cards',title:`Who to contact: teams`,sub:`Which team handles what.`,cards:[
+  {i:`star`,h:`Quality Monitoring Team`,p:`Enhances quality and performance in the Contact Centre. Listens to calls and gives feedback via Calabrio. Supports colleagues to reach their targets.`},
+  {i:`refresh`,h:`Holiday Change (HC) Team`,p:`Handles holiday booking changes and amendments. Manages incidents like overbookings, room changes and facility losses. Works with resort and product teams for confirmations.`},
+  {i:`file`,h:`After Travel Team`,p:`Post-holiday complaints and feedback. Issues not resolved within 28 days. Compensation queries (excluding flight delays). Includes the Detractor Team for customers who scored 0-3 on satisfaction surveys.\nContact via the Pre-Travel Form: https://forms.gle/ShT6DXW3rFK3g3Q972`},
+  {i:`plane`,h:`3PF Team (Third Party Flights)`,p:`Manages 3PF and Dynamic Package bookings. Handles multicentre bookings without tours that use 3PF flights.`},
+  {i:`globe`,h:`TUI Tours Team`,p:`Bookings that include named tours (e.g. Highlights of Kenya), multicentre bookings that include tours, and all TUI Tours After Travel complaints.\nContact: 0204 578 0994 or 0203 451 2688`},
+  {i:`headset`,h:`TUI Tours Design Your Trip (Contact Centre of Excellence)`,p:`Supports bookings made on the new platform: navigation, booking issues, failed bookings, amendments and cancellations. Monday to Saturday, 9am to 5pm.\nPhone: 02038303212\nEmail: Tours.uk@tui.com`},
+  {i:`heart`,h:`Assisted Travel Team`,p:`Supports customers with access needs and disabilities: airport assistance, mobility aids, medical equipment.\nContact: 0800 145 6920 (TUI Airways) or 0203 451 2688 (non-TUI flights)`},
+  {i:`clock`,h:`24/7 Team (TUI Experience Centre)`,p:`24/7 in-resort support while customers are on holiday. Contactable via the TUI app at any time during the holiday.`},
+  {i:`monitor`,h:`Digital Team`,p:`Handles digital customer interactions and processes. Can help with after-travel queries: complaint chasing, no show letters, APD refunds and compensation.`}]},
+ {t:'cards',title:`Cancellation: worked examples`,sub:`The same method as the calculator. Refund assumes the customer paid in full.`,cards:[
+  {i:`card`,h:`Example 1: 36 days before`,p:`Departure 10 September 2026. Cancelled 5 August 2026 (36 days before).\nHoliday price £4,500. £4,500 × 70% = £3,150 fee.\nRefund: £1,350.`},
+  {i:`card`,h:`Example 2: 23 days before`,p:`Departure 20 June 2026. Cancelled 28 May 2026 (23 days before).\nHoliday price £2,800. £2,800 × 90% = £2,520 fee.\nRefund: £280.`}]}
+]},
 {id:'lab',name:'Practice lab',icon:'target',acc:'#e0568f',soft:'#ffe6f0',slides:[
  {t:'roleplay',title:'Roleplay generator',sub:'Get a random scenario, run the call out loud with a timer, then score yourself honestly.'},
  {t:'roulette',title:'Objection roulette',sub:'A random customer line from the whole deck. Say your answer out loud, then reveal the model response.'},
@@ -1088,6 +1249,33 @@ const SECTIONS=[
   {i:'trend',h:'Quality & conversion',p:'Verify properly, follow policy, and offer relevant add-ons naturally.'}]}
 ]}
 ];
+
+const GRP={start:['Home','#2f6fed','#e7efff'],call:['During a call','#1a9c8b','#def4f0'],sit:['Customer situations','#d4495a','#ffe7ea'],pre:['Pre-Travel topics','#0e7490','#cffafe'],money:['Bookings and money','#b45309','#fef3c7'],ref:['Reference','#7e22ce','#f3e8ff'],prac:['Practice','#e0568f','#ffe6f0']};
+const POOL={};RAW.forEach(s=>s.slides.forEach(d=>{POOL[d.title]=d}));
+const LAYOUT=[
+ ['start','start','Start here','home',['TUI Pre-Travel Playbook','How to use this deck','What Pre-Travel looks after','What customers expect when they call','The 7-step call framework']],
+ ['map','start','Mind map','target',['Mind map: tap to explore']],
+ ['call','call','Call Mode','headset',['Call Mode: your 7 steps','Buying time (while you search)','Call notes: fill and copy']],
+ ['open','call','1. Open and verify','phone',['Voice & tone: the first 10 seconds','Inbound openings: the essentials','Opening: tricky starts','Outbound, sales and routing','GDPR verification: green, red and retail','Verification: edge cases']],
+ ['sell','call','2. Discover and sell','trend',['Open and closed questions','Discovery in action','Mindset: sell by solving','The upsell formula','Upsell: bags and meals','Upsell: upgrade the booking','Upsell: hotel, transfers and extras','Cross-sell & retention','Upselling: say this, not that']],
+ ['close','call','3. Hold and close','check',['Hold, transfer and escalate','Call control phrases','Closing the call']],
+ ['obj','sit','Objections','shield',['The ACAA method for any objection','Price objections (1)','Price objections (2)','Hesitation & delay','Doubts & questions','Trust & service objections (1)','Trust & service objections (2)']],
+ ['angry','sit','Angry customers','frown',['De-escalation: H.E.A.R.D.','Shouting, abuse and threats','Repeat callers and broken trust','Escalations and sensitive moments','Phrases to use and phrases to avoid','Reset after a tough call']],
+ ['sys','sit','System and disruptions','monitor',['System issue protocol','System issues (1)','System issues (2)','Disruption quick facts (check current policy)','Disruptions (1)','Disruptions (2)','Disruptions (3)']],
+ ['pre','pre','Hotels','home',['Room types: what customers ask about','Board basis: what is included','Hotel facilities worth asking about','Hotel requests from customers','Hotel requests: say this, not that','Hotel checklist before you advise']],
+ ['fly','pre','Flights','plane',['Flight extras customers can add','Seat options script','Flight questions customers ask','Special assistance and families','Infant seat booked as a child','Pre-flight checklist for every booking']],
+ ['dest','pre','Destinations','globe',['Where customers travel']],
+ ['rap','pre','Rapport (UK customers)','heart',['Rapport the British way','Rapport openers that feel natural','Conversation starters (trip and general)','Questions that work vs questions to avoid','Tricky rapport moments']],
+ ['ptc','pre','Pre-Travel calls','file',['Payments and documents','Changes before travel','Pre-departure reminder call']],
+ ['atcom','money','Atcom: amend and cancel','list',['Atcom: amendments','Atcom: cancelling a booking','Atcom: cancellation fee and consent']],
+ ['fees','money','Fees, payments and read back','card',['Admin fees: when to collect','Explaining fees and payments','Full read back: what to cover']],
+ ['ovr','money','Overrides and promo codes','tag',['Stop sale overrides','Price and voucher overrides','Promotional codes: apply and validate','Promo code invalid after an amendment']],
+ ['canc','money','Cancellation and calculators','alert',['TUI UK cancellation terms','Cancellation: worked examples','Explaining cancellation charges','Calculators: dates and cancellation']],
+ ['memo','ref','Memos and codes','file',['Adding a memo and the CAR template','Memo codes','Price and cost codes','Abbreviations','Welfare and assisted travel codes','ABTA numbers']],
+ ['tui','ref','TUI reference','book',['Who to contact: teams','TUI app: what to tell customers','TUI app: key benefits','Quality 1: Customer focus','Quality 2: Sales excellence','Quality 3: Expertise','Quality 4: Efficiency']],
+ ['lab','prac','Practice lab','target',['Roleplay generator','Objection roulette','Mindset & what good looks like']]
+];
+const SECTIONS=LAYOUT.map(a=>({id:a[0],grp:a[1],name:a[2],icon:a[3],acc:GRP[a[1]][1],soft:GRP[a[1]][2],slides:a[4].map(t=>{if(!POOL[t])console.warn('MISSING SLIDE: '+t);return POOL[t]}).filter(Boolean)}));
 
 const SCENARIOS=[
  {title:'Family flight-only booking',persona:'Sarah, 38, booking four seats to Tenerife. Wants the cheapest option.',situation:'She hasn\'t thought about seats or bags and is price-focused.',goal:'Open well, discover needs, upsell seats together and bags naturally.',lvl:'easy'},
@@ -1119,7 +1307,7 @@ function rSteps(d){return `<div class="steps">${d.steps.map((s,i)=>`<div class="
 function rDrill(d){return `<div class="grid">${d.items.map((it,i)=>`<article class="card dcard rise" style="--i:${i+3}"><div class="lead">${d.lead||'Situation'}</div><p class="q">${fmt(it.q)}</p><button class="btn rv" type="button">${ic('eye')}<span>Show response</span></button><div class="ans"><div><div class="say">${ic('chat')}<div>${fmt(it.a)}</div><button type="button" class="cpy" title="Copy this phrase" aria-label="Copy this phrase">${ic('copy')}</button></div>${it.tip?`<div class="tip">${ic('star')}<div>${fmt(it.tip)}</div></div>`:''}</div></div></article>`).join('')}</div>`}
 function rCompare(d){return `<div class="cmp"><div class="cmp-row rise" style="--i:3"><div class="cmp-h g">${ic('check')}${d.left}</div><div class="cmp-h b">${ic('alert')}${d.right}</div></div>${d.rows.map((r,i)=>`<div class="cmp-row rise" style="--i:${i+4}"><div class="cell g">${fmt(r[0])}</div><div class="cell b">${fmt(r[1])}</div></div>`).join('')}</div>`}
 function rRoleplay(){return `<div class="lab rise" style="--i:3"><div class="card scn" id="scn"></div><div class="card"><div class="lead">Self-score</div><div class="checks" id="checks">${RUBRIC.map((r,i)=>`<label><input type="checkbox" data-i="${i}"><span>${r}</span></label>`).join('')}</div><div class="score"><div class="ring"><svg viewBox="0 0 100 100"><circle class="t" cx="50" cy="50" r="42"/><circle class="p" id="ringp" cx="50" cy="50" r="42"/></svg><b id="scoren">0/8</b></div><p><strong id="slabel">Keep practising</strong><span id="sdesc">Tick what you did well on the call.</span></p></div></div></div>`}
-function rRoulette(sec){const chips=['all',...SECTIONS.filter(s=>!['start','lab'].includes(s.id)).map(s=>s.id)];return `<div class="rise" style="--i:3"><div class="fchips" id="fchips">${chips.map(c=>`<button type="button" data-f="${c}" class="${c==='all'?'on':''}">${c==='all'?'All topics':SECTIONS.find(s=>s.id===c).name}</button>`).join('')}</div><div class="card" id="rcard"></div></div>`}
+function rRoulette(sec){const chips=['all','call','sit','pre','money','ref'];return `<div class="rise" style="--i:3"><div class="fchips" id="fchips">${chips.map(c=>`<button type="button" data-f="${c}" class="${c==='all'?'on':''}">${c==='all'?'All topics':GRP[c][0]}</button>`).join('')}</div><div class="card" id="rcard"></div></div>`}
 function rHero(d,sec){return `<div class="hero"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="hero-in"><div class="big rise" style="--i:0">${ic('plane')}</div><h2 class="rise" style="--i:1">${d.title}</h2><p class="lede rise" style="--i:2">${d.sub}</p><div class="chips rise" style="--i:3">${d.chips.map(c=>`<span>${c}</span>`).join('')}</div>${d.tiles?`<div class="htiles rise" style="--i:4">${d.tiles.map(t=>`<button type="button" class="htile" data-t="${esc(t[2])}">${ic(t[0])}<b>${t[1]}</b></button>`).join('')}</div>`:''}<div class="row rise" style="--i:5;justify-content:center"><button class="btn solid" id="startBtn" type="button">Start learning ${ic('right')}</button><button class="btn ghost" id="qfHero" type="button">${ic('search')}Quick find</button></div></div></div>`}
 
 function rCalc(){return `<div class="calcs rise" style="--i:3">
@@ -1180,7 +1368,7 @@ document.getElementById('stallOff').onclick=stStop;
 document.getElementById('stallNext').onclick=()=>{nextPhrase();stShow()};
 stW.addEventListener('mouseenter',()=>{if(stVis){clearTimeout(stTm);clearInterval(stIv);stP.style.transition='none';stP.style.width='100%'}});
 stW.addEventListener('mouseleave',()=>{if(stVis&&stOn)stShow()});
-const QC=[['Warm welcome with the correct tone','Inbound openings: the essentials'],['Listened without interrupting and showed empathy','Quality 1: Customer focus'],['Showed genuine excitement and made a connection','Conversation starters (trip and general)'],['Closing tailored to the call','Closing the call'],['Offered a relevant extra and closed the sale','The upsell formula'],['Mentioned the TUI app with a personal benefit','TUI app: what to tell customers'],['Tried to save the sale and explained any fees','Explaining cancellation charges'],['GDPR followed: only the right person','Security verification'],['Paused the recording for payment details',null],['Full booking notes left after the call','Call notes: fill and copy'],['Used open and closed questions, solved it first time','Quality 4: Efficiency'],['Managed expectations (e.g. email within 24 hours)',null]];
+const QC=[['Warm welcome with the correct tone','Inbound openings: the essentials'],['Listened without interrupting and showed empathy','Quality 1: Customer focus'],['Showed genuine excitement and made a connection','Conversation starters (trip and general)'],['Closing tailored to the call','Closing the call'],['Offered a relevant extra and closed the sale','The upsell formula'],['Mentioned the TUI app with a personal benefit','TUI app: what to tell customers'],['Tried to save the sale and explained any fees','Explaining cancellation charges'],['GDPR followed: only the right person','GDPR verification: green, red and retail'],['Paused the recording for payment details',null],['Full booking notes left after the call','Call notes: fill and copy'],['Used open and closed questions, solved it first time','Quality 4: Efficiency'],['Managed expectations (e.g. email within 24 hours)',null]];
 let qcSt=QC.map(()=>false),qcTm=null,qcShowing=false;
 const QC_SHOW=20000,QC_GAP=20000;
 const qcEl=document.getElementById('qc'),qcList=document.getElementById('qcList');
@@ -1270,23 +1458,19 @@ applyTheme(rootEl.dataset.theme==='dark'?'dark':'light',false);
 /* notes: save to the sheet and show "Saved" only */
 function noteShow(msgEl,txt,cls){msgEl.textContent=txt;msgEl.classList.remove('okt','badt');if(cls)msgEl.classList.add(cls);clearTimeout(msgEl.__t);if(cls==='okt')msgEl.__t=setTimeout(()=>{msgEl.textContent='';msgEl.classList.remove('okt')},2500)}
 async function noteSave(note,ref,msgEl){
-  let agent='';try{agent=localStorage.getItem('tui-agent')||''}catch(e){}
-  if(!NOTES_URL||NOTES_URL.indexOf('http')!==0){noteShow(msgEl,'Add your link in the code first.','badt');return false}
+    if(!NOTES_URL||NOTES_URL.indexOf('http')!==0){noteShow(msgEl,'Add your link in the code first.','badt');return false}
   noteShow(msgEl,'Saving...','');
-  try{const r=await fetch(NOTES_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({note,ref,agent})});
+  try{const r=await fetch(NOTES_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({note})});
     const j=await r.json();if(!j.ok)throw new Error('x');noteShow(msgEl,'Saved','okt');return true}
   catch(e){noteShow(msgEl,"Couldn't save. Try again.",'badt');return false}}
 (function(){
-  const nt=document.getElementById('nt'),txt=document.getElementById('ntText'),ref=document.getElementById('ntRef'),nm=document.getElementById('ntName'),msg=document.getElementById('ntMsg'),btn=document.getElementById('ntBtn'),sv=document.getElementById('ntSave');
-  try{nm.value=localStorage.getItem('tui-agent')||''}catch(e){}
-  nm.addEventListener('change',()=>{try{localStorage.setItem('tui-agent',nm.value.trim())}catch(e){}});
+  const nt=document.getElementById('nt'),txt=document.getElementById('ntText'),msg=document.getElementById('ntMsg'),btn=document.getElementById('ntBtn'),sv=document.getElementById('ntSave');
   const toggle=v=>{const s=v===undefined?!nt.classList.contains('show'):v;nt.classList.toggle('show',s);btn.classList.toggle('vis',s);if(s)setTimeout(()=>txt.focus(),120)};
   btn.onclick=()=>toggle();
   document.getElementById('ntX').onclick=()=>toggle(false);
-  document.getElementById('ntClear').onclick=()=>{txt.value='';ref.value='';msg.textContent=''};
+  document.getElementById('ntClear').onclick=()=>{txt.value='';msg.textContent=''};
   async function save(){const v=txt.value.trim();if(!v){noteShow(msg,'Type a note first.','badt');return}
-    try{localStorage.setItem('tui-agent',nm.value.trim())}catch(e){}
-    sv.disabled=true;const ok=await noteSave(v,ref.value.trim(),msg);sv.disabled=false;if(ok){txt.value=''}}
+    sv.disabled=true;const ok=await noteSave(v,'',msg);sv.disabled=false;if(ok){txt.value=''}}
   sv.onclick=save;
   txt.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();save()}});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nt.classList.contains('show')&&!document.getElementById('qf').classList.contains('open'))toggle(false)});
@@ -1294,21 +1478,15 @@ async function noteSave(note,ref,msgEl){
 document.getElementById('stall').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b){const n=flat.findIndex(f=>f.d.title===b.dataset.t);if(n>=0)go(n)}});
 const MAPT='Mind map: tap to explore';
 document.getElementById('mmBtn').onclick=()=>{const n=flat.findIndex(f=>f.d.t==='mind');if(n>=0)go(n)};
-const dg=SECTIONS.find(s=>s.id==='dest').slides[0].groups;
-const L=(n,go)=>({n,go});
-const MM={n:'Pre-Travel',ic:'plane',kids:[
- {n:'Hotels',ic:'home',kids:[L('Room types','Room types: what customers ask about'),L('Board basis','Board basis: what is included'),L('Facilities','Hotel facilities worth asking about'),L('Customer requests','Hotel requests from customers'),L('Say this, not that','Hotel requests: say this, not that'),L('Checklist','Hotel checklist before you advise')]},
- {n:'Flights',ic:'plane',kids:[L('Flight extras','Flight extras customers can add'),L('Customer questions','Flight questions customers ask'),L('Assistance and families','Special assistance and families'),L('Pre-flight checklist','Pre-flight checklist for every booking')]},
- {n:'Destinations',ic:'globe',kids:dg.map(g=>({n:g[0],ic:'globe',kids:g[1].map(nm=>({n:nm==='United Arab Emirates'?'UAE':nm==='United States'?'USA':nm,dest:nm,ic:'globe'}))}))},
- {n:'Rapport',ic:'heart',kids:[L('British style','Rapport the British way'),L('Openers','Rapport openers that feel natural'),L('Conversation starters','Conversation starters (trip and general)'),L('Good vs avoid','Questions that work vs questions to avoid'),L('Tricky moments','Tricky rapport moments')]},
- {n:'During the call',ic:'headset',kids:[L('Call Mode','Call Mode: your 7 steps'),L('Buying time','Buying time (while you search)'),L('Opening','Inbound openings: the essentials'),L('Verify','Security verification'),L('Discover','Discovery in action'),L('Resolve','Common requests (1)'),L('Closing','Closing the call'),L('Call notes','Call notes: fill and copy')]},
- {n:'Pre-Travel calls',ic:'file',kids:[L('Payments and documents','Payments and documents'),L('Changes before travel','Changes before travel'),L('Reminder call','Pre-departure reminder call')]},
- {n:'Customer says...',ic:'chat',kids:[{n:'Price',ic:'tag',kids:[L('Too expensive','Price objections (1)'),L('Discounts, seats, bags','Price objections (2)')]},{n:'I need to think',ic:'clock',kids:[L('Hesitation and delay','Hesitation & delay'),L('Doubts and questions','Doubts & questions')]},{n:'Angry',ic:'frown',kids:[L('H.E.A.R.D. method','De-escalation: H.E.A.R.D.'),L('Shouting and abuse','Shouting, abuse and threats'),L('Repeat callers','Repeat callers and broken trust'),L('Escalations','Escalations and sensitive moments')]},{n:'Trust',ic:'shield',kids:[L('Manager or script','Trust & service objections (1)'),L('Protection and ID','Trust & service objections (2)')]}]},
- {n:'Problems',ic:'alert',kids:[{n:'System',ic:'monitor',kids:[L('System protocol','System issue protocol'),L('Slow, down, payment','System issues (1)'),L('Missing, duplicate, email','System issues (2)')]},{n:'Disruptions',ic:'plane',kids:[L('Delays and cancellations','Disruptions (1)'),L('Bags, names, documents','Disruptions (2)'),L('Medical, refunds, check-in','Disruptions (3)')]}]},
- {n:'Sell and upsell',ic:'trend',kids:[L('Upsell formula','The upsell formula'),L('Seats, bags, meals','Upsell: seats, legroom, bags, meals'),L('Hotel and transfers','Upsell: hotel, transfers and extras'),L('Say this, not that','Upselling: say this, not that')]},
- {n:'Tools and reference',ic:'list',kids:[L('Calculators','Calculators: dates and cancellation'),L('Cancellation terms','TUI UK cancellation terms'),L('Explaining charges','Explaining cancellation charges'),L('Call notes','Call notes: fill and copy'),L('Memo codes and ABTA','Memo codes and ABTA numbers'),{n:'TUI app',ic:'phone',kids:[L('What to tell customers','TUI app: what to tell customers'),L('Key benefits','TUI app: key benefits')]},{n:'Quality framework',ic:'star',kids:[L('1 Customer focus','Quality 1: Customer focus'),L('2 Sales excellence','Quality 2: Sales excellence'),L('3 Expertise','Quality 3: Expertise'),L('4 Efficiency','Quality 4: Efficiency')]}]},
- {n:'Practice',ic:'target',kids:[L('Roleplay','Roleplay generator'),L('Objection roulette','Objection roulette')]}
-]};
+const MM={n:'Pre-Travel',ic:'plane',kids:[]};
+const shortName=nm=>nm==='United Arab Emirates'?'UAE':nm==='United States'?'USA':nm;
+const GICON={call:'headset',sit:'chat',pre:'globe',money:'card',ref:'book',prac:'target'};
+['call','sit','pre','money','ref','prac'].forEach(g=>{
+  const kids=SECTIONS.filter(s=>s.grp===g).map(s=>{
+    const one=s.slides.length===1?s.slides[0]:null;
+    if(one&&one.t==='dest')return{n:s.name,ic:s.icon,kids:one.groups.map(gr=>({n:gr[0],ic:'globe',kids:gr[1].map(nm=>({n:shortName(nm),dest:nm,ic:'globe'}))}))};
+    return{n:s.name.replace(/^\d\.\s/,''),ic:s.icon,kids:s.slides.map(d=>({n:d.title,go:d.title}))}});
+  MM.kids.push({n:GRP[g][0],ic:GICON[g],kids:kids.length===1?kids[0].kids:kids})});
 window.__MM=MM;
 function copyText(txt,btn){
   const done=()=>{if(!btn)return;const o=btn.innerHTML;btn.classList.add('ok');btn.innerHTML=ic('check')+(btn.dataset.l?'<span>Copied</span>':'');setTimeout(()=>{btn.classList.remove('ok');btn.innerHTML=o},1300)};
@@ -1335,8 +1513,9 @@ flat.forEach(f=>{if(f.d.t!=='mind')return;const el=f.el.querySelector('.mm');let
     const pos=k.map((x,i)=>{const a=-Math.PI/2+i*2*Math.PI/n;return [50+37*Math.cos(a),31+22*Math.sin(a)]});
     const lines=pos.map(q=>`<line x1="50" y1="31" x2="${q[0].toFixed(1)}" y2="${q[1].toFixed(1)}"/>`).join('');
     const nodes=k.map((x,i)=>`<button type="button" class="mm-n${x.kids?' br':''}" data-i="${i}" style="left:${pos[i][0].toFixed(1)}%;top:${(pos[i][1]/62*100).toFixed(1)}%;--k:${i}">${ic(x.ic||cur.ic||'right')}<b>${esc(x.n)}</b><small>${x.kids?x.kids.length+' options':'Open'}</small></button>`).join('');
-    el.innerHTML=`<div class="mm-crumb">${crumb}</div><div class="mm-stage pop"><svg class="mm-lines" viewBox="0 0 100 62" preserveAspectRatio="none">${lines}</svg><button type="button" class="mm-c" data-up="1">${ic(cur.ic||'plane')}<b>${esc(cur.n)}</b><small>${path.length>1?'tap to go back':'start here'}</small></button>${nodes}</div>`};
+    el.innerHTML=`<div class="mm-crumb"><button type="button" class="mm-back" data-back="1"${path.length>1?'':' disabled'}>&larr; Back</button>${crumb}</div><div class="mm-stage pop"><svg class="mm-lines" viewBox="0 0 100 62" preserveAspectRatio="none">${lines}</svg><button type="button" class="mm-c" data-up="1">${ic(cur.ic||'plane')}<b>${esc(cur.n)}</b><small>${path.length>1?'tap to go back':'start here'}</small></button>${nodes}</div>`};
   el.addEventListener('click',e=>{
+    if(e.target.closest('.mm-back')){if(path.length>1){path.pop();draw()}return}
     const cr=e.target.closest('.mm-cr');if(cr){path=path.slice(0,+cr.dataset.p+1);draw();return}
     if(e.target.closest('.mm-c')){if(path.length>1){path.pop();draw()}return}
     const nb=e.target.closest('.mm-n');if(!nb)return;
@@ -1368,14 +1547,7 @@ SECTIONS.forEach(sec=>{
   g.querySelector('.grp-h').addEventListener('click',()=>go(first));
   GEL[sec.id]=g;
 });
-{const CORE=['start','map','call','tools','ref','pre','ptc','fly','dest','rap','lab'];
- CORE.forEach(id=>navlist.appendChild(GEL[id]));
- const more=SECTIONS.filter(s=>!CORE.includes(s.id));
- const mb=document.createElement('button');mb.type='button';mb.className='more-btn';mb.innerHTML=`More topics (${more.length}) ${ic('right')}`;
- const mw=document.createElement('div');mw.className='more-wrap';more.forEach(s=>mw.appendChild(GEL[s.id]));
- mb.onclick=()=>{mw.classList.toggle('open');mb.classList.toggle('on')};
- navlist.appendChild(mb);navlist.appendChild(mw);
- window.__ensureNav=sid=>{if(!CORE.includes(sid)){mw.classList.add('open');mb.classList.add('on')}};}
+{let last='';SECTIONS.forEach(sec=>{if(sec.grp!==last){last=sec.grp;const h=document.createElement('div');h.className='nav-h';h.textContent=GRP[sec.grp][0];navlist.appendChild(h)}navlist.appendChild(GEL[sec.id])})}
 
 navlist.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b){go(+b.dataset.go);document.body.classList.remove('menu-open')}});
 
@@ -1452,7 +1624,7 @@ stage.addEventListener('click',e=>{
 (function(){
   const el=flat.find(f=>f.d.t==='roulette');if(!el)return;
   const pool=[];
-  SECTIONS.forEach(sec=>{if(['start','lab'].includes(sec.id))return;sec.slides.forEach(d=>{if(d.t==='drill')d.items.forEach(it=>pool.push({...it,lead:d.lead||'Situation',sid:sec.id,sname:sec.name,acc:sec.acc,soft:sec.soft}))})});
+  SECTIONS.forEach(sec=>{if(['start','map','lab'].includes(sec.id))return;sec.slides.forEach(d=>{if(d.t==='drill')d.items.forEach(it=>pool.push({...it,lead:d.lead||'Situation',sid:sec.grp,sname:sec.name,acc:sec.acc,soft:sec.soft}))})});
   const root=el.el,card=root.querySelector('#rcard'),chips=root.querySelector('#fchips');
   let f='all',cur=null,done=0;
   function pick(){const list=pool.filter(p=>f==='all'||p.sid===f);let p;do{p=list[Math.floor(Math.random()*list.length)]}while(p===cur&&list.length>1);cur=p;
@@ -1504,6 +1676,9 @@ stage.addEventListener('click',e=>{
    ['calculator','calculate','days','nights','date','cancellation','terms','حاسبه','حساب','ايام','ليالي','شروط','الغاء'],
    ['app','download','checklist','boarding','tui app','تطبيق','ابليكيشن','تحميل'],
    ['quality','gdpr','memo','abta','codes','bem','ben','nla','كواليتي','ابتا','كود','جي دي بي ار'],
+   ['atcom','amend','amendment','override','promo','promotional','memo','car','stop sale','admin fee','read back','direct debit','اتكوم','تعديل','ميمو'],
+   ['seat','seats','sys','xleg','xspc','legroom','infant','كرسي','مقعد','رضيع'],
+   ['team','teams','contact','phone','assisted','tours','after travel','فريق','تواصل','رقم'],
    ['paris','france','eiffel','louvre','disney','باريس','فرنسا'],
    ['rapport','small talk','conversation','starter','british','friendly','chat','رابور','كلام','ونس','محادثه','بريطاني','افتح كلام']
   ].map(g=>g.map(norm));
@@ -1513,7 +1688,7 @@ stage.addEventListener('click',e=>{
   flat.forEach((f,si)=>{
     const d=f.d,sec=f.sec,secIdx=SECTIONS.indexOf(sec);
     const base={si,secIdx,secName:sec.name,slideTitle:d.title};
-    const push=(ti,title,body,tip)=>{const o={...base,ti,title,body:body||'',tip:tip||'',key:si+':'+ti};o.nt=norm(title);o.nb=norm(body);o.ntip=norm(tip);o.nc=norm(sec.name+' '+d.title);o.words=new Set((o.nt+' '+o.nb).split(' '));E.push(o)};
+    const push=(ti,title,body,tip)=>{const o={...base,ti,title,body:body||'',tip:tip||'',key:d.title+'#'+ti};o.nt=norm(title);o.nb=norm(body);o.ntip=norm(tip);o.nc=norm(sec.name+' '+d.title);o.words=new Set((o.nt+' '+o.nb).split(' '));E.push(o)};
     push(-1,d.title,d.sub||'',(d.chips||[]).join(' '));
     if(d.t==='drill')d.items.forEach((it,i)=>push(i,it.q,it.a,it.tip));
     else if(d.t==='cards')d.cards.forEach((c,i)=>push(i,c.h,c.p));
@@ -1554,7 +1729,7 @@ stage.addEventListener('click',e=>{
   const byKey=k=>E.find(e=>e.key===k);
   const sIdx=t=>flat.findIndex(f=>f.d.title===t);
 
-  const FLOW=[['Open','Inbound openings: the essentials'],['Verify','Security verification'],['Discover','Discovery in action'],['Resolve','Common requests (1)'],['Add value','The upsell formula'],['Confirm','Closing the call'],['Wrap up','Wrap-up notes template']];
+  const FLOW=[['Open','Inbound openings: the essentials'],['Verify','GDPR verification: green, red and retail'],['Discover','Discovery in action'],['Resolve','Changes before travel'],['Add value','The upsell formula'],['Confirm','Closing the call'],['Wrap up','Call notes: fill and copy']];
   const TILES=[['frown','Customer is angry','angry'],['tag','"Too expensive"','price'],['alert','Wants to cancel','cancel'],['clock','"I need to think"','think'],['users','Asks for a manager','manager'],['lock','Security check issue','verify'],['monitor','System slow or down','system'],['card','Payment problem','payment'],['plane','Delay or cancellation','delay'],['bag','Baggage','baggage'],['trend','Upsell ideas','upsell'],['phone','Opening a call','opening'],['book','I do not know the answer','unknown'],['file','Complaint or compensation','complaint'],['shield','Is it safe? Visa?','safety'],['heart','Medical or bereavement','medical'],['home','Hotel or room question','hotel'],['chat','Start a conversation','rapport'],['globe','Destination chat','destination'],['clock','Need a moment (stall)','moment']];
 
   function hl(s,toks){let o=esc(s);const t=toks.filter(x=>/^[a-z0-9]+$/.test(x)&&!['amp','lt','gt'].includes(x));if(t.length)o=o.replace(new RegExp('('+t.join('|')+')','ig'),'<mark>$1</mark>');return o}
@@ -1632,7 +1807,7 @@ stage.addEventListener('click',e=>{
 
   /* pin button on every script card */
   flat.forEach((f,si)=>{if(f.d.t!=='drill')return;f.el.querySelectorAll('.dcard').forEach((c,ti)=>{
-    const k=si+':'+ti;const b=document.createElement('button');b.type='button';b.className='pin'+(pins.includes(k)?' on':'');b.dataset.key=k;b.title='Pin for quick access';b.setAttribute('aria-label','Pin this script');b.innerHTML=ic('star');c.appendChild(b)})});
+    const k=f.d.title+'#'+ti;const b=document.createElement('button');b.type='button';b.className='pin'+(pins.includes(k)?' on':'');b.dataset.key=k;b.title='Pin for quick access';b.setAttribute('aria-label','Pin this script');b.innerHTML=ic('star');c.appendChild(b)})});
   stage.addEventListener('click',e=>{const b=e.target.closest('.pin');if(!b)return;const k=b.dataset.key,i=pins.indexOf(k);if(i>=0)pins.splice(i,1);else pins.unshift(k);save();syncPins()});
 
   window.__qf={search,count:E.length};
