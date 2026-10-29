@@ -5,6 +5,10 @@
 <script>try{var __m=localStorage.getItem("tui-theme");document.documentElement.dataset.theme=(__m==="dark")?"dark":"light"}catch(e){document.documentElement.dataset.theme="light"}</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f4f7fb">
+<link rel="manifest" href="manifest-app.json">
+<link rel="apple-touch-icon" href="icon-app-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <title>TUI Pre-Travel Playbook</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232f6fed'/%3E%3Cpath d='M25.5 6.5 6.5 14l7.4 3 3 7.6z' fill='white'/%3E%3Cpath d='M13.9 17 25.5 6.5' stroke='%232f6fed' stroke-width='1.4' fill='none'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -545,7 +549,7 @@ html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:
 
 <script>
 /* ---------- helpers ---------- */
-const NOTES_URL='https://script.google.com/macros/s/AKfycbw1jJv5z2EKej7U6tUGSX66hY8SfXqm05I0WYt259FCyknDn1use11fsp5JmPoSnO4R/exec'; /* paste the web app link between the quotes */
+const NOTES_URL='https://script.google.com/macros/s/AKfycbyJMLAEs4GYkQFBwYR4ELO-dxMru500GZXOJ_s3YEG4886hzX-RINP424tvzsaMyAVS/exec'; /* paste the web app link between the quotes */
 const ic=(n,c='')=>`<svg class="ic ${c}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const fmt=s=>esc(s).replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>').replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>').replace(/\n/g,'<br>');
@@ -603,23 +607,11 @@ const RAW=[
 ]},
 
 {id:'disc',name:'Verify & discover',icon:'lock',acc:'#6a52d9',soft:'#ece8ff',slides:[
- {t:'drill',title:'Security verification',sub:'Verify first, every time. Always use your account\'s exact approved checks.',lead:'Situation',items:[
-  {q:'Standard security check',a:'"Before I access the booking, I need to complete a quick security check. Could I take the lead passenger\'s full name, the booking reference, and [date of birth / email / postcode, whichever your process requires]?"',tip:'Say why: it protects their booking and data.'},
-  {q:'Customer pushes back: "Why do you need all this? You already have my details."',a:'"I completely understand, and thank you for your patience. It\'s there to protect your booking and your personal information. It only takes a moment."',tip:'Calm, brief, no apology for the policy. Keep going.'},
-  {q:'Caller is a friend or partner, not the lead passenger',a:'"I\'m sorry, I can only discuss the booking with the lead passenger or someone authorised on it. If [name] is with you, I can speak to them briefly to get permission. Otherwise, they\'re welcome to call us directly."',tip:'Follow your account\'s third-party authority process exactly.'},
-  {q:'Customer has no booking reference',a:'"No problem, I can try to find it another way. Could I have the lead passenger\'s name, travel date, and the email address used for the booking?"',tip:'Offer an alternative route before telling them you can\'t help.'}]},
  {t:'drill',title:'Verification: edge cases',sub:'The awkward ones that trip people up.',lead:'Situation',items:[
   {q:'Customer fails the security check',a:'"I\'m sorry, I\'m not able to go any further without completing the checks. It\'s to keep your details safe. If you can find [the confirmation email / the right details], call us back and we\'ll gladly help."',tip:'Firm and kind. Never give hints about the correct answers.'},
   {q:'Booking was made through a travel agent',a:'"Since this was booked through [agent], they manage the booking on your behalf. I\'d recommend contacting them directly. In the meantime, I\'m happy to check what I can see on our side."',tip:'Policy-dependent. Check what you are permitted to do on agent bookings.'},
   {q:'Adult child calling for an elderly parent',a:'"Thank you for helping your [mum/dad]. I\'ll need them to give us permission first. Is [name] with you? I can speak to them briefly for authorisation, then I\'m happy to help."',tip:'Be patient and respectful. Offer a way forward, never a flat no.'},
   {q:'Customer wants to change phone or email details',a:'"Of course. Once the security check is complete, I\'ll update that. Could you confirm the new [email / number], and I\'ll read it back to you to be sure it\'s right."',tip:'Always read contact details back letter-by-letter or digit-by-digit.'}]},
- {t:'cards',title:'Discovery questions that sell and solve',sub:'Great upselling and great service both start with great questions. Ask one at a time, then listen.',cards:[
-  {i:'users',h:'Who is travelling?',p:'"Who\'s joining you? Any children or infants?"'},
-  {i:'globe',h:'Where & when?',p:'"Where are you thinking of going, and when? Are your dates flexible?"'},
-  {i:'target',h:'What matters most?',p:'"What\'s most important to you: price, comfort, convenience?"'},
-  {i:'heart',h:'Special occasion?',p:'"Is this for anything special, like a birthday or honeymoon?"'},
-  {i:'bag',h:'Luggage & extras',p:'"Will you need hold luggage? Any seat or meal preferences?"'},
-  {i:'tag',h:'Budget',p:'"Do you have a budget in mind so I can find the best fit?"'}]},
  {t:'drill',title:'Discovery in action',sub:'Turn vague requests into clear needs.',lead:'Customer says',items:[
   {q:'"I just want the cheapest flight."',a:'"Absolutely, I\'ll find you the best value. Are your dates flexible by a day or two? That can often bring the price down. And will you need any hold luggage?"',tip:'Cheapest is rarely the only goal. Probe flexibility and extras.'},
   {q:'"I don\'t know where to go, I just want some sun."',a:'"Lovely! Let me ask a few quick questions: how long are you away, who\'s travelling, and what kind of break do you want, relaxing by the pool or lots to do?"',tip:'Narrow down with two or three questions, then recommend.'},
@@ -786,28 +778,15 @@ const RAW=[
 ]},
 
 {id:'req',name:'Requests & closing',icon:'check',acc:'#5b6b8c',soft:'#e8ecf4',slides:[
- {t:'drill',title:'Common requests (1)',sub:'Quick, confident handling of everyday asks.',lead:'Customer says',items:[
-  {q:'"I want to change my travel date."',a:'"No problem. Let me check availability. I\'ll look at the fare rules, and there may be a change fee and a fare difference. I\'ll give you the full price before I make any changes. Which new date were you thinking of?"',tip:'Always disclose the full cost before committing.'},
-  {q:'"I need to cancel my booking."',a:'"I\'m sorry to hear that. Could I ask what\'s changed? Sometimes we can move the dates instead. If you do want to cancel, I\'ll explain exactly what that means for refunds and fees."',tip:'Discover, offer one alternative, then process clearly.'},
-  {q:'"I need to add a child or an infant."',a:'"Of course. May I have their full name as it appears on the passport, date of birth, and travel dates? I\'ll check the price and then add them."',tip:'Take names exactly as on the passport. Age on the date of travel matters.'},
-  {q:'"I want to add baggage."',a:'"Happy to help. How many bags and roughly what weight? I\'ll check the price now, and it\'s cheaper than paying at the airport."',tip:'A good moment to also offer seats or meals.'}]},
- {t:'drill',title:'Common requests (2)',sub:'Seats, payments, documents and complaints.',lead:'Customer says',items:[
-  {q:'"I want to change my seats."',a:'"Certainly. Where would you like to sit, and who\'s travelling? I\'ll check what\'s available for your flight and let you know about any cost."',tip:'Ask who they need to sit with. Then find the best fit.'},
-  {q:'"When do I pay the balance?"',a:'"Let me check your booking. The balance is due by [date], and the amount is £[X]. Would you like to pay now, or shall I send a reminder?"',tip:'Quote dates and amounts exactly. Offer to take payment.'},
-  {q:'"I haven\'t got my e-ticket / ATOL certificate."',a:'"No problem. Let me check the email address on file. [Read back.] I\'ll resend your documents now. They should arrive within [X], so please check junk mail too."',tip:'Verify the email, resend, set a timeframe.'},
-  {q:'"I want to make a formal complaint."',a:'"I\'m sorry things have gone wrong. I\'ll log a formal complaint now. May I take the full details? You\'ll receive an acknowledgement and a response within [timeframe] as per our process."',tip:'Never discourage complaints. Log accurately and explain the process.'}]},
  {t:'drill',title:'Hold, transfer and escalate',sub:'Handovers done well protect the customer experience.',lead:'Situation',items:[
-  {q:'Putting a customer on hold',a:'"Do you mind if I place you on a short hold while I check this? It should take about two minutes."',tip:'Always ask. Always return when you said you would.'},
   {q:'Warm transfer to another team',a:'"I\'m going to introduce you to my colleague in [team], who can help with this. I\'ll give them the details so you don\'t have to repeat yourself. Is that okay?"',tip:'Brief the next agent before connecting the customer.'},
   {q:'Escalating to a supervisor',a:'"I\'ll bring in a team leader to help. I\'ll explain what\'s happened so you don\'t have to repeat it. Please hold for a moment."',tip:'Offer a callback if the supervisor isn\'t immediately available.'},
-  {q:'You need to call the customer back',a:'"I\'ll call you back on [number] by [time]. If you don\'t hear from me, please call and quote [reference]."',tip:'Put the callback in the notes with the exact time.'},
   {q:'"I want to make a formal complaint."',a:'"I\'m sorry things have gone wrong. I\'ll log a formal complaint now. May I take the full details? You\'ll receive an acknowledgement and a response within [timeframe] as per our process."',tip:'Never discourage complaints. Log accurately and explain the process.'}]},
  {t:'drill',title:'Closing the call',sub:'The last 20 seconds shape how the customer remembers the whole call.',lead:'Situation',items:[
   {q:'Standard close',a:'"Is there anything else I can help you with today?"\n"Just to make you aware, you will receive an updated email confirmation within the next 24 hours."',tip:'Add a short recap of what you did. Summaries prevent follow-up calls.'},
   {q:'Positive close after a sale',a:'"Thank you for choosing TUI. It\'s been a pleasure helping you, and I hope you have a wonderful holiday!"',tip:'Warm, specific, unhurried.'},
   {q:'Closing after a difficult call',a:'"Thank you for your patience today, and I\'m sorry again for the trouble. I\'ve noted everything on your account, and if you need anything else, please call us and quote [reference]."',tip:'End steady and respectful. Leave on a solution, not an argument.'},
   {q:'Mentioning a survey (if your process allows)',a:'"You\'ll receive a survey after this call - we\'d really value your feedback."',tip:'Never coach or pressure for scores. Mention it neutrally.'}]},
- {t:'cards',title:'Wrap-up notes template',sub:'The notes to leave after every call. Use the Call notes page to fill, copy and save them.',cards:[{i:'user',h:'Who called? GDPR passed?',p:'Caller name, relationship to the booking, and whether the GDPR check was passed.'},{i:'search',h:'Reason for call',p:'One clear sentence.'},{i:'check',h:'Action taken',p:'Everything you did, including any c4c case references.'},{i:'trend',h:'App? Sales? Errata? Insurance?',p:'Note whether the TUI app was mentioned, any sales made or offered, any errata, and whether insurance was discussed.'},{i:'list',h:'Full read back given?',p:'Y or N. Read the changes and costs back to the customer.'},{i:'card',h:'Code, amount, reason',p:'Add the memo code, the amount and the reason when relevant.'}]}
 ]},
 
 {id:'pre',name:'Pre-Travel: Hotels',icon:'home',acc:'#0e7490',soft:'#cffafe',slides:[
@@ -1071,13 +1050,6 @@ const RAW=[
   {i:'target',h:'First contact resolution',p:'• Work in a solution-oriented way\n• Give informative answers that fully address the customer\'s needs'},
   {i:'clock',h:'System proficiency',p:'• Use systems confidently and show high knowledge of products and procedures\n• Manage expectations, for example: "Just to make you aware, you will receive an updated email confirmation within the next 24 hours"'},
   {i:'trend',h:'Balance focus and efficiency',p:'• Structure the call clearly with good conversation flow\n• Stay connected with the customer while working efficiently'}]},
- {t:'cards',title:'Memo codes and ABTA numbers',sub:'Quick reference.',cards:[
-  {i:'file',h:'BO / BEM',p:'Standard booking memos.'},
-  {i:'clock',h:'BE / BEN',p:'Balance extensions.'},
-  {i:'shield',h:'NLA / NLDA',p:'Non-lead authorisations.'},
-  {i:'card',h:'01075',p:'ABTA number: direct customer (FC).'},
-  {i:'card',h:'H1079',p:'ABTA number: FO.'},
-  {i:'card',h:'H6265',p:'ABTA number: package holiday.'}]}
 ]},
 {id:'newc',name:'New content',icon:'file',acc:'#2f6fed',soft:'#e7efff',slides:[
  {t:'drill',title:`GDPR verification: green, red and retail`,sub:`Verify before you discuss any booking details. Use the version that matches the call.`,lead:`Situation`,items:[
@@ -1201,6 +1173,7 @@ const RAW=[
   {i:`alert`,h:`CANS`,p:`Cancellation fee code (Manual Prices).`},
   {i:`list`,h:`HCPA / HCPC / HCDC / HCDX`,p:`Promo codes for the different Holiday Change types.`}]},
  {t:'cards',title:`Abbreviations`,sub:`Pre-travel abbreviations.`,cards:[
+  {i:`file`,h:`QSM`,p:`Quick Service Memo`},
   {i:`file`,h:`API`,p:`Advanced Passenger Information`},
   {i:`users`,h:`SSR`,p:`Special Seat Request`},
   {i:`star`,h:`SYS`,p:`Select Your Seat`},
@@ -1237,6 +1210,132 @@ const RAW=[
   {i:`card`,h:`Example 1: 36 days before`,p:`Departure 10 September 2026. Cancelled 5 August 2026 (36 days before).\nHoliday price £4,500. £4,500 × 70% = £3,150 fee.\nRefund: £1,350.`},
   {i:`card`,h:`Example 2: 23 days before`,p:`Departure 20 June 2026. Cancelled 28 May 2026 (23 days before).\nHoliday price £2,800. £2,800 × 90% = £2,520 fee.\nRefund: £280.`}]}
 ]},
+{id:'newc2',name:'New content 2',icon:'file',acc:'#2f6fed',soft:'#e7efff',slides:[
+ {t:'drill',title:`GDPR scenarios (1)`,sub:`Caller, authorisation and third party problems. System steps use C4C and Atcom.`,lead:`Scenario`,items:[
+  {q:`1. Caller says they are the lead passenger but is not. ("I'm calling about booking TUI123456." You ask who you are speaking to and they say John Smith, but the lead passenger is Sarah Smith.)`,a:`1. Open C4C in Chrome or Edge (not IE)\n2. Click "Customers" in the left-hand menu, then the magnifying glass icon (top right)\n3. Enter the booking reference "UK_TUI123456" and click "Execute Query"\n4. Go to the Booking View tab and check the "Lead Customer" field in the Overview section\n5. Compare the caller's name with the lead passenger's name\n6. If they do not match, open the "Involved Parties" tab and check for authorised non-leads\n7. Complete the 3 data point checks: Name, Departure Date, DOB\n8. If not authorised, politely explain you can only discuss the booking with the lead passenger or an authorised non-lead\n9. Click "Cases" > "Create Case" (top right), log the interaction in the case timeline and click Save\n10. Log the interaction in Atcom notes`,tip:`Never share booking details until the person is verified or authorised.`},
+  {q:`2. Non-lead without authorisation. (A man calls about his wife's booking. He passes ID&V but is not listed as an authorised non-lead.)`,a:`1. Open C4C and search the booking: "Bookings" menu > "Active Bookings New" > enter the reference > "Go"\n2. Open the booking by clicking the Booking ID\n3. Go to the "Involved Parties" tab and check whether the caller is listed as an authorised non-lead\n4. If not listed, explain the authorisation requirement\n5. Advise the lead passenger must call to authorise him or add him as a non-lead\n6. Click "Cases" in the left menu, create a new case documenting the refusal, add notes in the "Notes" section and click Save\n7. Close the interaction without sharing any booking details`,tip:`Passing ID&V is not the same as being authorised on the booking.`},
+  {q:`3. Third-party agent refuses GDPR. (A travel agent wants booking information but will not give GDPR details until you share the booking reference.)`,a:`1. Do NOT search for the booking in C4C yet\n2. Explain that GDPR verification must happen first\n3. Request: ABTA number, DOB of the lead passenger and phone number (3 data points for the 3PA)\n4. Only after verification, open C4C: "Bookings" > "Active Bookings New" > Advanced Search (funnel icon)\n5. Enter the booking reference and customer name, then click "Go"\n6. Open the booking and verify the details\n7. Provide the TUI reference, lead passenger name and departure date to the 3PA\n8. Click "Cases", create a case and log the GDPR completion in the timeline, then Save\n9. Proceed with the query`,tip:`Verification always comes before you search or share anything.`},
+  {q:`4. Incorrect customer details. (The date of birth in the system is wrong, or the customer has legally changed their name since booking.)`,a:`1. Open C4C and click "Customers" in the left menu\n2. Use Advanced Search (funnel icon): customer name plus at least 1 other criterion, then "Go"\n3. Click the customer name to open Customer View\n4. Go to the "Contact Info" tab and check the DOB shown\n5. DOB amendment: click the "Edit" pencil icon, update the DOB field (follow the DOB amendment process in the guidance)\n6. Name change: follow the name change procedures\n7. Request supporting documentation if needed\n8. Click "Cases" > "Create Case" and select the "Request for Information" case type\n9. Add the amendment details in the "Notes" tab\n10. Open the "Attachments" tab and upload supporting documents when received, then Save\n11. Update Atcom with the amendment request details\n12. Advise the customer of timescales`,tip:`Create the case for the amendments team if the process requires it.`}]},
+ {t:'drill',title:`GDPR scenarios (2)`,sub:`Unavailable lead passenger, cold transfers and missing dates.`,lead:`Scenario`,items:[
+  {q:`5. Lead passenger unavailable. (The lead is in hospital, prison or serving offshore in the military, and there is no authorised non-lead.)`,a:`1. Verify the caller's relationship to the lead passenger\n2. Explain the standard procedure requirements\n3. Open C4C and search the booking in the "Bookings" menu, then verify the lead passenger details\n4. Click "Cases" > "Create Case" and select "Request for Information" (RFI) as the case type\n5. Add detailed notes explaining the situation in the "Notes" tab\n6. Request a signed Indemnity form\n7. Open the "Attachments" tab and upload the Indemnity form once received\n8. Assign or escalate the case to the appropriate team for approval, then Save\n9. Monitor the case status in the "My Open Cases" queue until resolved`,tip:`No authorised non-lead means no booking details until the Indemnity form is approved.`},
+  {q:`6. Cold transfer with previous GDPR. (You receive a transferred call with notes saying "GDPR already passed.")`,a:`1. Ignore the previous GDPR notes\n2. Complete a fresh GDPR verification from scratch\n3. Ask: "Who am I speaking to today?"\n4. Open C4C and search the booking from the "Bookings" menu\n5. Verify 3 data points: Name, Departure Date, DOB\n6. Only proceed after verification is complete\n7. Open the existing case if one exists, go to the "Notes" tab, add the note "Second GDPR verification completed" with a timestamp, then Save\n8. Proceed with the query`,tip:`Never trust GDPR notes from another agent.`},
+  {q:`7. Customer does not know the departure date. ("I'm travelling sometime in August but can't remember the exact date.")`,a:`1. Ask for the booking reference or the confirmation email\n2. If unavailable, ask for approximate travel dates\n3. Open C4C > "Customers" > Advanced Search (funnel icon), enter the lead passenger name and click "Go"\n4. Click the customer name to open Customer View\n5. Open the "BOOKINGS" tab and review all bookings for the customer\n6. Once identified, complete the remaining GDPR checks\n7. Confirm the exact departure date with the customer\n8. Proceed with the query`,tip:`Use the customer's bookings list to find the date, then still complete all checks.`}]},
+ {t:'drill',title:`GDPR scenarios (3)`,sub:`Missing reference, multiple bookings and gift bookings.`,lead:`Scenario`,items:[
+  {q:`8. Booking reference not available. ("I don't have my booking reference with me.")`,a:`1. Confirm they are the lead passenger\n2. Ask for the full name as it appears on the booking\n3. Request the departure date (day, month, year)\n4. Search C4C Customer View by name\n5. Open the "BOOKINGS" tab and filter by departure date\n6. Verify the DOB to complete 3 data points\n7. Proceed once the booking is identified`,tip:`Name plus departure date plus DOB can replace the reference.`},
+  {q:`9. Multiple booking references. (The customer has several bookings and is not sure which one they are calling about.)`,a:`1. Search Customer View by the lead passenger name\n2. Go to the "BOOKINGS" tab and display all active bookings\n3. Read out the destinations and departure dates\n4. The customer confirms which booking\n5. Complete GDPR for that specific booking\n6. Navigate to that Booking View\n7. Proceed with the query`,tip:`Read out destinations and dates only, nothing more, until GDPR is complete for the chosen booking.`},
+  {q:`10. Surprise booking. (Someone calls about a booking they did not make: it was a gift.)`,a:`1. Verify they are listed as the lead passenger\n2. Complete the standard 3 data point checks\n3. If they do not know the details, ask them to check the confirmation email\n4. Search the booking in C4C once verified\n5. Provide the booking details\n6. Update the contact information if needed in the "Contact Info" tab\n7. Proceed with the query`,tip:`Being the lead passenger is what counts, not who paid.`}]},
+ {t:'cards',title:`C4C: what it is and what it does`,sub:`C4C is TUI's customer relationship management system.`,cards:[
+  {i:`search`,h:`What you can do in C4C`,p:`• Search and view customer information\n• Access booking details\n• Create and manage cases\n• Send emails to customers\n• View customer history and preferences`},
+  {i:`user`,h:`1. Customer management`,p:`• Search customers with advanced search (name, postcode, email, etc.)\n• View contact details and marketing preferences\n• Update customer information when needed`},
+  {i:`file`,h:`2. Booking access`,p:`• Search bookings by reference number (use the UK_ prefix)\n• View travel dates, accommodation and customer information\n• Access @com directly through C4C`},
+  {i:`list`,h:`3. Case handling`,p:`• Create new cases for customer queries\n• Search existing cases to avoid duplicates\n• Manage case status and add notes\n• Send email responses directly from cases`}]},
+ {t:'steps',title:`C4C: getting started`,sub:`The four steps to find a customer and handle a case.`,steps:[
+  {h:`Access C4C`,p:`Log in through Quick Links on Smile. Click into "Cases" then "Agent Desktop". Use Chrome or Edge, not IE.`},
+  {h:`Search for the customer`,p:`Use advanced search with at least 2 pieces of information, click "Go", then select the customer name to open their record.`},
+  {h:`Check for existing cases`,p:`Always check under both the customer AND bookings tabs. Verify the case status before creating a new one.`},
+  {h:`Create a case if needed`,p:`Use the quick create button or the case tab. Link it to the correct customer or booking and complete the required fields.`}],note:`Tips: personalise your view on first login to show the right columns. Use the home icon to return to the main page. Refresh tabs after changes to see updates. Recent History shows your last 14 accessed items. For detailed case handling, see the Handling Pre-Travel C4C Cases PowerPoint.`},
+ {t:'cards',title:`Quick case summary`,sub:`Use this to size up any call in a few seconds.`,cards:[
+  {i:`chat`,h:`Customer's concern or issue`,p:`What is the customer calling about?`},
+  {i:`clock`,h:`Departure date`,p:`When are they travelling?`},
+  {i:`clock`,h:`Today's date`,p:`How many days to departure?`},
+  {i:`plane`,h:`Booking type`,p:`Flight only, package, cruise, third party, etc.`},
+  {i:`headset`,h:`How can I assist the customer?`,p:`Decide the next action and the right team or process.`}]},
+ {t:'drill',title:`Insurance: how to ask`,sub:`Check whether the customer has insurance and point them to their insurer.`,lead:`Situation`,items:[
+  {q:`Customer cancelling or cutting short a trip for an unforeseen reason`,a:`"Do you have travel insurance for your booking? If so, I'd recommend contacting your travel insurer to make a claim for this situation, as they handle cases like [illness/early departure/cancellation due to unforeseen events]."`,tip:`Only ask and direct them to their insurer. Do not confirm what the policy covers. Then note it under "Insurance?" in your call notes.`}]},
+ {t:'steps',title:`Handling a cancellation request`,sub:`Six steps, from understanding the reason to the follow-up.`,steps:[
+  {h:`Understand the reason`,p:`Ask what is prompting the cancellation, whether something specific has changed, and whether any concerns could be addressed.`},
+  {h:`Review the booking`,p:`Recall the booking by reference number and check the customer details. Review any incident memos or Holiday Change notes for existing issues.`},
+  {h:`Explore alternatives`,p:`A: modify the booking (dates, similar accommodation, flight timings). B: rebook a different holiday, with an incentive of up to 10% off the new booking if eligible. C: address the specific concern (follow the Flight Timing Change Policy for timing changes, review alternatives for hotel changes, address service issues).`},
+  {h:`Explain the terms if they insist`,p:`Cancellation fees apply: £200 per person for Short Haul, £250 per person for Long Haul. The full deposit must be paid before cancelling. The refund is processed within 14 days, minus the fees. Confirm: full deposit paid, understands the fees, certain to proceed.`},
+  {h:`Process the cancellation`,p:`Make sure the full deposit is paid (take payment if not). Click Cancel (bottom right of the booking), confirm the fee pop-up with YES, tick the reason, enter brief notes, tick the Confirmation box and click Proceed. Check any refund due on Booking Overview and add a booking memo.`},
+  {h:`Follow up`,p:`Confirm the cancellation, explain the refund timeline, provide any documentation and make sure all notes are in the system.`}],note:`Third-party supplier bookings (airport parking, lounges, transfers, excursions) are not cancelled automatically. Cancel them separately with the suppliers. These per-person fees come from the Pre-Travel training notes. Check them against the percentage scale under Cancellation terms before quoting.`},
+ {t:'drill',title:`Cancellation request: questions and key phrases`,sub:`What to ask and say at each stage. Be specific and avoid vague language.`,lead:`Stage`,items:[
+  {q:`Step 1: understand the reason`,a:`"May I ask what's prompting you to consider cancelling your holiday?"\n"Has something specific changed that's affecting your travel plans?"\n"Are there any particular concerns about your booking that we might be able to address?"`,tip:`Ask one, then listen.`},
+  {q:`Step 3: modify the existing booking`,a:`"Would changing your travel dates work better for you? We can look at alternative departure dates."\n"If the accommodation isn't quite right, we could explore similar alternatives in the same area."\n"For flight timing issues, we have flexibility to look at different options that might suit you better."`,tip:`Offer one alternative that fits their reason.`},
+  {q:`Step 3: rebook a different holiday`,a:`"Instead of cancelling, would you like to explore rebooking to a different destination or date?"\n"We can look at what's available that might better suit your current circumstances."\n"You may be entitled to an incentive of up to 10% off your new booking, which could help with any price difference."`,tip:`Only mention the incentive if the customer is eligible.`},
+  {q:`Step 4: explaining the terms`,a:`"I understand you'd like to proceed with the cancellation. Let me explain the terms:"\n"You'll need to have paid the full deposit before we can process the cancellation."\n"Once cancelled, we'll process your refund within 14 days, minus the applicable cancellation fees."`,tip:`Then confirm: "Have you paid the full deposit?", "Do you understand the cancellation fees that will apply?", "Are you certain you'd like to proceed?"`},
+  {q:`Empathetic opening`,a:`"I'm sorry to hear you're considering cancelling your holiday. Let's see how we can help."`,tip:`Warm first, then discover.`},
+  {q:`Exploring alternatives`,a:`"Before we proceed with cancellation, I'd like to explore some options that might work better for you."\n"We have several alternatives available that could address your concerns without needing to cancel."`,tip:`Try to save the sale before processing.`},
+  {q:`If the customer insists on cancelling`,a:`"I understand this is your decision. Let me walk you through the cancellation process and what to expect."\n"I'll make sure this is processed correctly for you and explain the timeline for your refund."`,tip:`Respect the decision and stay clear.`},
+  {q:`Avoiding vague language`,a:`Instead of "etc.": "This includes airport parking, lounge access, transfers, and any excursions you've booked."\nInstead of "and so on": "You'll receive a refund minus the cancellation fee of £200 per person for Short Haul flights."`,tip:`List the actual items.`}]},
+ {t:'cards',title:`Pre-travel timeframes (1)`,sub:`Close of business, TUI Flex and balance payment.`,cards:[
+  {i:`clock`,h:`Close of Business (COB)`,p:`Free changes and cancellations: by Contact Centre close on the day after booking.\nException: bookings within 14 days of departure, where cancellation charges apply.`},
+  {i:`shield`,h:`TUI Flex: bookings up to 6 April 2025`,p:`Changes and cancellations: up to 28 days before departure.\nPurchase window: at time of booking and more than 90 days before departure.`},
+  {i:`shield`,h:`TUI Flex: bookings from 7 April 2025`,p:`Amendments only: up to 28 days before departure.\nPurchase window: at time of booking and up to 90 days before departure.`},
+  {i:`card`,h:`Balance payment: bookings from 23 June 2025`,p:`TUI flights with beach packages: 30 days before departure\nRiver cruises: 30 days before departure\nThird-party shorthaul flights: 30 days before departure\nThird-party longhaul flights: 84 days before departure`},
+  {i:`card`,h:`Balance payment: bookings before 23 June 2025`,p:`Balance due 12 weeks (84 days) before departure.`}]},
+ {t:`cards`,title:`Pre-travel timeframes (2)`,sub:`Extensions, vouchers and special cases.`,cards:[
+  {i:`refresh`,h:`Balance extensions`,p:`Standard extension: up to 14 days after the original due date.\nExceptional circumstances: an additional 7 days (21 days in total).\nFinal deadline: 10 weeks (70 days) before travel.\nAutomatic cancellation: 63 days before travel if unpaid.`},
+  {i:`tag`,h:`Holiday vouchers`,p:`Valid for 18 months from the date of issue.\nCannot be redeemed within 14 days of departure.\nFull payment required within 12 weeks of departure.`},
+  {i:`clock`,h:`Last-minute bookings`,p:`Payment via Pay By Link: within 10 minutes from the email link click.`},
+  {i:`heart`,h:`Wedding bookings`,p:`Contract return: within 7 days if not done in store.`},
+  {i:`alert`,h:`Stamped bookings`,p:`Escalation required when more than 10 days have passed since the booking was stamped.`},
+  {i:`user`,h:`Customer care exceptions`,p:`Proof required from 1 October 2025.`}]},
+ {t:'steps',title:`Non-integrated refund`,sub:`Moving money out of a booking by hand. Do each payment separately.`,steps:[
+  {h:`Check the balance`,p:`Make sure there is a balance unpaid (a minus).`},
+  {h:`Open the payment`,p:`Go to Payment information > Booking > Payment.`},
+  {h:`One payment at a time`,p:`Complete the process per payment. If there are 10 payments, do each one separately, 1 by 1.`},
+  {h:`Change the view`,p:`Change the view to standard.`},
+  {h:`Note the information`,p:`Copy all the information into a sticky note.`},
+  {h:`Take the card details`,p:`Take the payment number, the expiry date and the APEX number (hover over the Visa payment).`},
+  {h:`Function`,p:`Select "Function" at the top, then "Non int - Refund".`},
+  {h:`Visa adjust`,p:`Select "Visa adjust".`},
+  {h:`Payment number`,p:`Enter 000000 plus the last 4 digits ("pay last").`},
+  {h:`Names`,p:`Enter the name of the cardholder and the name of the lead passenger.`},
+  {h:`Expiry and APEX reference`,p:`Select the expiry date and the APEX reference number.`},
+  {h:`Payment note and authorisation`,p:`Write on the payment note that you are transferring money to booking ref ***. A manager must authorise with their own username and password.`}]},
+ {t:'steps',title:`Non-integrated payment`,sub:`Adding the transferred money to the other booking.`,steps:[
+  {h:`Open the receiving booking`,p:`Open the booking you will add the payment to.`},
+  {h:`Function`,p:`Select "Function" > "Non int - Payment".`},
+  {h:`Same steps as the refund`,p:`Follow the same steps as the refund (card details, names, expiry date, APEX reference).`},
+  {h:`Positive amount`,p:`The amount has to be a positive value.`},
+  {h:`Payment note`,p:`Write on the payment note that you are transferring money from booking ref ***.`},
+  {h:`No authorisation needed`,p:`No manager authorisation is needed for the payment side.`}]},
+ {t:'cards',title:`Amendment fees, waivers and linked memos`,sub:`Codes and memos to use when moving a customer between bookings.`,cards:[
+  {i:`card`,h:`AFEE: adding amendment fees`,p:`Click on the booking, "Manual Prices", and set the price based on the T&Cs table.`},
+  {i:`tag`,h:`CANS: waiving fees`,p:`Use CANS and enter the amount you want to waive for the cancellation as a negative amount (with a minus).`},
+  {i:`file`,h:`CRBK - OREF`,p:`Memo left on the NEW booking with the OLD reference number.`},
+  {i:`file`,h:`CRBK - NREF`,p:`Memo left on the OLD booking with the NEW reference number.`},
+  {i:`list`,h:`BO / BEM with CAR`,p:`Leave a BOBEM memo with the procedures you followed and the CAR template: Code, Amount, Reason.`}]},
+ {t:'cards',title:`APEX: payment statuses`,sub:`What each status means and what can still be done.`,cards:[
+  {i:`check`,h:`AUTHORISED`,p:`Transaction approved by the acquirer. Can be captured or cancelled.`},
+  {i:`clock`,h:`CAPTURED`,p:`Queued for processing. Can still be cancelled.`},
+  {i:`check`,h:`SETTLED`,p:`Successfully processed. Can now be refunded.`},
+  {i:`refresh`,h:`REFUNDED`,p:`Successfully refunded. No further processing unless a partial refund.`},
+  {i:`alert`,h:`FAILED`,p:`Rejected by APEX, or a processing error occurred.`},
+  {i:`alert`,h:`DECLINED`,p:`Declined by the card issuer.`},
+  {i:`x`,h:`CANCELLED`,p:`Cancelled. No further processing allowed.`},
+  {i:`lock`,h:`3DS_REQUIRED`,p:`Enrolled for 3D Secure, awaiting customer authentication.`},
+  {i:`lock`,h:`AUTHENTICATION_REQUIRED`,p:`Created, but awaiting customer authentication.`},
+  {i:`clock`,h:`PENDING`,p:`Queued for processing.`},
+  {i:`alert`,h:`CHARGEBACK`,p:`Charged back by the customer.`},
+  {i:`shield`,h:`CHARGEBACK REVERSAL`,p:`Chargeback successfully defended and reversed.`}]},
+ {t:'cards',title:`APEX: viewing response codes`,sub:`Where to find the codes behind a payment.`,cards:[
+  {i:`search`,h:`Open the details`,p:`Find the transaction in APEX and click the three dots (...) at the end of the transaction row. This shows the card details, payment status and transaction codes.`},
+  {i:`list`,h:`Other code categories`,p:`• Card Holder Name Validation\n• CVV Responses\n• AVS Responses\n• Error Codes\n• Processing Errors - Reason Codes`}]},
+ {t:'cards',title:`Pre-Travel empowerment: when to use it`,sub:`Three situations only. Check the booking history first.`,cards:[
+  {i:`file`,h:`1. Brochure or web inaccuracy`,p:`When: the customer finds misleading or incorrect information in the brochure or website description.\nExample: the website shows a transfer time of 30 minutes from one airport but does not say it is 2 hours from another.\nReason code: CCEB.`},
+  {i:`alert`,h:`2. Service failure`,p:`When: issues outside your control that affect the customer experience.\nExamples: technical problems with the website, poor service from colleagues, call-back delays, payment issues, seating issues, unresolved issues.\nReason code: CCEE.`},
+  {i:`refresh`,h:`3. Holiday Change: external admin costs`,p:`When: the customer paid extra costs because of a TUI-led holiday change.\nThis does NOT compensate for the holiday change itself, only the additional costs.\nExample: extra fees to rebook flights or accommodation because TUI changed the dates.\nReason code: CCEH.`}]},
+ {t:'cards',title:`Pre-Travel empowerment: amounts and rules`,sub:`Maximum amounts are the same for all three situations.`,cards:[
+  {i:`card`,h:`Advisor maximum`,p:`£100 per person (£200 per booking).`},
+  {i:`star`,h:`Manager maximum`,p:`£300 per booking (or 10% for high-value bookings).`},
+  {i:`search`,h:`Check the history first`,p:`Always check the booking history to make sure the issue has not already been resolved.`},
+  {i:`chat`,h:`Statement to read`,p:`"I'd like to confirm you are happy that this complaint has now been fully resolved for you."`},
+  {i:`tag`,h:`Promo codes`,p:`Use promo code CCEM with the reason code: CCEB (brochure/web), CCEE (service failure) or CCEH (holiday change costs).`},
+  {i:`file`,h:`Memo`,p:`Add a full booking memo using the template.`}]},
+ {t:'cards',title:`Internal teams: who handles what`,sub:`More teams Pre-Travel works with. The main contact details are under "Who to contact: teams".`,cards:[
+  {i:`star`,h:`Directors Team`,p:`Escalated Pre-Travel cases that come through the Directors office.\nUrgent cases (press cases, within 14 days of departure).\nExceptional circumstances (large bookings, special events, King's Garden Party invitations).`},
+  {i:`users`,h:`Pre-Flight Customer Logistics Team`,p:`Full name changes (requires unchecking customers) and flight-related logistics issues.\nContact via the Teams Channel (not email from 7 July 2025). 48-hour response time.\nTeam Managers escalate specific issues to them following set procedures.`},
+  {i:`plane`,h:`Flight Trading Team`,p:`Operational and commercial responsibilities.\nRepackage requests, seat movements and holiday changes, cancellations and timing change incidents.`},
+  {i:`globe`,h:`Musement / EAT Team (Experiences and Tours)`,p:`Extra Service upgrade issues, experience bookings and confirmations, refunds for missed Local Expert appointments.`},
+  {i:`shield`,h:`Legal Team`,p:`Legal proceedings complaints and complex legal cases.`},
+  {i:`frown`,h:`Detractor Team (within After Travel)`,p:`Reaches out to customers who scored 0-3 on post-holiday surveys. Handles missed callbacks. Notes go in Atcom and AWS.`},
+  {i:`file`,h:`After Travel Team (extra detail)`,p:`Reviews customer feedback within 28 days. Compensation vouchers and BACS payments. Proactive complaints and incidents. Pre-Travel supports customers chasing After Travel or who missed their calls, and escalates with the Pre-Travel Form.`},
+  {i:`heart`,h:`Team Leaders, Team Partners and HEN`,p:`Escalate urgent cases to Team Leaders and Team Partners for acknowledgement. HEN (Higher Escalation Network) is involved in urgent case escalations.`},
+  {i:`headset`,h:`Contact Centre and TUI Retail colleagues`,p:`Pre-Travel supports them with various queries and processes.`},
+  {i:`list`,h:`Key working relationships`,p:`• Committed allocation flights are handled directly or managed within Pre-Travel\n• 3PF flights and dynamic packages must be handled by the 3PF team\n• Tours bookings must be handled by the TUI Tours Team`}]}
+]},
 {id:'lab',name:'Practice lab',icon:'target',acc:'#e0568f',soft:'#ffe6f0',slides:[
  {t:'roleplay',title:'Roleplay generator',sub:'Get a random scenario, run the call out loud with a timer, then score yourself honestly.'},
  {t:'roulette',title:'Objection roulette',sub:'A random customer line from the whole deck. Say your answer out loud, then reveal the model response.'},
@@ -1255,8 +1354,9 @@ const POOL={};RAW.forEach(s=>s.slides.forEach(d=>{POOL[d.title]=d}));
 const LAYOUT=[
  ['start','start','Start here','home',['TUI Pre-Travel Playbook','How to use this deck','What Pre-Travel looks after','What customers expect when they call','The 7-step call framework']],
  ['map','start','Mind map','target',['Mind map: tap to explore']],
- ['call','call','Call Mode','headset',['Call Mode: your 7 steps','Buying time (while you search)','Call notes: fill and copy']],
+ ['call','call','Call Mode','headset',['Call Mode: your 7 steps','Buying time (while you search)','Call notes: fill and copy','Quick case summary']],
  ['open','call','1. Open and verify','phone',['Voice & tone: the first 10 seconds','Inbound openings: the essentials','Opening: tricky starts','Outbound, sales and routing','GDPR verification: green, red and retail','Verification: edge cases']],
+ ['gdpr','call','GDPR scenarios and C4C','lock',['GDPR scenarios (1)','GDPR scenarios (2)','GDPR scenarios (3)','C4C: what it is and what it does','C4C: getting started']],
  ['sell','call','2. Discover and sell','trend',['Open and closed questions','Discovery in action','Mindset: sell by solving','The upsell formula','Upsell: bags and meals','Upsell: upgrade the booking','Upsell: hotel, transfers and extras','Cross-sell & retention','Upselling: say this, not that']],
  ['close','call','3. Hold and close','check',['Hold, transfer and escalate','Call control phrases','Closing the call']],
  ['obj','sit','Objections','shield',['The ACAA method for any objection','Price objections (1)','Price objections (2)','Hesitation & delay','Doubts & questions','Trust & service objections (1)','Trust & service objections (2)']],
@@ -1270,9 +1370,12 @@ const LAYOUT=[
  ['atcom','money','Atcom: amend and cancel','list',['Atcom: amendments','Atcom: cancelling a booking','Atcom: cancellation fee and consent']],
  ['fees','money','Fees, payments and read back','card',['Admin fees: when to collect','Explaining fees and payments','Full read back: what to cover']],
  ['ovr','money','Overrides and promo codes','tag',['Stop sale overrides','Price and voucher overrides','Promotional codes: apply and validate','Promo code invalid after an amendment']],
- ['canc','money','Cancellation and calculators','alert',['TUI UK cancellation terms','Cancellation: worked examples','Explaining cancellation charges','Calculators: dates and cancellation']],
+ ['canc','money','Cancellation and calculators','alert',['TUI UK cancellation terms','Cancellation: worked examples','Explaining cancellation charges','Handling a cancellation request','Cancellation request: questions and key phrases','Insurance: how to ask','Calculators: dates and cancellation']],
+ ['time','money','Timeframes','clock',['Pre-travel timeframes (1)','Pre-travel timeframes (2)']],
+ ['pay','money','Refunds, payments and APEX','card',['Non-integrated refund','Non-integrated payment','Amendment fees, waivers and linked memos','APEX: payment statuses','APEX: viewing response codes']],
+ ['emp','money','Empowerment','star',['Pre-Travel empowerment: when to use it','Pre-Travel empowerment: amounts and rules']],
  ['memo','ref','Memos and codes','file',['Adding a memo and the CAR template','Memo codes','Price and cost codes','Abbreviations','Welfare and assisted travel codes','ABTA numbers']],
- ['tui','ref','TUI reference','book',['Who to contact: teams','TUI app: what to tell customers','TUI app: key benefits','Quality 1: Customer focus','Quality 2: Sales excellence','Quality 3: Expertise','Quality 4: Efficiency']],
+ ['tui','ref','TUI reference','book',['Who to contact: teams','Internal teams: who handles what','TUI app: what to tell customers','TUI app: key benefits','Quality 1: Customer focus','Quality 2: Sales excellence','Quality 3: Expertise','Quality 4: Efficiency']],
  ['lab','prac','Practice lab','target',['Roleplay generator','Objection roulette','Mindset & what good looks like']]
 ];
 const SECTIONS=LAYOUT.map(a=>({id:a[0],grp:a[1],name:a[2],icon:a[3],acc:GRP[a[1]][1],soft:GRP[a[1]][2],slides:a[4].map(t=>{if(!POOL[t])console.warn('MISSING SLIDE: '+t);return POOL[t]}).filter(Boolean)}));
@@ -1676,7 +1779,11 @@ stage.addEventListener('click',e=>{
    ['calculator','calculate','days','nights','date','cancellation','terms','حاسبه','حساب','ايام','ليالي','شروط','الغاء'],
    ['app','download','checklist','boarding','tui app','تطبيق','ابليكيشن','تحميل'],
    ['quality','gdpr','memo','abta','codes','bem','ben','nla','كواليتي','ابتا','كود','جي دي بي ار'],
-   ['atcom','amend','amendment','override','promo','promotional','memo','car','stop sale','admin fee','read back','direct debit','اتكوم','تعديل','ميمو'],
+   ['c4c','case','cases','involved parties','indemnity','rfi','gdpr','non lead','lead passenger','third party agent','3pa','كيس','كيسز'].map(x=>x),
+  ['apex','status','settled','captured','chargeback','non integrated','non int','refund','payment','ابكس','استرداد'].map(x=>x),
+  ['empowerment','ccem','cceb','ccee','cceh','compensation','brochure','service failure','تعويض'].map(x=>x),
+  ['timeframe','cob','flex','balance extension','voucher','deadline','موعد','ديدلاين'].map(x=>x),
+  ['atcom','amend','amendment','override','promo','promotional','memo','car','stop sale','admin fee','read back','direct debit','اتكوم','تعديل','ميمو'],
    ['seat','seats','sys','xleg','xspc','legroom','infant','كرسي','مقعد','رضيع'],
    ['team','teams','contact','phone','assisted','tours','after travel','فريق','تواصل','رقم'],
    ['paris','france','eiffel','louvre','disney','باريس','فرنسا'],
@@ -1818,5 +1925,6 @@ stage.addEventListener('click',e=>{
 const h=parseInt((location.hash||'').replace('#',''),10);
 go(Number.isFinite(h)&&h>=1&&h<=total?h-1:0);
 </script>
+<script>if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0)navigator.serviceWorker.register('sw.js').catch(function(){})</script>
 </body>
 </html>
