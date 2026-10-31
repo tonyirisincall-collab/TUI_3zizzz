@@ -446,6 +446,51 @@ html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:
 .okt{color:var(--good)!important}.badt{color:var(--bad)!important}
 @media(max-width:700px){.ntp{right:10px;width:calc(100% - 20px)}}
 .ntbtn{margin-left:0}
+
+.ntp{width:340px;max-height:calc(100vh - 80px);overflow-y:auto}
+.ntp textarea{height:84px}
+.ntl{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:2px 0 6px}
+.ntl span{text-transform:none;letter-spacing:0;font-weight:500}
+.ntr{margin-bottom:10px}
+.ntq{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.ntq button{border:1px solid var(--line);background:var(--surface2);color:var(--ink);border-radius:999px;padding:4px 10px;font:600 12px Inter,system-ui,sans-serif;cursor:pointer}
+.ntq button:hover{border-color:var(--brand);color:var(--brand)}
+.ntc{display:flex;gap:8px;align-items:center}
+.ntc button{width:22px;height:22px;border-radius:50%;border:2px solid transparent;background:var(--c);cursor:pointer;padding:0;box-shadow:0 0 0 2px var(--surface) inset}
+.ntc button.on{border-color:var(--ink)}
+.ntc em{font-style:normal;font-size:12px;color:var(--muted);margin-left:4px}
+.ntrh{display:flex;align-items:center;margin:12px 0 6px}
+.ntrh b{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ntrh span{margin-left:auto;font-size:11px;color:var(--muted)}
+.ri{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-left:4px solid var(--c);border-radius:10px;padding:8px;margin-bottom:6px;background:color-mix(in srgb,var(--c) 7%,var(--surface))}
+.ri.over{border-color:var(--bad);border-left-color:var(--bad);background:var(--bad-soft)}
+.rit{min-width:0;flex:1}
+.rin{font-size:13px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
+.rim{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:4px;font-size:11.5px;color:var(--muted)}
+.rp{border-radius:999px;padding:1px 8px;font-weight:700;font-size:11px;background:color-mix(in srgb,var(--c) 18%,var(--surface));color:var(--ink)}
+.ri.soon .rp{background:var(--amber-bg);color:var(--amber-ink)}
+.ri.over .rp{background:var(--bad);color:#fff}
+.ria{display:flex;gap:4px}
+.ria button{border:0;border-radius:8px;min-width:28px;height:28px;padding:0 7px;cursor:pointer;background:var(--surface3);color:var(--ink);font:700 11.5px Inter,system-ui,sans-serif;display:inline-flex;align-items:center;justify-content:center}
+.ria button.dn{background:var(--good-soft);color:var(--good)}
+.ria .ic{width:15px;height:15px}
+.rempty{font-size:12.5px;color:var(--muted);padding:4px 2px}
+.rbadge{display:none;background:var(--bad);color:#fff;border-radius:999px;font-size:11px;padding:2px 7px;margin-left:2px}
+.rbadge.on{display:inline-block}
+.rbadge.pulse{animation:rpulse 1.6s ease-in-out infinite}
+@keyframes rpulse{50%{transform:scale(1.18)}}
+#rtoasts{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column-reverse;gap:8px;width:min(420px,calc(100% - 20px));pointer-events:none}
+.rt{pointer-events:auto;display:flex;gap:8px;align-items:center;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--c);border-radius:14px;padding:10px 10px 10px 12px;box-shadow:var(--shadow),0 18px 40px -16px rgba(0,0,0,.4);animation:rtin .4s var(--ease)}
+.rt.over{border-left-color:var(--bad)}
+@keyframes rtin{from{opacity:0;transform:translateY(10px)}}
+.rtx{flex:1;min-width:0}
+.rtx b{display:block;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--c)}
+.rt.over .rtx b{color:var(--bad)}
+.rtx span{display:block;font-size:13.5px;margin-top:2px;word-break:break-word}
+.rt button{border:0;border-radius:8px;height:30px;padding:0 10px;cursor:pointer;background:var(--surface3);color:var(--ink);font:700 12px Inter,system-ui,sans-serif}
+.rt button.dn{background:var(--good);color:#fff}
+.rt button.x{padding:0 8px;color:var(--muted)}
+@media(max-width:700px){.ntp{width:calc(100% - 20px)}}
 .nf textarea.sh1{min-height:38px}
 .nav-h{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:16px 10px 4px}
 .card a{color:var(--brand);word-break:break-all}
@@ -512,7 +557,7 @@ html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:
       <h1>TUI Pre-Travel Playbook <span>&middot; scripts, objections &amp; practice</span></h1>
       <button class="qbtn" id="qbtn" type="button" aria-label="Quick find"><svg class="ic"><use href="#i-search"/></svg><span class="lbl">Quick find</span><kbd>/</kbd></button>
       <button class="qbtn mbtn" id="mmBtn" type="button" aria-label="Mind map"><svg class="ic"><use href="#i-target"/></svg><span class="lbl">Map</span></button>
-      <button class="qbtn ntbtn" id="ntBtn" type="button" aria-label="Quick note" title="Quick note"><svg class="ic"><use href="#i-file"/></svg><span class="lbl">Notes</span></button>
+      <button class="qbtn ntbtn" id="ntBtn" type="button" aria-label="Quick note" title="Quick note"><svg class="ic"><use href="#i-file"/></svg><span class="lbl">Notes</span><b class="rbadge" id="ntBadge"></b></button>
       <button class="qbtn cbtn" id="qcBtn" type="button" aria-label="Call quality checklist" title="Call quality checklist"><svg class="ic"><use href="#i-check"/></svg><span class="lbl">Quality</span><b id="qcBadge">0/10</b></button>
       <button class="qbtn sbtn" id="stBtn" type="button" aria-label="Stall phrase reminders" title="Stall phrases: appear and disappear by themselves"><svg class="ic"><use href="#i-clock"/></svg><span class="lbl">Stall</span><i class="sdot"></i></button>
       <button class="qbtn pbtn" id="pbtn" type="button" aria-label="Pinned scripts"><svg class="ic"><use href="#i-star"/></svg><span class="lbl">Pinned</span><b id="pbadge">0</b></button>
@@ -528,7 +573,7 @@ html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:
     <div class="mainrow"><div class="stage" id="stage"></div>
     <aside class="qc" id="qc" aria-label="Call quality checklist"><div class="qcin"><div class="qch"><b>Call quality</b><span id="qcCount">0/10</span><button type="button" id="qcNew" title="Start a new call: clear all ticks">New call</button><button type="button" id="qcX" title="Hide for now">&times;</button></div><div class="qcbar"><i id="qcProg"></i></div><div id="qcList"></div></div></aside></div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <div class="ntp" id="nt"><div class="nth"><b>Quick note</b><button type="button" id="ntX" aria-label="Close">&times;</button></div><textarea id="ntText" placeholder="Type a note..."></textarea><div class="ntb"><button type="button" class="btn solid" id="ntSave">Save</button><button type="button" class="btn ghost" id="ntClear">Clear</button><span id="ntMsg"></span></div></div>
+    <div class="ntp" id="nt"><div class="nth"><b>Quick note</b><button type="button" id="ntX" aria-label="Close">&times;</button></div><textarea id="ntText" placeholder="Type a note..."></textarea><div class="ntr"><span class="ntl">Remind me <span>(optional)</span></span><input type="datetime-local" id="ntWhen" aria-label="Reminder date and time"><div class="ntq"><button type="button" data-q="30">+30 min</button><button type="button" data-q="60">+1 hour</button><button type="button" data-q="tom">Tomorrow 9:00</button><button type="button" data-q="none">No reminder</button></div><div class="ntc" id="ntCols" role="group" aria-label="Reminder colour"></div></div><div class="ntb"><button type="button" class="btn solid" id="ntSave">Save</button><button type="button" class="btn ghost" id="ntClear">Clear</button><span id="ntMsg"></span></div><div class="ntrh"><b>Reminders</b><span id="ntCount"></span></div><div id="ntList"></div></div><div id="rtoasts" aria-live="polite"></div>
     <div class="dock"><div class="dock-in">
       <button id="prev" aria-label="Previous slide"><svg class="ic"><use href="#i-left"/></svg></button>
       <div class="cn"><span id="cnt">1 / 1</span><small id="secname"></small></div>
@@ -549,7 +594,7 @@ html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:
 
 <script>
 /* ---------- helpers ---------- */
-const NOTES_URL='https://script.google.com/macros/s/AKfycbyJMLAEs4GYkQFBwYR4ELO-dxMru500GZXOJ_s3YEG4886hzX-RINP424tvzsaMyAVS/exec'; /* paste the web app link between the quotes */
+const NOTES_URL='https://script.google.com/macros/s/AKfycbxyfI8xQjC4Zr-q9d-G0S5mFi_UYnKovcWTJi_lsK-WxMw29z1hfbPrSBMndFQIeR0Z/exec'; /* paste the web app link between the quotes */
 const ic=(n,c='')=>`<svg class="ic ${c}" aria-hidden="true"><use href="#i-${n}"/></svg>`;
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const fmt=s=>esc(s).replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>').replace(/\[([^\]]+)\]/g,'<span class="ph">[$1]</span>').replace(/\n/g,'<br>');
@@ -608,8 +653,8 @@ const RAW=[
 
 {id:'disc',name:'Verify & discover',icon:'lock',acc:'#6a52d9',soft:'#ece8ff',slides:[
  {t:'drill',title:'Verification: edge cases',sub:'The awkward ones that trip people up.',lead:'Situation',items:[
-  {q:'Customer fails the security check',a:'"I\'m sorry, I\'m not able to go any further without completing the checks. It\'s to keep your details safe. If you can find [the confirmation email / the right details], call us back and we\'ll gladly help."',tip:'Firm and kind. Never give hints about the correct answers.'},
-  {q:'Booking was made through a travel agent',a:'"Since this was booked through [agent], they manage the booking on your behalf. I\'d recommend contacting them directly. In the meantime, I\'m happy to check what I can see on our side."',tip:'Policy-dependent. Check what you are permitted to do on agent bookings.'},
+  {q:'Customer fails the security check',a:'"I\'m sorry for the inconvenience. These checks are there to keep your booking and personal details safe, so I do need them completed before I can go any further. If you can find [the confirmation email / the right details], call us back and I\'ll be glad to help you straight away."',tip:'Firm and kind. Never give hints about the correct answers. End with a clear way forward.'},
+  {q:'Booking was made through a travel agent',a:'"Since this was booked through [agent], they manage the booking on your behalf, so they\'ll be best placed to help. I\'d recommend contacting them directly, and in the meantime I\'m happy to check what I can see on our side."',tip:'Policy-dependent. Check what you are permitted to do on agent bookings.'},
   {q:'Adult child calling for an elderly parent',a:'"Thank you for helping your [mum/dad]. I\'ll need them to give us permission first. Is [name] with you? I can speak to them briefly for authorisation, then I\'m happy to help."',tip:'Be patient and respectful. Offer a way forward, never a flat no.'},
   {q:'Customer wants to change phone or email details',a:'"Of course. Once the security check is complete, I\'ll update that. Could you confirm the new [email / number], and I\'ll read it back to you to be sure it\'s right."',tip:'Always read contact details back letter-by-letter or digit-by-digit.'}]},
  {t:'drill',title:'Discovery in action',sub:'Turn vague requests into clear needs.',lead:'Customer says',items:[
@@ -645,7 +690,7 @@ const RAW=[
   {q:'Customer has not arranged airport transfers',a:'"Do you have transport arranged from the airport to your hotel? We can add a transfer so you\'re met on arrival, which is especially handy after a long flight. It\'s £[X] per person."',tip:'Ask about their plan first, then offer the solution.'},
   {q:'Customer booked flights and a separate hotel',a:'"Would you like me to quote a package for the same dates? Package holidays include extra financial protection, and sometimes the combined price works out better."',tip:'Check current pricing and ATOL/protection wording with your account policy before promising.'}]},
  {t:'drill',title:'Cross-sell & retention',sub:'Insurance, cancellations and customers who say no to everything.',lead:'Situation',items:[
-  {q:'Travel insurance: customer has not mentioned any',a:'(If authorised) "Have you arranged travel insurance for the trip? I can give you the details of the cover we offer."\n(If not authorised) "I\'m not able to advise on insurance, but it\'s strongly recommended to have cover in place before you travel."',tip:'Insurance is regulated. Use only approved wording and only if you are authorised.'},
+  {q:'Travel insurance: customer has not mentioned any',a:'(If authorised) "Have you arranged travel insurance for the trip? I can give you the details of the cover we offer."\n(If not authorised) "Insurance is something I\'m not able to advise on, but I\'d really recommend having cover in place before you travel, so you\'re protected if anything changes."',tip:'Insurance is regulated. Use only approved wording and only if you are authorised.'},
   {q:'Customer wants to cancel the whole booking',a:'"I\'m sorry to hear that. Before I go ahead, may I ask what\'s changed? There may be options like moving the dates or changing the destination that could work. If not, I\'ll explain exactly what the cancellation involves."',tip:'Understand the reason first, then offer one alternative, then respect the decision.'},
   {q:'Customer says no to every add-on',a:'"Of course, no problem at all. I\'ve kept your booking as it is. If you change your mind, you can add extras up to [deadline] online or by calling us."',tip:'Never push after two clear no\'s. A good exit protects the relationship.'},
   {q:'Customer asks: "Is it worth it?" about an add-on',a:'"Good question. If [their specific concern, e.g. sitting together / bringing extra luggage] matters to you, then yes, it\'s good value. If it doesn\'t, you can skip it and nothing is lost."',tip:'Honesty builds trust and often leads to more sales.'}]},
@@ -680,7 +725,7 @@ const RAW=[
   {q:'"I\'ll just book it online myself."',a:'"That\'s absolutely fine. Is there anything stopping you from booking today with me? I can check the best price now and add anything you need, so it\'s all done in one go."',tip:'Offer a clear benefit of booking now. Accept their choice if they refuse.'}]},
  {t:'drill',title:'Doubts & questions',sub:'Reassure without over-promising.',lead:'Customer says',items:[
   {q:'"Is this really the best price?"',a:'"This is the best available price for these dates and this flight right now. If you\'d like, I can check a day either side to see whether you could save."',tip:'Be honest. "Best available now" is accurate and safe.'},
-  {q:'"Is it safe to travel to [destination]?"',a:'"I can\'t advise on safety myself. The official guidance comes from the UK Foreign, Commonwealth & Development Office, so I\'d recommend checking their travel advice before you travel. I can explain our policy for bookings if the advice changes."',tip:'Point to the official source. Never give your own opinion on safety.'},
+  {q:'"Is it safe to travel to [destination]?"',a:'"I want you to have the most reliable information, so the best source is the official UK Foreign, Commonwealth & Development Office travel advice. I\'d recommend checking it before you travel, and I can explain what the options are for your booking if the advice changes."',tip:'Point to the official source. Never give your own opinion on safety.'},
   {q:'"Do I have to pay for my baby / toddler?"',a:'"It depends on your child\'s age on the date of travel. Let me check the exact rules for your flight so I can give you accurate pricing."',tip:'Age-based fares vary. Verify before quoting.'},
   {q:'"I\'m not sure about the destination at all."',a:'"That\'s fine, we can work it out together. What matters most: beaches, culture, food, or somewhere easy with children? Tell me your dates and budget and I\'ll suggest a few options."',tip:'You become the guide. Narrow down with questions.'}]},
  {t:'drill',title:'Trust & service objections (1)',sub:'When the customer is questioning you or the process.',lead:'Customer says',items:[
@@ -716,14 +761,18 @@ const RAW=[
   {q:'Customer insists on a supervisor for the second time',a:'"Certainly. I\'ll arrange for a team leader to [call you back by [time] / join us]. Let me give you a reference and brief them fully so you won\'t need to repeat yourself."',tip:'Follow your escalation procedure. Give a reference and a timeframe.'},
   {q:'Customer is crying or distressed (e.g. bereavement)',a:'"I\'m so sorry for your loss. Please take your time. I\'m going to help you with everything we need to do. Let\'s start with what you\'d like to happen with the booking."',tip:'Slow down. Be gentle. Use the vulnerable-customer procedure.'},
   {q:'Customer keeps talking over you',a:'"I want to make sure I understand everything. May I ask for a moment to check this properly? Then I\'ll tell you exactly what I can do."',tip:'Calm, steady tone. Don\'t raise your voice to match them.'},
-  {q:'Customer demands a refund on a non-refundable fare',a:'"I\'m sorry. I can see this fare is non-refundable under the terms. What I can do is [alternatives such as changing dates, credit, or looking at what the insurance covers]. Would you like to look at those?"',tip:'Be clear about the rule, then lead with what you can do.'}]},
+  {q:'Customer demands a refund on a non-refundable fare',a:'"I\'m sorry, I know that\'s not what you hoped for. I can see this fare is non-refundable under the terms. What I can do is [alternatives such as changing dates, credit, or looking at what the insurance may cover]. Which of those would you like to look at first?"',tip:'Acknowledge the disappointment, name the rule once, then spend the time on what you can do.'}]},
  {t:'compare',title:'Phrases to use and phrases to avoid',sub:'Words can calm a call or light it up.',left:'Use',right:'Avoid',rows:[
   ['I understand how frustrating this is.','Calm down.'],
   ['Let me check what I can do.','That\'s not my department.'],
   ['I don\'t have that information, but I\'ll find out.','I don\'t know.'],
   ['Here\'s what I can do for you...','There\'s nothing I can do.'],
   ['I\'m sorry you\'ve had that experience.','That\'s our policy.'],
-  ['Let me explain how this works.','You should have read the terms.']]},
+  ['Let me explain how this works.','You should have read the terms.'],
+  ['What I can do is...','I can\'t do that.'],
+  ['I\'ll call you back by [time].','Someone will call you.'],
+  ['I\'ll stay with you until this is sorted.','You\'ll have to call another team.'],
+  ['I\'m sorry for the disappointment, and here is what we can do.','Unfortunately, no.']]},
  {t:'cards',title:'Reset after a tough call',sub:'Protect your energy so the next customer gets your best.',cards:[
   {i:'refresh',h:'Reset breath',p:'Slow breath in, slower out. Ten seconds. Drop your shoulders.'},
   {i:'users',h:'Don\'t carry it',p:'The anger was about the situation, not about you. Say that to yourself.'},
@@ -786,7 +835,9 @@ const RAW=[
   {q:'Standard close',a:'"Is there anything else I can help you with today?"\n"Just to make you aware, you will receive an updated email confirmation within the next 24 hours."',tip:'Add a short recap of what you did. Summaries prevent follow-up calls.'},
   {q:'Positive close after a sale',a:'"Thank you for choosing TUI. It\'s been a pleasure helping you, and I hope you have a wonderful holiday!"',tip:'Warm, specific, unhurried.'},
   {q:'Closing after a difficult call',a:'"Thank you for your patience today, and I\'m sorry again for the trouble. I\'ve noted everything on your account, and if you need anything else, please call us and quote [reference]."',tip:'End steady and respectful. Leave on a solution, not an argument.'},
-  {q:'Mentioning a survey (if your process allows)',a:'"You\'ll receive a survey after this call - we\'d really value your feedback."',tip:'Never coach or pressure for scores. Mention it neutrally.'}]},
+  {q:'Closing after saying no to something',a:'"I know that wasn\'t the answer you were hoping for, and I\'m sorry. What we\'ve agreed is [recap], and I\'ve noted everything on your booking. If you\'d like to talk it through again, please call us and we\'ll be glad to help."',tip:'Recap what you did do, not only what you could not. End kindly.'},
+  {q:'Closing with a next step',a:'"So to recap, I\'ll [action] by [time], and you\'ll hear from us by [email/phone]. Is that okay with you?"',tip:'A clear time and channel prevent chasing calls and unhappy surveys.'},
+  {q:'Mentioning a survey (if your process allows)',a:'"You\'ll receive a survey after this call - we\'d really value your feedback."',tip:'Never ask for a score, coach or pressure. Mention it neutrally, then let the service speak for itself.'}]},
 ]},
 
 {id:'pre',name:'Pre-Travel: Hotels',icon:'home',acc:'#0e7490',soft:'#cffafe',slides:[
@@ -1015,9 +1066,9 @@ const RAW=[
  {t:'calc',title:'Calculators: dates and cancellation',sub:'Work out the trip length, or what a customer would pay to cancel today.'},
  {t:'drill',title:'Explaining cancellation charges',sub:'Calm, factual and clear. Use the calculator for the exact figure.',lead:'Customer says',items:[
   {q:'"How much will it cost to cancel?"',a:'"Let me check. It depends on how many days there are before you travel, and it\'s a percentage of the total price. May I confirm your departure date and the total price so I can give you the exact figure?"',tip:'Use the cancellation calculator, then read out the figure.'},
-  {q:'"Why do I lose my deposit?"',a:'"Your deposit is non-refundable under the booking terms, even if the cancellation charge works out lower than the deposit. The charges cover our costs and the risk that we can\'t resell the holiday."',tip:'Factual and calm. Do not apologise for the policy.'},
+  {q:'"Why do I lose my deposit?"',a:'"I understand it\'s frustrating to hear. Your deposit is non-refundable under the booking terms, even if the cancellation charge works out lower than the deposit. The charges help cover costs already committed for your holiday. Before we decide anything, would you like me to check whether changing your dates would suit you better?"',tip:'Factual and calm. Explain the reason, then offer an option. Apologise for the disappointment, not for the rule.'},
   {q:'"Can I move the dates instead?"',a:'"Let me check. A change can also have a fee and a price difference, so I\'ll compare it with the cancellation charge and give you both figures."',tip:'Compare the two costs before the customer decides.'},
-  {q:'"Will my insurance cover it?"',a:'"I can\'t advise on your policy, but it\'s worth checking whether it covers cancellation, for example for unforeseen illness. Your policy documents will tell you what\'s covered."',tip:'Never confirm cover. Point to their policy.'}]}
+  {q:'"Will my insurance cover it?"',a:'"I\'m not able to confirm what your policy covers, but it\'s well worth checking whether it covers cancellation, for example for unforeseen illness. Your policy documents will show exactly what\'s included, and I\'m happy to note on your booking that you\'re looking into it."',tip:'Never confirm cover. Point to their policy and offer a helpful next step.'}]}
 ]},
 {id:'ref',name:'TUI reference',icon:'book',acc:'#7e22ce',soft:'#f3e8ff',slides:[
  {t:'drill',title:'TUI app: what to tell customers',sub:'Promote the app before every trip. Say it naturally and tie it to what the customer needs.',lead:'Say',items:[
@@ -1087,10 +1138,10 @@ const RAW=[
   {h:`Information given`,p:`Resort transfer times, the Travel Aware guidelines, and the Package Travel Regulations information.`},
   {h:`Add the memo`,p:`After the customer confirms, add the mandatory memo to the booking.`}],note:`Then answer "Full read back given" in your call notes.`},
  {t:'drill',title:`Explaining fees and payments`,sub:`Clear, calm and factual.`,lead:`Situation`,items:[
-  {q:`Customer is frustrated by amendment fees`,a:`"I understand amendment fees can be frustrating. These fees cover the costs we incur when making changes with airlines, hotels, and other suppliers. The terms were outlined at booking, but let me see what options might be available to help..."`,tip:`Acknowledge the frustration, explain what the fee covers, say the terms were agreed at booking, offer alternatives (e.g. an insurance claim if applicable) and mention flexibility options for future bookings.`},
+  {q:`Customer is frustrated by amendment fees`,a:`"I understand amendment fees can be frustrating, and I'm sorry. They help cover what we have to pay airlines, hotels and other suppliers when a booking is changed. Let me see exactly what I can do to help."`,tip:`Acknowledge the frustration, explain what the fee covers, say the terms were agreed at booking, offer alternatives (e.g. an insurance claim if applicable) and mention flexibility options for future bookings.`},
   {q:`Direct Debit instalments`,a:`"Now let me explain your payment schedule. You've chosen to pay by Direct Debit with monthly instalments. Today, you'll pay the first deposit of £[X], which is your initial payment. Then you'll have [4] further monthly payments of £[X] each, taken automatically on the [20th] of each month - that's [20th April, 20th May, 20th June], and your final balance on [20th July]."`,tip:`Say each date and amount clearly.`},
   {q:`Admin fee: nothing to collect now`,a:`"I can help with that amendment. Let me check your payment status... Great news! You've already paid enough to cover the admin fee, so there's nothing additional to pay right now. The £[X] admin fee will be deducted from what you've already paid."`,tip:`When the customer has paid more than deposit + admin fees.`},
-  {q:`Admin fee: must be paid today`,a:`"For this amendment, there's a £[X] admin fee that needs to be paid today. Just so you're aware, this fee is non-refundable, even if you cancel later. Would you like to proceed?"`,tip:`When the customer has paid less than deposit + admin fees.`},
+  {q:`Admin fee: must be paid today`,a:`"Just so it's clear before we go ahead, there's a £[X] admin fee for this amendment that needs to be paid today. It's non-refundable, even if you cancel later, and I'd rather you know now than be surprised. Are you happy for me to continue?"`,tip:`When the customer has paid less than deposit + admin fees.`},
   {q:`After the amendment`,a:`"Your Direct Debit payments will automatically adjust to match the new booking cost."`,tip:`Atcom adjusts Direct Debits automatically.`}]},
  {t:'cards',title:`Admin fees: when to collect`,sub:`Compare what the customer has already paid with (deposit + admin fees).`,cards:[
   {i:`check`,h:`Paid MORE than deposit + admin fees`,p:`Do not collect the fees now. The fee comes out of what they have already paid.`},
@@ -1156,7 +1207,7 @@ const RAW=[
   {i:`file`,h:`BO / BEM`,p:`Standard booking memo. General customer interactions and conversations.`},
   {i:`clock`,h:`BE / BEN`,p:`Balance extension memo. Use when extending payment deadlines.`},
   {i:`shield`,h:`NLA / NLDA`,p:`Non-lead authorisation. Use for authorisations involving non-lead passengers.`},
-  {i:`refresh`,h:`HC / HCN`,p:`Holiday Change memos.`},
+  {i:`refresh`,h:`HC / HCN`,p:`Holiday Change memos. All HC stamps and supporting memos are on the next two pages.`},
   {i:`file`,h:`WTN / WEN`,p:`Alternative memo codes shown in training materials.`},
   {i:`star`,h:`QSM`,p:`Quick Service Memo. Notes on a specific service line (flight, accommodation) for special requests like birthdays or celebrations.`},
   {i:`list`,h:`Complex booking memo`,p:`For more detailed or complex booking situations.`},
@@ -1171,7 +1222,7 @@ const RAW=[
   {i:`clock`,h:`HCMH`,p:`Manual price override. Holds the difference for 10 days so the customer is not auto-refunded.`},
   {i:`refresh`,h:`TRD`,p:`Booking Adjustment. Reapply a promo discount that is no longer valid.`},
   {i:`alert`,h:`CANS`,p:`Cancellation fee code (Manual Prices).`},
-  {i:`list`,h:`HCPA / HCPC / HCDC / HCDX`,p:`Promo codes for the different Holiday Change types.`}]},
+  {i:`list`,h:`HCPA / HCPC / HCDC / HCDX / HCDF`,p:`The different Holiday Change types. What each one allows is under Memo codes.`}]},
  {t:'cards',title:`Abbreviations`,sub:`Pre-travel abbreviations.`,cards:[
   {i:`file`,h:`QSM`,p:`Quick Service Memo`},
   {i:`file`,h:`API`,p:`Advanced Passenger Information`},
@@ -1334,8 +1385,104 @@ const RAW=[
   {i:`file`,h:`After Travel Team (extra detail)`,p:`Reviews customer feedback within 28 days. Compensation vouchers and BACS payments. Proactive complaints and incidents. Pre-Travel supports customers chasing After Travel or who missed their calls, and escalates with the Pre-Travel Form.`},
   {i:`heart`,h:`Team Leaders, Team Partners and HEN`,p:`Escalate urgent cases to Team Leaders and Team Partners for acknowledgement. HEN (Higher Escalation Network) is involved in urgent case escalations.`},
   {i:`headset`,h:`Contact Centre and TUI Retail colleagues`,p:`Pre-Travel supports them with various queries and processes.`},
-  {i:`list`,h:`Key working relationships`,p:`• Committed allocation flights are handled directly or managed within Pre-Travel\n• 3PF flights and dynamic packages must be handled by the 3PF team\n• Tours bookings must be handled by the TUI Tours Team`}]}
+  {i:`list`,h:`Key working relationships`,p:`• Committed allocation flights are handled directly or managed within Pre-Travel\n• 3PF flights and dynamic packages must be handled by the 3PF team\n• Tours bookings must be handled by the TUI Tours Team`}]},
+ {t:`cards`,title:`Holiday Change stamps (HC)`,sub:`Main HC stamps. Pick the one that matches what the customer is entitled to. Written as HC-code.`,cards:[
+  {i:`refresh`,h:`HC-HCPA`,p:`Holiday Change with alternative, RBI applies.\nExample: hotel downgrade. The customer can amend to the same season with RBI, or to any future season fee-free, or cancel.`},
+  {i:`alert`,h:`HC-HCPC`,p:`Holiday Change, free amend with RBI or cancel.\nExample: hotel closure. The customer can amend to ANY season with RBI, or cancel.`},
+  {i:`check`,h:`HC-HCDC`,p:`Holiday Change, free amend.\nExample: moderate timing change. The customer can amend to any season, no RBI, just a free change.`},
+  {i:`clock`,h:`HC-HCDX`,p:`Holiday Change, free amend with promo or cancel.\nExample: major timing change (12+ hours). The customer can amend to the same season with RBI, or to any season fee-free, or cancel.`},
+  {i:`tag`,h:`HC-HCDF`,p:`Holiday Change, free amend with promo.\nExample: flight timing change with an incentive. Free amend plus an incentive of up to 10%.`}]},
+ {t:`cards`,title:`Holiday Change supporting memos`,sub:`Used alongside the main HC stamps. Written as HC-code.`,cards:[
+  {i:`user`,h:`HC-CMMB`,p:`Customer Made MMB amend/cancel.\nExample: after the customer uses their free change online. This removes the MMB notification.`},
+  {i:`file`,h:`HC-HCN`,p:`Holiday Change Notes.\nExample: internal notes about the change details.`},
+  {i:`shield`,h:`HC-ABM`,p:`ABN Manager Approval.\nExample: manager approval for alternative sourcing.`},
+  {i:`check`,h:`HC-APP`,p:`Holiday Change Approval.\nExample: approval stamp for exceptional cases.`},
+  {i:`clock`,h:`HC-HCEX`,p:`Holiday Change Stamp Extension.\nExample: extending the 10-day window for customer response.`},
+  {i:`plane`,h:`HC-HTPF`,p:`Holiday Change 3rd Party Flying.\nExample: changes involving non-TOM/BY flights.`},
+  {i:`card`,h:`HC-NEGB`,p:`Negative Balance.\nExample: when a refund creates a negative balance on the booking.`}]}
 ]},
+{id:'newc3',name:'Customer experience',icon:'smile',acc:'#1a9c8b',soft:'#def4f0',slides:[
+ {t:`cards`,title:`Surveys: what customers really score`,sub:`A good survey is the result of a good call. You cannot ask for it, but you can earn it on every call.`,cards:[
+  {i:`heart`,h:`How it felt`,p:`Customers remember how you made them feel more than the exact outcome. A kind, clear "no" often scores better than a rushed "yes".`},
+  {i:`clock`,h:`Effort`,p:`Fewer transfers, no repeating details, one clear owner. Say "I'll stay with you" and "I'll note this so you won't have to repeat it".`},
+  {i:`chat`,h:`Clarity`,p:`No surprises about cost, timing or next steps. Say what will happen, by when, and how they will hear about it.`},
+  {i:`user`,h:`Ownership`,p:`Say "I will", not "they will". Never blame another team, the system or the customer.`},
+  {i:`star`,h:`The ending`,p:`The last 20 seconds colour the whole call: a short recap, the next step with a time, and a warm thank you.`},
+  {i:`alert`,h:`What leads to low scores (0-3)`,p:`Being passed around, vague timelines, a cold "no" with no alternative, broken promises, feeling rushed, and having to chase.`},
+  {i:`shield`,h:`Earn it, never ask for it`,p:`Never ask for a score, hint at one or plead. Mention the survey neutrally if your process says so, then let the service speak for itself.`}]},
+ {t:`steps`,title:`Saying no: the 5-step method`,sub:`Use it whenever the answer is no, even a small one. The customer should feel helped, not refused.`,steps:[
+  {h:`Listen and acknowledge`,p:`Let them finish. Then show you heard them: "I can hear how frustrating this is, and I'm sorry."`},
+  {h:`Say the no early and kindly`,p:`Do not bury it in a long explanation. Keep it short and clear: "Unfortunately I'm not able to do that."`},
+  {h:`Give the reason in their terms`,p:`Explain what it protects or why it exists: "This keeps your details safe", "The airline sets this charge". Avoid "that's our policy".`},
+  {h:`Lead with what you CAN do`,p:`Offer one or two real options: "What I can do is...". Make sure each option is something you can actually deliver.`},
+  {h:`Agree the next step`,p:`Check they are comfortable: "Would that work for you?" Then say what happens next and by when, and note it on the booking.`}],note:`Small changes make a big difference. Say "and" instead of "but" after a sorry. Slow down and lower your pitch on bad news. Do not repeat "unfortunately". Never say "as I said" or "you should have".`},
+ {t:`drill`,title:`Saying no: security, authority and policy`,sub:`Firm on the rules, kind in the delivery. Always protect the customer's data.`,lead:`Situation`,items:[
+  {q:`Customer fails the security check`,a:`"I'm sorry for the inconvenience. These checks are there to keep your booking and personal details safe, so I do need them completed before I can go any further. If you can find [the confirmation email], call us back and I'll be glad to help you straight away."`,tip:`Never hint at the right answers. End with a clear, helpful way forward.`},
+  {q:`Caller is not the lead passenger and not authorised`,a:`"I'm sorry, I know that's frustrating when you're trying to help. Because [Name] is the lead passenger, I can only discuss the booking with them or someone they have authorised. If they contact us, we can add you to the booking so I can help you directly next time."`,tip:`Share no booking details. Explain how they can be authorised.`},
+  {q:`Customer does not want to answer the verification questions`,a:`"I completely understand it can feel like a lot of questions. These checks protect your information, and I'd want the same for my own booking. It only takes a moment, and then I'll get straight to your query."`,tip:`Keep your tone friendly and relaxed. Do not skip any check.`},
+  {q:`Third-party agent is impatient and refuses GDPR first`,a:`"I understand you're busy, and I'll be as quick as I can. I do need to complete the verification before I can look at the booking. Could you confirm your ABTA number, please?"`,tip:`Polite and steady. Verification always comes before the search.`},
+  {q:`"Get me a manager so I don't have to answer your questions."`,a:`"Of course, I'll arrange a team leader. They'll need to complete the same checks to protect your booking, but I'll brief them so you don't have to repeat your story. Shall we start the checks now so it's quicker?"`,tip:`Offer the manager and keep the checks. Never bypass them.`},
+  {q:`Lead passenger cannot call (in hospital, serving offshore) and nobody is authorised`,a:`"I'm so sorry to hear that. Let me explain how we can still help. We'll need a signed indemnity form, and I'll open a case and take you through each step so it's as easy as possible."`,tip:`Warm and practical. Explain every step and the timescale.`}]},
+ {t:`drill`,title:`Saying no: fees, refunds and compensation`,sub:`Be clear on the money, kind about how it feels, and always offer a next step.`,lead:`Situation`,items:[
+  {q:`Customer is upset about a non-refundable deposit`,a:`"I understand it's frustrating to hear. Your deposit is non-refundable under the booking terms, even if the charge works out lower. It helps cover costs already committed for your holiday. Before we decide anything, shall I check whether changing your dates would suit you better?"`,tip:`Explain the reason, then show an option. Do not apologise for the rule itself, apologise for the disappointment.`},
+  {q:`Customer wants a refund on a non-refundable fare`,a:`"I'm sorry, I know that's not what you hoped for. I can see this fare is non-refundable under the terms. What I can do is [change the dates / look at credit / check what your insurance may cover]. Which of those would you like to look at first?"`,tip:`Name the rule once, then spend the time on options.`},
+  {q:`An amendment fee must be paid today`,a:`"Just so it's clear before we go ahead, there's a £[X] fee for this amendment, and it's non-refundable even if you cancel later. I'd rather you know now than be surprised. Are you happy for me to continue?"`,tip:`Tell them early and calmly. Never let a fee come as a surprise.`},
+  {q:`Cancelling close to departure, so charges apply`,a:`"I'm sorry you're having to cancel. Because we're within [X] days of departure, a charge of £[X] applies. Before we go ahead, would changing the dates help? If you'd rather cancel, I'll tell you exactly what you'll get back and when."`,tip:`Empathy first, number second, options third.`},
+  {q:`Customer wants more compensation than you can give`,a:`"I can hear how disappointing this was, and I'm sorry. What I'm able to offer is £[X] for [reason]. If you'd like to take it further, I can pass your feedback to the right team and record exactly what you've told me. Would you like me to do that?"`,tip:`Stay within your limits. Never promise more than you can deliver.`},
+  {q:`Balance extension cannot be given`,a:`"I can see why you'd like more time. I'm not able to extend beyond [date]. What I can do is [explain the payment options / check a smaller payment / note your request]. What would work best for you?"`,tip:`Follow the extension rules. Offer a real alternative.`},
+  {q:`Voucher cannot be used`,a:`"I'm sorry, vouchers can't be used within 14 days of departure. Let me check whether there's another way I can help with the cost."`,tip:`Only offer what you can actually do.`}]},
+ {t:`drill`,title:`Saying no: advice we cannot give`,sub:`There are things you must not advise on. Say it kindly and point to the right source.`,lead:`Customer asks`,items:[
+  {q:`"Do I need travel insurance, and will mine cover this?"`,a:`"I can't confirm what your policy covers, but I'd really recommend checking your policy documents, as illness and other unforeseen events may be covered. They'll show exactly what's included. Shall I note on your booking that you're going to check?"`,tip:`Never confirm cover. Only use your approved wording on insurance.`},
+  {q:`"Is it safe to travel to [destination]?"`,a:`"I want you to have the most reliable information, so the best source is the official UK Foreign, Commonwealth & Development Office travel advice. I can explain what our options are for your booking if the advice changes."`,tip:`Never give your own opinion on safety.`},
+  {q:`"I'm pregnant (or unwell). Can I still fly?"`,a:`"I'm not a medical professional, so I'd suggest checking with your doctor. In the meantime, I'll check the airline's rules for you and tell you exactly what they say."`,tip:`No medical advice. Give the airline's rules and suggest their doctor.`},
+  {q:`"Do I need a visa?"`,a:`"Entry rules depend on your nationality and destination, and they can change. To give you accurate information, please check the GOV.UK foreign travel advice for [destination]. I'm happy to note this on your booking."`,tip:`Point to the official source. Never guess.`},
+  {q:`"Can I sue you?" or "What are my legal rights?"`,a:`"That's outside what I can advise on, but I can explain how to raise a formal complaint and make sure it's logged properly today. Would you like me to do that?"`,tip:`No legal advice. Offer the complaint route.`}]},
+ {t:`drill`,title:`Questions that keep the call flowing`,sub:`Good questions show you care and stop the call from going in circles. Start open, finish closed.`,lead:`Stage`,items:[
+  {q:`Understand the reason for the call`,a:`"Can you tell me a bit more about what's happened?"\n"What would a good outcome look like for you?"\n"Have you spoken to anyone about this already?"`,tip:`Open questions first. Listen without interrupting.`},
+  {q:`Check you have understood`,a:`"Just so I've got this right, you'd like to [X]. Is that correct?"\n"When did this first happen?"\n"Who is it that will be travelling?"`,tip:`Paraphrase in your own words. It builds trust and avoids mistakes.`},
+  {q:`Before you act`,a:`"Would you like me to go ahead with that?"\n"Is there anything about that you're unsure of?"\n"Shall I go through the cost before I make the change?"`,tip:`Closed questions to confirm. Never act without agreement.`},
+  {q:`After giving difficult news`,a:`"How does that sound to you?"\n"Would it help if I went through the options again?"\n"Is there anything I can explain more clearly?"`,tip:`Pause. Give them space to react before you carry on.`},
+  {q:`Agreeing the next step`,a:`"Would you prefer a call back or an email?"\n"What's the best number and time to reach you?"\n"By when do you need an answer?"`,tip:`Put the agreed time in your notes and keep to it.`},
+  {q:`Before you close`,a:`"Is there anything else I can help you with today?"\n"Have I covered everything you called about?"`,tip:`Check they are fully satisfied before saying goodbye.`}]},
+ {t:`cards`,title:`Details to ask for, by topic`,sub:`Ask for what you need early, so you do not have to call them back or ask twice.`,cards:[
+  {i:`refresh`,h:`Changing a booking`,p:`• What would you like to change: dates, names, flights, hotel?\n• Who is it for?\n• Is there a date you need an answer by?\n• Is there a budget you'd like to stay within?`},
+  {i:`alert`,h:`Cancelling`,p:`• What's prompting the change?\n• Are you travelling with anyone affected?\n• Do you have travel insurance?\n• Would a change of dates work better?`},
+  {i:`frown`,h:`A complaint`,p:`• What happened, and when?\n• How has it affected you?\n• What would you like us to do?\n• Have you contacted us before? Any case number?`},
+  {i:`plane`,h:`Seats and extras`,p:`• Who is travelling, and do you want to sit together?\n• Any mobility or medical needs?\n• Is this a long or short flight for you?\n• Would you like extra bags or meals?`},
+  {i:`card`,h:`Payments`,p:`• How would you like to pay?\n• Is a Direct Debit better for you?\n• Who is making the payment?\n• Is the due date clear to you?`},
+  {i:`heart`,h:`Special occasions`,p:`• Is it a special trip, like a birthday or honeymoon?\n• Would you like me to add a note to the booking?`},
+  {i:`users`,h:`Travelling party`,p:`• Names exactly as in the passports\n• Children's and infants' ages on the date of travel\n• Anyone who needs assistance`},
+  {i:`phone`,h:`Contact details`,p:`• What's the best number and time to reach you?\n• Is your email address still correct?\n• Would you prefer a call or an email?`}]},
+ {t:`cards`,title:`Tone and delivery tips`,sub:`How you say it matters as much as what you say.`,cards:[
+  {i:`smile`,h:`Smile and sound it`,p:`A smile can be heard. Warm, steady energy from the very first sentence.`},
+  {i:`clock`,h:`Slow down on bad news`,p:`Lower and slower on refusals, fees and dates. Read numbers slowly and repeat key figures.`},
+  {i:`user`,h:`Use their name`,p:`Two or three times in the call, not every sentence.`},
+  {i:`list`,h:`Signpost what you're doing`,p:`"I'm going to check that for you, it'll take about two minutes." Silence feels long without a signpost.`},
+  {i:`check`,h:`Summarise`,p:`Short recap before a change and before closing: what you did, what happens next, and when.`},
+  {i:`chat`,h:`Do not interrupt`,p:`Let them finish, then pause for a second before answering.`},
+  {i:`star`,h:`Positive wording`,p:`Say what you can do, not only what you can't. "What I can do is..." beats "I can't...".`},
+  {i:`shield`,h:`Own it`,p:`"I'll call you back by 3pm." "I'll make sure this is noted." Avoid "they" and "the system".`},
+  {i:`heart`,h:`Match, then lead`,p:`Meet the customer's energy at the start, then bring it down gently if they are upset.`},
+  {i:`headset`,h:`Hold etiquette`,p:`Ask permission, say how long, return when you said, and thank them for waiting.`}]},
+ {t:`compare`,title:`Plain words: say this, not jargon`,sub:`Customers do not know our codes and abbreviations. Translate everything.`,left:`Say`,right:`Avoid`,rows:[
+  ['I\'ll add a note to your booking.','I\'ll put a QSM / memo on it.'],
+  ['The people travelling','PAX'],
+  ['Your outbound and return flights','OB and IB'],
+  ['A seat with extra legroom','XLEG'],
+  ['The fee for changing your booking is £[X].','AFEE applies.'],
+  ['Our colleagues who look after holidays with a named tour','The Tours team / 3PF'],
+  ['Let me check your booking.','Let me open Atcom / C4C.'],
+  ['The remaining amount is due on [date].','Your balance is due.']]},
+ {t:`drill`,title:`When the call turns tense`,sub:`Stay calm and keep solving. Never plead, bargain or mention the survey score.`,lead:`Customer says`,items:[
+  {q:`"I'm going to give you a terrible survey."`,a:`"I'm sorry I haven't been able to put this right for you yet, and I'd like to keep trying. What's the most important thing for you right now?"`,tip:`Do not mention scores or beg. Refocus on solving the problem.`},
+  {q:`"This is ridiculous. This is so unfair."`,a:`"I understand why it feels that way, and I'm sorry. Let me look at exactly what I can do for you."`,tip:`Acknowledge, then act. Do not defend.`},
+  {q:`(Silence or short answers after bad news)`,a:`"I want to make sure you're comfortable with that. Would it help if I went through it again, or looked at another option?"`,tip:`Check in. Silence can mean they are upset, not happy.`},
+  {q:`The customer keeps repeating the same demand`,a:`"I can hear how important this is, and I want to be honest so you're not left hoping. [Clear answer]. What I can do is [option]. Shall I do that, or would you like a team leader to call you?"`,tip:`Be clear and consistent. Do not give false hope.`},
+  {q:`"Someone told me last time that I'd get a refund."`,a:`"I'm sorry you were told that. Let me check the notes and see exactly what was said, so you get accurate information from me today."`,tip:`Do not criticise a colleague. Check the notes, then be honest.`},
+  {q:`You made a mistake on the call`,a:`"I'm sorry, that was my mistake. Let me put it right now. [Fix it.] I've noted it on your booking, so it's clear for next time."`,tip:`Own it fast, fix it and move on. Customers respect that.`},
+  {q:`The customer is calmer and says thank you after bad news`,a:`"Thank you for being so understanding. I'll make sure everything we've agreed is noted, and if anything changes, please call us and we'll be happy to help."`,tip:`Finish warmly and repeat the agreed next step.`}]}
+]}
+,
 {id:'lab',name:'Practice lab',icon:'target',acc:'#e0568f',soft:'#ffe6f0',slides:[
  {t:'roleplay',title:'Roleplay generator',sub:'Get a random scenario, run the call out loud with a timer, then score yourself honestly.'},
  {t:'roulette',title:'Objection roulette',sub:'A random customer line from the whole deck. Say your answer out loud, then reveal the model response.'},
@@ -1359,6 +1506,7 @@ const LAYOUT=[
  ['gdpr','call','GDPR scenarios and C4C','lock',['GDPR scenarios (1)','GDPR scenarios (2)','GDPR scenarios (3)','C4C: what it is and what it does','C4C: getting started']],
  ['sell','call','2. Discover and sell','trend',['Open and closed questions','Discovery in action','Mindset: sell by solving','The upsell formula','Upsell: bags and meals','Upsell: upgrade the booking','Upsell: hotel, transfers and extras','Cross-sell & retention','Upselling: say this, not that']],
  ['close','call','3. Hold and close','check',['Hold, transfer and escalate','Call control phrases','Closing the call']],
+ ['cx','call','Customer experience','smile',['Surveys: what customers really score','Saying no: the 5-step method','Saying no: security, authority and policy','Saying no: fees, refunds and compensation','Saying no: advice we cannot give','Questions that keep the call flowing','Details to ask for, by topic','Tone and delivery tips','Plain words: say this, not jargon','When the call turns tense']],
  ['obj','sit','Objections','shield',['The ACAA method for any objection','Price objections (1)','Price objections (2)','Hesitation & delay','Doubts & questions','Trust & service objections (1)','Trust & service objections (2)']],
  ['angry','sit','Angry customers','frown',['De-escalation: H.E.A.R.D.','Shouting, abuse and threats','Repeat callers and broken trust','Escalations and sensitive moments','Phrases to use and phrases to avoid','Reset after a tough call']],
  ['sys','sit','System and disruptions','monitor',['System issue protocol','System issues (1)','System issues (2)','Disruption quick facts (check current policy)','Disruptions (1)','Disruptions (2)','Disruptions (3)']],
@@ -1374,7 +1522,7 @@ const LAYOUT=[
  ['time','money','Timeframes','clock',['Pre-travel timeframes (1)','Pre-travel timeframes (2)']],
  ['pay','money','Refunds, payments and APEX','card',['Non-integrated refund','Non-integrated payment','Amendment fees, waivers and linked memos','APEX: payment statuses','APEX: viewing response codes']],
  ['emp','money','Empowerment','star',['Pre-Travel empowerment: when to use it','Pre-Travel empowerment: amounts and rules']],
- ['memo','ref','Memos and codes','file',['Adding a memo and the CAR template','Memo codes','Price and cost codes','Abbreviations','Welfare and assisted travel codes','ABTA numbers']],
+ ['memo','ref','Memos and codes','file',['Adding a memo and the CAR template','Memo codes','Holiday Change stamps (HC)','Holiday Change supporting memos','Price and cost codes','Abbreviations','Welfare and assisted travel codes','ABTA numbers']],
  ['tui','ref','TUI reference','book',['Who to contact: teams','Internal teams: who handles what','TUI app: what to tell customers','TUI app: key benefits','Quality 1: Customer focus','Quality 2: Sales excellence','Quality 3: Expertise','Quality 4: Efficiency']],
  ['lab','prac','Practice lab','target',['Roleplay generator','Objection roulette','Mindset & what good looks like']]
 ];
@@ -1568,15 +1716,89 @@ async function noteSave(note,ref,msgEl){
   catch(e){noteShow(msgEl,"Couldn't save. Try again.",'badt');return false}}
 (function(){
   const nt=document.getElementById('nt'),txt=document.getElementById('ntText'),msg=document.getElementById('ntMsg'),btn=document.getElementById('ntBtn'),sv=document.getElementById('ntSave');
-  const toggle=v=>{const s=v===undefined?!nt.classList.contains('show'):v;nt.classList.toggle('show',s);btn.classList.toggle('vis',s);if(s)setTimeout(()=>txt.focus(),120)};
+  const whenEl=document.getElementById('ntWhen'),colsEl=document.getElementById('ntCols'),listEl=document.getElementById('ntList'),countEl=document.getElementById('ntCount'),badge=document.getElementById('ntBadge'),toasts=document.getElementById('rtoasts');
+  const RCOL={blue:['#2f6fed','Blue'],green:['#2e9d6a','Green'],amber:['#e6a117','Amber'],purple:['#8b5cf6','Purple']};
+  const K_ITEMS='tui-rem',K_OPS='tui-rem-ops',K_AL='tui-rem-al',PRE=10*60000;
+  const ld=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}};
+  const sd=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+  let items=ld(K_ITEMS,[]),ops=ld(K_OPS,[]),al=ld(K_AL,{}),color='blue',busy=false,again=false;
+  const hasUrl=()=>typeof NOTES_URL==='string'&&NOTES_URL.indexOf('http')===0;
+  const pad=n=>String(n).padStart(2,'0');
+  const toOff=d=>{const o=-d.getTimezoneOffset(),a=Math.abs(o);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'T'+pad(d.getHours())+':'+pad(d.getMinutes())+':00'+(o>=0?'+':'-')+pad(Math.floor(a/60))+':'+pad(a%60)};
+  const fmtT=d=>{const n=new Date(),day=d.toDateString()===n.toDateString()?'Today':d.toDateString()===new Date(n.getTime()+864e5).toDateString()?'Tomorrow':d.toLocaleDateString([],{weekday:'short',day:'numeric',month:'short'});return day+' '+d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})};
+  const ms=i=>new Date(i.at).getTime()-Date.now();
+  const stOf=i=>{const m=ms(i);return m<=0?'over':m<=36e5?'soon':'up'};
+  const post=async o=>{const r=await fetch(NOTES_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(o)});const j=await r.json();if(!j.ok)throw new Error('x');return j};
+  const store=()=>{sd(K_ITEMS,items);sd(K_OPS,ops);sd(K_AL,al)};
+  /* colour chips */
+  colsEl.innerHTML=Object.keys(RCOL).map(k=>`<button type="button" data-col="${k}" style="--c:${RCOL[k][0]}" class="${k===color?'on':''}" aria-label="${RCOL[k][1]}" title="${RCOL[k][1]}"></button>`).join('');
+  colsEl.addEventListener('click',e=>{const b=e.target.closest('[data-col]');if(!b)return;color=b.dataset.col;colsEl.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b))});
+  const toLocalInput=d=>toOff(d).slice(0,16);
+  nt.addEventListener('click',e=>{const q=e.target.closest('[data-q]');if(!q)return;const v=q.dataset.q;
+    if(v==='none')whenEl.value='';else if(v==='tom'){const d=new Date();d.setDate(d.getDate()+1);d.setHours(9,0,0,0);whenEl.value=toLocalInput(d)}else whenEl.value=toLocalInput(new Date(Date.now()+(+v)*6e4))});
+  /* list + badge */
+  function render(){
+    const list=items.slice().sort((x,y)=>new Date(x.at)-new Date(y.at));
+    countEl.textContent=list.length?list.length+' open':'';
+    listEl.innerHTML=list.length?list.map(i=>{const st=stOf(i),m=ms(i),d=new Date(i.at),c=(RCOL[i.color]||RCOL.blue)[0];
+      const pill=st==='over'?(m>-6e4?'Due now':'Overdue'):st==='soon'?'In '+Math.max(1,Math.ceil(m/6e4))+' min':'Upcoming';
+      return `<div class="ri ${st}" style="--c:${c}"><div class="rit"><div class="rin">${esc(i.note)}</div><div class="rim"><span class="rp">${pill}</span><span>${esc(fmtT(d))}</span></div></div><div class="ria"><button type="button" data-r="snz" data-id="${esc(i.id)}" title="Snooze 10 min">+10m</button><button type="button" class="dn" data-r="done" data-id="${esc(i.id)}" title="Done" aria-label="Done">${ic('check')}</button></div></div>`}).join(''):'<div class="rempty">No reminders yet. Write a note and pick a time to add one.</div>';
+    const n=items.filter(i=>ms(i)<=PRE).length,over=items.some(i=>ms(i)<=0);
+    badge.textContent=n;badge.classList.toggle('on',n>0);badge.classList.toggle('pulse',over)}
+  /* sync with the sheet (adds, then done/snooze, then reads the open reminders) */
+  async function flush(){
+    if(!hasUrl())return;if(busy){again=true;return}busy=true;
+    try{
+      for(const i of items.filter(x=>!x.synced)){await post({action:'add',id:i.id,note:i.note,remindAt:i.at,color:i.color});i.synced=true;store()}
+      while(ops.length){await post(ops[0]);ops.shift();store()}
+      const r=await fetch(NOTES_URL+'?action=list'),j=await r.json();
+      if(j.ok&&Array.isArray(j.items)){
+        const pending=items.filter(x=>!x.synced);
+        const srv=j.items.map(x=>({id:x.id,note:x.note,at:x.remindAt,color:RCOL[x.color]?x.color:'blue',synced:true})).filter(x=>!isNaN(new Date(x.at)));
+        items=pending.concat(srv.filter(x=>!pending.some(p=>p.id===x.id)));store()}
+    }catch(e){}
+    busy=false;render();tick();if(again){again=false;flush()}}
+  /* alerts */
+  function toast(i,kind){
+    const c=(RCOL[i.color]||RCOL.blue)[0],m=Math.max(1,Math.ceil(ms(i)/6e4));
+    const t=document.createElement('div');t.className='rt'+(kind==='due'?' over':'');t.style.setProperty('--c',c);t.dataset.id=i.id;
+    t.innerHTML=`<div class="rtx"><b>${kind==='due'?'Reminder due now':'Reminder in '+m+' min'}</b><span>${esc(i.note)}</span></div><button type="button" class="dn" data-t="done">Done</button><button type="button" data-t="snz">+10m</button><button type="button" class="x" data-t="x" aria-label="Dismiss">&times;</button>`;
+    toasts.appendChild(t);
+    try{if('Notification' in window&&Notification.permission==='granted')new Notification(kind==='due'?'Reminder due now':'Reminder in '+m+' min',{body:i.note,tag:i.id+kind})}catch(e){}}
+  function tick(){
+    const fire=[];
+    items.forEach(i=>{const m=ms(i);
+      if(m<=0&&!al[i.id+':d']){al[i.id+':d']=1;al[i.id+':p']=1;fire.push([i,'due'])}
+      else if(m>0&&m<=PRE&&!al[i.id+':p']){al[i.id+':p']=1;fire.push([i,'pre'])}});
+    if(fire.length>3){fire.slice(0,3).forEach(f=>toast(f[0],f[1]));const t=document.createElement('div');t.className='rt over';t.style.setProperty('--c','#d4495a');t.innerHTML=`<div class="rtx"><b>More reminders</b><span>${fire.length-3} more are due. Open Notes to see them.</span></div><button type="button" class="x" data-t="x" aria-label="Dismiss">&times;</button>`;toasts.appendChild(t)}
+    else fire.forEach(f=>toast(f[0],f[1]));
+    if(fire.length)store();render()}
+  function doneIt(id){items=items.filter(i=>i.id!==id);ops.push({action:'update',id,status:'done'});store();render();flush()}
+  function snooze(id){const i=items.find(x=>x.id===id);if(!i)return;const d=new Date(Date.now()+PRE);i.at=toOff(d);delete al[id+':d'];delete al[id+':p'];al[id+':p']=1;ops.push({action:'update',id,remindAt:i.at});store();render();flush()}
+  const act=(a,id,el)=>{if(a==='done')doneIt(id);else if(a==='snz')snooze(id);const t=el&&el.closest('.rt');if(t&&a!=='x')t.remove();else if(t)t.remove()};
+  toasts.addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b)act(b.dataset.t,b.closest('.rt').dataset.id,b)});
+  listEl.addEventListener('click',e=>{const b=e.target.closest('[data-r]');if(b)act(b.dataset.r,b.dataset.id,b)});
+  /* panel */
+  const toggle=v=>{const s=v===undefined?!nt.classList.contains('show'):v;nt.classList.toggle('show',s);btn.classList.toggle('vis',s);if(s){render();flush();setTimeout(()=>txt.focus(),120)}};
   btn.onclick=()=>toggle();
   document.getElementById('ntX').onclick=()=>toggle(false);
-  document.getElementById('ntClear').onclick=()=>{txt.value='';msg.textContent=''};
+  document.getElementById('ntClear').onclick=()=>{txt.value='';whenEl.value='';msg.textContent=''};
   async function save(){const v=txt.value.trim();if(!v){noteShow(msg,'Type a note first.','badt');return}
-    sv.disabled=true;const ok=await noteSave(v,'',msg);sv.disabled=false;if(ok){txt.value=''}}
+    if(!whenEl.value){sv.disabled=true;const ok=await noteSave(v,'',msg);sv.disabled=false;if(ok){txt.value=''}return}
+    const d=new Date(whenEl.value);
+    if(isNaN(d)||d.getTime()<=Date.now()){noteShow(msg,'Pick a time in the future.','badt');return}
+    const it={id:'r'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),note:v,at:toOff(d),color,synced:false};
+    items.push(it);if(d.getTime()-Date.now()<=PRE)al[it.id+':p']=1;store();
+    txt.value='';whenEl.value='';render();
+    try{if('Notification' in window&&Notification.permission==='default')Notification.requestPermission()}catch(e){}
+    noteShow(msg,hasUrl()?'Reminder set':'Saved on this device. Add your link to sync.','okt');flush()}
   sv.onclick=save;
   txt.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();save()}});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nt.classList.contains('show')&&!document.getElementById('qf').classList.contains('open'))toggle(false)});
+  render();tick();flush();
+  setInterval(tick,20000);setInterval(flush,120000);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden){tick();flush()}});
+  window.__REM={items:()=>items,tick,flush,render};
 })();
 document.getElementById('stall').addEventListener('click',e=>{const b=e.target.closest('[data-t]');if(b){const n=flat.findIndex(f=>f.d.title===b.dataset.t);if(n>=0)go(n)}});
 const MAPT='Mind map: tap to explore';
@@ -1779,7 +2001,8 @@ stage.addEventListener('click',e=>{
    ['calculator','calculate','days','nights','date','cancellation','terms','حاسبه','حساب','ايام','ليالي','شروط','الغاء'],
    ['app','download','checklist','boarding','tui app','تطبيق','ابليكيشن','تحميل'],
    ['quality','gdpr','memo','abta','codes','bem','ben','nla','كواليتي','ابتا','كود','جي دي بي ار'],
-   ['c4c','case','cases','involved parties','indemnity','rfi','gdpr','non lead','lead passenger','third party agent','3pa','كيس','كيسز'].map(x=>x),
+   ['survey','csat','score','detractor','refuse','refusal','decline','reject','tone','سيرفاي','رفض'].map(x=>x),
+  ['c4c','case','cases','involved parties','indemnity','rfi','gdpr','non lead','lead passenger','third party agent','3pa','كيس','كيسز'].map(x=>x),
   ['apex','status','settled','captured','chargeback','non integrated','non int','refund','payment','ابكس','استرداد'].map(x=>x),
   ['empowerment','ccem','cceb','ccee','cceh','compensation','brochure','service failure','تعويض'].map(x=>x),
   ['timeframe','cob','flex','balance extension','voucher','deadline','موعد','ديدلاين'].map(x=>x),
